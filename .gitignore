@@ -27,3 +27,5 @@ SLDDSDKSJLDS/x64/Debug/vc143.idb
 SLDDSDKSJLDS/x64/Debug/vc143.pdb
 x64/Debug/practice.exe
 x64/Debug/practice.pdb
+*.vsidx
+*.ipch
