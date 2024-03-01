@@ -29,3 +29,5 @@ x64/Debug/practice.exe
 x64/Debug/practice.pdb
 *.vsidx
 *.ipch
+*.obj
+SLDDSDKSJLDS/x64/Debug/Game.obj

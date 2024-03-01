@@ -1,5 +1,10 @@
 
 #include "Game.hpp"
+#include "TextureManager.hpp"
+
+SDL_Texture* test_card;
+SDL_Rect srcR, destR;
+
 Game::Game()
 {}
 Game::~Game()
@@ -7,6 +12,7 @@ Game::~Game()
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
+
 	int flags = { 0 };
 	if (fullscreen) {
 		flags = SDL_WINDOW_FULLSCREEN;
@@ -30,6 +36,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	else {
 		isRunning = false;
 	}
+
+
+	test_card = TextureManager::LoadTexture("PixelCard_Assets/Cards/Spades/Card_2Spades.png", renderer);
 }
 
 void Game::handleEvents()
@@ -45,10 +54,20 @@ void Game::handleEvents()
 	
 }
 
-void Game::update(){}
+void Game::update(){
+	count++;
+	std::cout << count << std::endl;
+
+	destR.h = 96*2;
+	destR.w = 64*2;
+	destR.x = count;
+}
 
 void Game::render(){
 	SDL_RenderClear(renderer);
+
+	SDL_RenderCopy(renderer, test_card, NULL, &destR);
+
 	SDL_RenderPresent(renderer);
 }
 

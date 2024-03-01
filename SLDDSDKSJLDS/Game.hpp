@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SDL.h"
+#include "SDL_image.h"
 #include <stdio.h>
 #include <iostream>
 
@@ -23,4 +24,5 @@ private:
 	bool isRunning;
 	SDL_Window  *window;
 	SDL_Renderer* renderer;
+	int count = {};
 };
