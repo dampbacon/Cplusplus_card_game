@@ -1,9 +1,9 @@
 
 #include "Game.hpp"
 #include "TextureManager.hpp"
+#include "Card.hpp"
 
-SDL_Texture* test_card;
-SDL_Rect srcR, destR;
+Card* testCard;
 
 Game::Game()
 {}
@@ -28,7 +28,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer) {
-			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+			SDL_SetRenderDrawColor(renderer, 21, 88, 67, 255);
 			std::cout << "renderer created" << std::endl;
 		}
 		isRunning = true;
@@ -37,8 +37,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		isRunning = false;
 	}
 
-
-	test_card = TextureManager::LoadTexture("PixelCard_Assets/Cards/Spades/Card_2Spades.png", renderer);
+	testCard = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_2Spades.png", renderer,100,100);
 }
 
 void Game::handleEvents()
@@ -55,19 +54,12 @@ void Game::handleEvents()
 }
 
 void Game::update(){
-	count++;
-	std::cout << count << std::endl;
-
-	destR.h = 96*2;
-	destR.w = 64*2;
-	destR.x = count;
+	testCard->Update();
 }
 
 void Game::render(){
 	SDL_RenderClear(renderer);
-
-	SDL_RenderCopy(renderer, test_card, NULL, &destR);
-
+	testCard->Render();
 	SDL_RenderPresent(renderer);
 }
 
