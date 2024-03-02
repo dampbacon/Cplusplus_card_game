@@ -4,8 +4,12 @@
 #include "Card.hpp"
 #include "Stack.hpp"
 #include <vector>
+#include <algorithm>
+
 
 Stack* testStack;
+Stack* testStack2;
+
 
 Card* testCard;
 Card* card2;
@@ -53,6 +57,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 
 	testStack = new Stack(2);
+	testStack2 = new Stack(3);
 
 	testCard = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_2Spades.png",100,100);
 
@@ -67,6 +72,17 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	testStack->addToStack(card3);
 	testStack->addToStack(card4);
 	testStack->addToStack(card5);
+
+	testStack2->addToStack(testCard);
+	testStack2->addToStack(card2);
+
+	testStack->transferStack(card5, testStack2);
+
+	testStack2->transferStack(card5, testStack);
+
+	testStack->transferStack(card5, testStack2);
+
+
 
 
 }

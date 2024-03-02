@@ -22,7 +22,9 @@ public:
 	std::vector <Card*> CardStack;
 
 	int getStackID();
+	
 	void addToStack(Card* card);
+	void transferStack(Card* card, Stack* destStack);
 
 private:
 	int Stack_ID;
