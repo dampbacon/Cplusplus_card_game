@@ -63,7 +63,7 @@ SUIT_COLOR Card::getColor() {
 }
 
 void Card::Update() {
-	xpos++;
+	//xpos++;
 	//ypos++;
 
 	destRect.x = xpos;
@@ -90,4 +90,10 @@ void Card::Render() {
 	}
 }
 
+void Card::setPos(int x, int y) {
+	xpos = x;
+	ypos = y;
+	destRect.x = x;
+	destRect.y = y;
+}
 

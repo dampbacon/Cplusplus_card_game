@@ -1,5 +1,6 @@
 #pragma once
-
+#include <vector>
+#include "Card.hpp"
 /*
 add to stack function that sets card postiions.
 
@@ -12,3 +13,18 @@ value for top of stack to calculate a hitbox
 
 
 */
+class Stack
+{
+public:
+	Stack(int ID);
+	~Stack();
+
+	std::vector <Card*> CardStack;
+
+	int getStackID();
+	void addToStack(Card* card);
+
+private:
+	int Stack_ID;
+
+};

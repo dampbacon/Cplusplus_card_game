@@ -2,14 +2,19 @@
 #include "Game.hpp"
 #include "TextureManager.hpp"
 #include "Card.hpp"
+#include "Stack.hpp"
 #include <vector>
 
+Stack* testStack;
 
 Card* testCard;
 Card* card2;
 Card* card3;
 Card* card4; 
 Card* card5;
+
+
+
 std::vector <Card*> Deck(52);
 
 
@@ -47,6 +52,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		isRunning = false;
 	}
 
+	testStack = new Stack(2);
+
 	testCard = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_2Spades.png",100,100);
 
 	card2 = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_3Spades.png", 100, 132);
@@ -56,6 +63,10 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	card4 = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_5Spades.png", 100, 196);
 
 	card5 = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_6Spades.png", 100, 228);
+
+	testStack->addToStack(card3);
+	testStack->addToStack(card4);
+	testStack->addToStack(card5);
 
 
 }

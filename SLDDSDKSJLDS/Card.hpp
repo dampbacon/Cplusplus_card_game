@@ -24,6 +24,8 @@ public:
 	void Render();
 	void Update();
 
+	void setPos(int x, int y);
+
 private:
 	int xpos;
 	int ypos;
