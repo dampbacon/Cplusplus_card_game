@@ -2,8 +2,18 @@
 #include "Game.hpp"
 #include "TextureManager.hpp"
 #include "Card.hpp"
+#include <vector>
+
 
 Card* testCard;
+Card* card2;
+Card* card3;
+Card* card4; 
+Card* card5;
+std::vector <Card*> Deck(52);
+
+
+SDL_Renderer* Game::renderer = nullptr;
 
 Game::Game()
 {}
@@ -37,7 +47,17 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		isRunning = false;
 	}
 
-	testCard = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_2Spades.png", renderer,100,100);
+	testCard = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_2Spades.png",100,100);
+
+	card2 = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_3Spades.png", 100, 132);
+
+	card3 = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_4Spades.png", 100, 164);
+
+	card4 = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_5Spades.png", 100, 196);
+
+	card5 = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_6Spades.png", 100, 228);
+
+
 }
 
 void Game::handleEvents()
@@ -55,11 +75,24 @@ void Game::handleEvents()
 
 void Game::update(){
 	testCard->Update();
+	card2->Update();
+	card3->Update();
+	card4->Update();
+	card5->Update();
+
+
 }
 
 void Game::render(){
 	SDL_RenderClear(renderer);
 	testCard->Render();
+	card2->Render();
+	card3->Render();
+	card4->Render();
+	card5->Render();
+
+
+	
 	SDL_RenderPresent(renderer);
 }
 

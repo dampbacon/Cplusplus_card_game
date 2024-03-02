@@ -1,6 +1,10 @@
 #include "Card.hpp"
-#include "TextureManager.hpp"
-Card::Card(SUIT suit, int value, const char* texture, SDL_Renderer* ren, int x,int y) {
+
+
+const char* Card::cardBack = "PixelCard_Assets/Cards/Card_Back_Blue_New.png";
+
+
+Card::Card(SUIT suit, int value, const char* texture, int x,int y) {
 	color = {};
 	Csuit = {};
 	if (suit == DIAMONDS || suit == HEARTS) {
@@ -15,10 +19,29 @@ Card::Card(SUIT suit, int value, const char* texture, SDL_Renderer* ren, int x,i
 
 
 
-	renderer = ren;
-	objTexture = TextureManager::LoadTexture(texture,renderer);
+	objTexture = TextureManager::LoadTexture(texture);
+	cardBackTexture = TextureManager::LoadTexture(Card::cardBack);
+
 	xpos = x;
 	ypos = y;
+
+	srcRect.h = 96;
+	srcRect.w = 64;
+	srcRect.x = 0;
+	srcRect.y = 0;
+	
+
+	//destRect can act as FULL card hitbox
+	destRect.h = srcRect.h * 2;
+	destRect.w = srcRect.w * 2;
+	destRect.x = xpos;
+	destRect.y = ypos;
+
+	cardTopRect.h = cardTop*2;
+	cardTopRect.w = destRect.w;
+	cardTopRect.x = xpos;
+	cardTopRect.y = ypos;
+	//14
 }
 
 Card::~Card(){}
@@ -41,19 +64,30 @@ SUIT_COLOR Card::getColor() {
 
 void Card::Update() {
 	xpos++;
-	ypos++;
+	//ypos++;
 
-	srcRect.h = 96;
-	srcRect.w = 64;
-	srcRect.x = 0;
-	srcRect.y = 0;
-
-	destRect.h = srcRect.h * 2;
-	destRect.w = srcRect.w * 2;
 	destRect.x = xpos;
 	destRect.y = ypos;
+
+	cardTopRect.x = xpos;
+	cardTopRect.y = ypos;
+
+	if (xpos == 300) {
+		flip();
+	}
+	if (xpos == 500) {
+		flip();
+	}
 }
 
 void Card::Render() {
-	SDL_RenderCopy(renderer, objTexture, &srcRect, &destRect);
+	if (faceUp) {
+		SDL_RenderCopy(Game::renderer, objTexture, &srcRect, &destRect);
+	}
+	else {
+		SDL_RenderCopy(Game::renderer, cardBackTexture, &srcRect, &destRect);
+
+	}
 }
+
+
