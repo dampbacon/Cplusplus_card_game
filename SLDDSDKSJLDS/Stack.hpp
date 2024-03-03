@@ -13,6 +13,14 @@ value for top of stack to calculate a hitbox
 
 
 */
+
+enum StackType {
+	BUILD_STACKS,
+	FINAL_STACKS,
+	DRAW_STACK
+};
+
+
 class Stack
 {
 public:
@@ -20,11 +28,18 @@ public:
 	~Stack();
 
 	std::vector <Card*> CardStack;
+	std::vector <Card*> mouseCardStack;
+
 
 	int getStackID();
 	
 	void addToStack(Card* card);
 	void transferStack(Card* card, Stack* destStack);
+	void Render();
+	void update();
+
+	//dragStack on release return to original stack, else if on another card that can be searched for in the 7 stacks transfer to that stack
+	void dragSubStack();
 
 private:
 	int Stack_ID;

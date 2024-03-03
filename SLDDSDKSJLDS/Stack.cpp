@@ -1,14 +1,33 @@
 #include "Stack.hpp"
-//#define DEBUG
+#define DEBUG
 
 Stack::Stack(int ID)
 {
 	Stack_ID = ID;
 	CardStack = {};
+	mouseCardStack = {};
 }
 
 Stack::~Stack()
 {
+}
+
+int Stack::getStackID() {
+	return Stack_ID;
+}
+
+void Stack::Render() {
+	if (!CardStack.empty()) {
+		for (auto const& i : CardStack) {
+			i->Render();
+		}
+	}
+}
+
+
+//
+void Stack::update() {
+
 }
 
 void Stack::addToStack(Card* card) {
@@ -52,4 +71,9 @@ void Stack::transferStack(Card* card, Stack* destStack) {
 	}
 	std::cout << std::endl;
 	#endif
+}
+
+
+void Stack::dragSubStack() {
+
 }

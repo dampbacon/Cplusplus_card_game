@@ -4,7 +4,7 @@
 const char* Card::cardBack = "PixelCard_Assets/Cards/Card_Back_Blue_New.png";
 
 
-Card::Card(SUIT suit, int value, const char* texture, int x,int y) {
+Card::Card(SUIT suit, int value, const char* texture, int x,int y, bool InPlay) {
 	color = {};
 	Csuit = {};
 	if (suit == DIAMONDS || suit == HEARTS) {
@@ -16,8 +16,14 @@ Card::Card(SUIT suit, int value, const char* texture, int x,int y) {
 	Csuit = suit;
 	faceUp = true;
 	val = value;
-
-
+	
+	//draggable
+	if (InPlay) {
+		active = true;
+	}
+	else {
+		active = false;
+	}
 
 	objTexture = TextureManager::LoadTexture(texture);
 	cardBackTexture = TextureManager::LoadTexture(Card::cardBack);
@@ -95,5 +101,9 @@ void Card::setPos(int x, int y) {
 	ypos = y;
 	destRect.x = x;
 	destRect.y = y;
+}
+
+void Card::toggleDrag() {
+	active = !active;
 }
 

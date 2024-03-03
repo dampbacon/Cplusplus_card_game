@@ -13,7 +13,7 @@ enum SUIT_COLOR {
 class Card
 {
 public:
-	Card(SUIT suit, int value, const char* texture,  int x, int y);
+	Card(SUIT suit, int value, const char* texture,  int x, int y, bool InPlay);
 	~Card();
 	void flip();
 	int getVal();
@@ -26,6 +26,8 @@ public:
 
 	void setPos(int x, int y);
 
+	void toggleDrag();
+
 private:
 	int xpos;
 	int ypos;
@@ -34,7 +36,10 @@ private:
 	SDL_Texture* cardBackTexture;
 
 	int val;
+
 	bool faceUp;
+	bool active;
+
 	SUIT Csuit;
 	SUIT_COLOR color;
 
