@@ -2,7 +2,7 @@
 
 temp placeholder assets from https://60jars.itch.io/card-game-assets
 
-planning to compile to web assembly when the game is playable and host on a tbd project page.
+planning to compile to web assembly when the game is playable and host on a website to showcase interactive projects.
 
 
 ## GOALS:
