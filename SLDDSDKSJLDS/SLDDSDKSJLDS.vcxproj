@@ -139,6 +139,7 @@
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="DrawPile.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Card.hpp" />
     <ClInclude Include="DrawPile.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameBoard.hpp" />
     <ClInclude Include="Stack.hpp" />
     <ClInclude Include="TextureManager.hpp" />
   </ItemGroup>

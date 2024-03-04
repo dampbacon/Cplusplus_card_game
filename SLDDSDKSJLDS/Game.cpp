@@ -155,7 +155,7 @@ void Game::handleEvents()
 
 				
 
-				//temp jury rig
+				//temp jury rig, latter use the stack array create a bool arraw that mirrors
 				std::cout << "_____________________________ " << std::endl;
 
 				bool stupid = testStack->Collide(&mousePos, BasicCollision);
