@@ -78,6 +78,7 @@ void Card::Update() {
 	//xpos++;
 	//ypos++;
 	if (ActiveCollision) {
+		//later make this a bilinear interpolation to make it a smooth motion towards the mouse cursor
 		int x, y;
 		SDL_GetMouseState(&x, &y);
 		xpos = x-Game::deltaX;

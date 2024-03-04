@@ -86,11 +86,11 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	testStack2->addToStack(card1);
 	testStack2->addToStack(card2);
 
-	testStack->transferStack(card5, testStack2);
+	testStack->transferStack(card0, testStack2);
 
-	testStack2->transferStack(card5, testStack);
+	testStack2->transferStack(card0, testStack);
 
-	testStack->transferStack(card5, testStack2);
+	testStack->transferStack(card0, testStack2);
 
 
 

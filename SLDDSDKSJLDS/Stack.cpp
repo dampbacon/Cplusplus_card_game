@@ -87,13 +87,27 @@ void Stack::transferStack(Card* card, Stack* destStack) {
 
 void Stack::Collide(SDL_Point* mouse) {
 	if (!CardStack.empty()) {
-		for (auto const& i : CardStack) {
-			if (i == CardStack.back()) {
-				i->Collide(mouse,true); //returns bool, assign to some var card collided
-			}
-			else {
-				i->Collide(mouse, false);
-			}
+		bool collisionDetected = false;
+
+		//for (auto const& i : CardStack) {
+		//	if (i == CardStack.back()) {
+		//		i->Collide(mouse,true); //returns bool, assign to some var card collided
+
+		//	}
+		//	else {
+		//		i->Collide(mouse, false);
+		//	}
+		//}
+
+		auto start = std::find_if(CardStack.begin(), CardStack.end(), [&](const auto& card) {
+			return card->Collide(mouse, card == CardStack.back());
+			});
+
+		mouseCardStack.clear(); // Clear the existing subStack
+
+		if (start != CardStack.end()) {
+			mouseCardStack.assign(start, CardStack.end());
+			// Now subStack contains all cards in CardStack after the collided card, including the collided card itself
 		}
 	}
 }
