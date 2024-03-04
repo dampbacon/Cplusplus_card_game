@@ -30,14 +30,21 @@ void Stack::Render() {
 
 //
 void Stack::update() {
-	if (Game::mouseDown) {
-		//add cards to the drag substack make it follow the mouse
+	if (!CardStack.empty()) {
+		for (auto const& i : CardStack) {
+			i->Update();
+		}
 	}
-	else {
-		//check drag subtack if size > 0
-		//return cards to main holding stack
-		//else just update all cards
+
+
+
+	if (!mouseCardStack.empty()) {
+		for (size_t i = 1; i < mouseCardStack.size(); ++i) {
+			mouseCardStack[i]->setPos(mouseCardStack.front()->getXpos(), mouseCardStack.front()->getYpos()+(i * 32), false);
+		}
 	}
+
+
 }
 
 void Stack::addToStack(Card* card) {
@@ -45,7 +52,7 @@ void Stack::addToStack(Card* card) {
 		CardStack.back();
 	}*/
 	CardStack.push_back(card);
-	card->setPos((140 * Stack_ID), CardStack.size()*32);
+	card->setPos((140 * Stack_ID), CardStack.size()*32,true);
 }
 
 void Stack::transferStack(Card* card, Stack* destStack) {
@@ -89,16 +96,6 @@ void Stack::Collide(SDL_Point* mouse) {
 	if (!CardStack.empty()) {
 		bool collisionDetected = false;
 
-		//for (auto const& i : CardStack) {
-		//	if (i == CardStack.back()) {
-		//		i->Collide(mouse,true); //returns bool, assign to some var card collided
-
-		//	}
-		//	else {
-		//		i->Collide(mouse, false);
-		//	}
-		//}
-
 		auto start = std::find_if(CardStack.begin(), CardStack.end(), [&](const auto& card) {
 			return card->Collide(mouse, card == CardStack.back());
 			});
@@ -120,6 +117,7 @@ void Stack::dragSubStack() {
 void Stack::ReleaseMouse() {
 	for (auto const& i : CardStack) {
 		i->ActiveCollision=false;
-		i->setPos(i->homeXpos, i->homeYpos);
+		i->setPos(i->homeXpos, i->homeYpos,false);
 	}
+	mouseCardStack.clear(); // Clear the existing subStack
 };

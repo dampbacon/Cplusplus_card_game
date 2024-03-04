@@ -69,6 +69,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	testStack = new Stack(2);
 	testStack2 = new Stack(3);
 
+	//make card deck factory later
 	card0 = new Card(SPADES, 1, "PixelCard_Assets/Cards/Spades/Card_AceSpade_Big.png", 0, 0, true);
 	card1 = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_2Spades.png",100,100, true);
 	card2 = new Card(SPADES, 3, "PixelCard_Assets/Cards/Spades/Card_3Spades.png", 100, 132, true);
@@ -140,12 +141,15 @@ void Game::handleEvents()
 
 //later in deck class handle all the card shit
 void Game::update(){
-	card0->Update();
+	/*card0->Update();
 	card1->Update();
 	card2->Update();
 	card3->Update();
 	card4->Update();
-	card5->Update();
+	card5->Update();*/
+
+	testStack->update();
+	testStack2->update();
 
 
 }

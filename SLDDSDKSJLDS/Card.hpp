@@ -27,7 +27,10 @@ public:
 	void Render();
 	void Update();
 
-	void setPos(int x, int y);
+	void setPos(int x, int y, bool setHome);
+
+	int getXpos();
+	int getYpos();
 
 	void toggleDrag();
 

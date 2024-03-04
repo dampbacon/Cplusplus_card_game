@@ -105,14 +105,24 @@ void Card::Render() {
 
 
 //a semi regid position setting function
-void Card::setPos(int x, int y) {
+void Card::setPos(int x, int y, bool setHome) {
 	xpos = x;
 	ypos = y;
 	destRect.x = x;
 	destRect.y = y;
-	homeXpos = xpos;
-	homeYpos = ypos;
+	if (setHome) {
+		homeXpos = xpos;
+		homeYpos = ypos;
+	}
 
+}
+
+int Card::getXpos() {
+	return xpos;
+}
+
+int Card::getYpos() {
+	return ypos;
 }
 
 void Card::toggleDrag() {
