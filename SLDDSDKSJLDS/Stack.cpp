@@ -6,6 +6,13 @@ Stack::Stack(int ID)
 	Stack_ID = ID;
 	CardStack = {};
 	mouseCardStack = {};
+
+	stackHitBox = new SDL_Rect();
+
+	stackHitBox->x = 140 * Stack_ID;
+	stackHitBox->y = 32;
+	stackHitBox->h = 192;
+	stackHitBox->w = 128;
 }
 
 Stack::~Stack()
@@ -17,6 +24,18 @@ int Stack::getStackID() {
 }
 
 void Stack::Render() {
+
+
+	SDL_SetRenderDrawColor(Game::renderer, 255, 0, 0, 255); // Red color
+	SDL_RenderFillRect(Game::renderer, stackHitBox);
+
+	SDL_SetRenderDrawColor(Game::renderer, 21, 88, 67, 255);// green color
+
+
+	// Clear the renderer
+	//SDL_RenderClear(Game::renderer);
+
+
 
 	//make render subsection for drag stack that is called always last so cards dont clip
 
