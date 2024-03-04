@@ -31,9 +31,17 @@ public:
 
 	void toggleDrag();
 
+	//location for card to snap back to upon release on an invalid pile
+	int homeXpos;
+	int homeYpos;
+
 private:
 	int xpos;
 	int ypos;
+
+	
+
+
 	const int cardTop = 16;
 	static const char* cardBack;
 	SDL_Texture* cardBackTexture;

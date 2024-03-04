@@ -106,5 +106,6 @@ void Stack::dragSubStack() {
 void Stack::ReleaseMouse() {
 	for (auto const& i : CardStack) {
 		i->ActiveCollision=false;
+		i->setPos(i->homeXpos, i->homeYpos);
 	}
 };

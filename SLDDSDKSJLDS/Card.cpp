@@ -31,6 +31,9 @@ Card::Card(SUIT suit, int value, const char* texture, int x,int y, bool InPlay) 
 	xpos = x;
 	ypos = y;
 
+	homeXpos= xpos;
+	homeYpos= ypos;
+
 	bool ActiveCollision = false;
 
 
@@ -99,11 +102,16 @@ void Card::Render() {
 	}
 }
 
+
+//a semi regid position setting function
 void Card::setPos(int x, int y) {
 	xpos = x;
 	ypos = y;
 	destRect.x = x;
 	destRect.y = y;
+	homeXpos = xpos;
+	homeYpos = ypos;
+
 }
 
 void Card::toggleDrag() {
