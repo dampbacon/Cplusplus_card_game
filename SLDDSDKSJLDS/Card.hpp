@@ -22,7 +22,7 @@ public:
 
 	//only called in Stack class in the update function
 	bool ActiveCollision;
-	bool Collide(SDL_Point* point, bool topCard);
+	bool Collide(SDL_Point* point, bool topCard, bool simpleCollide);
 
 	void Render();
 	void Update();

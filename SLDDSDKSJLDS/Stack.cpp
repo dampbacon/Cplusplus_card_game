@@ -1,6 +1,7 @@
 #include "Stack.hpp"
 #define DEBUG
 
+
 Stack::Stack(int ID)
 {
 	Stack_ID = ID;
@@ -90,6 +91,19 @@ void Stack::addToStack(Card* card) {
 	card->setPos((140 * Stack_ID), CardStack.size()*32,true);
 }
 
+void Stack::addToStack(const std::vector<Card*>& cards) {
+	for (Card* card : cards) {
+		CardStack.push_back(card);
+		card->setPos((140 * Stack_ID), CardStack.size() * 32, true);
+	}
+}
+
+
+
+
+
+
+
 void Stack::transferStack(Card* card, Stack* destStack) {
 
 	#ifdef DEBUG
@@ -127,21 +141,43 @@ void Stack::transferStack(Card* card, Stack* destStack) {
 	#endif
 }
 
-void Stack::Collide(SDL_Point* mouse) {
+bool Stack::Collide(SDL_Point* mouse, collisionType type) {
+	bool collisionDetected = false;
+	bool stupidTemp = false;
+	if (type == BasicCollision) {
+		stupidTemp = true;
+	}
+
 	if (!CardStack.empty()) {
-		bool collisionDetected = false;
 
 		auto start = std::find_if(CardStack.begin(), CardStack.end(), [&](const auto& card) {
-			return card->Collide(mouse, card == CardStack.back());
-			});
+			bool collided = card->Collide(mouse, card == CardStack.back(), stupidTemp);
+			if (collided)
+				collisionDetected = true;
+			return collided;
+		});
 
-		mouseCardStack.clear(); // Clear the existing subStack
+		switch (type) {
+			case MouseStackEnable:
+			{
+				mouseCardStack.clear(); // Clear the existing subStack
+				if (start != CardStack.end()) {
+					mouseCardStack.assign(start, CardStack.end());
+					// Now subStack contains all cards in CardStack after the collided card, including the collided card itself
+				}
+				break;
+			}
+			case MouseButtonRelease:
+			{
+				//fancy logic for dropping stacks of cards onto other stacks
+				break;
+			}
+			default:
+				break;
 
-		if (start != CardStack.end()) {
-			mouseCardStack.assign(start, CardStack.end());
-			// Now subStack contains all cards in CardStack after the collided card, including the collided card itself
 		}
 	}
+	return collisionDetected;
 }
 
 

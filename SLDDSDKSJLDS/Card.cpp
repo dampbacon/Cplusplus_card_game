@@ -129,11 +129,13 @@ void Card::toggleDrag() {
 	draggable = !draggable;
 }
 
-bool Card::Collide(SDL_Point *point, bool topCard){
+bool Card::Collide(SDL_Point *point, bool topCard, bool simpleCollide){
 	if (!topCard) {
 		if (SDL_PointInRect(point, &cardTopRect)) {
 			std::cout << "collide " << val << std::endl;
-			ActiveCollision = true;
+			if(!simpleCollide)
+				ActiveCollision = true;
+
 			Game::deltaX = point->x - cardTopRect.x;
 			Game::deltaY = point->y - cardTopRect.y;
 
@@ -143,7 +145,9 @@ bool Card::Collide(SDL_Point *point, bool topCard){
 	else {
 		if (SDL_PointInRect(point, &destRect)) {
 			std::cout << "collide "<< val << std::endl;
-			ActiveCollision = true;
+			if (!simpleCollide)
+				ActiveCollision = true;
+
 			Game::deltaX = point->x - cardTopRect.x;
 			Game::deltaY = point->y - cardTopRect.y;
 

@@ -1,6 +1,13 @@
 #pragma once
 #include <vector>
 #include "Card.hpp"
+#include "Game.hpp"
+enum collisionType {
+	MouseStackEnable,
+	MouseButtonRelease,
+	BasicCollision
+};
+
 /*
 add to stack function that sets card postiions.
 
@@ -38,12 +45,17 @@ public:
 	int getStackID();
 	
 	void addToStack(Card* card);
+	void addToStack(const std::vector<Card*>& cards);
+
+	void transferStack(const std::vector<Card*>& cards, Stack* destStack);
+
 	void transferStack(Card* card, Stack* destStack);
 	void Render();
 	void RenderMouseStack();
 	void update();
 
-	void Collide(SDL_Point* mouse);
+	bool Collide(SDL_Point* mouse, collisionType type);
+
 	void ReleaseMouse();
 
 	//dragStack on release return to original stack, else if on another card that can be searched for in the 7 stacks transfer to that stack
