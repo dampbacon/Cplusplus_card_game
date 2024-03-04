@@ -19,10 +19,10 @@ Card::Card(SUIT suit, int value, const char* texture, int x,int y, bool InPlay) 
 	
 	//draggable
 	if (InPlay) {
-		active = true;
+		draggable = true;
 	}
 	else {
-		active = false;
+		draggable = false;
 	}
 
 	objTexture = TextureManager::LoadTexture(texture);
@@ -30,6 +30,9 @@ Card::Card(SUIT suit, int value, const char* texture, int x,int y, bool InPlay) 
 
 	xpos = x;
 	ypos = y;
+
+	bool ActiveCollision = false;
+
 
 	srcRect.h = 96;
 	srcRect.w = 64;
@@ -71,19 +74,19 @@ SUIT_COLOR Card::getColor() {
 void Card::Update() {
 	//xpos++;
 	//ypos++;
+	if (ActiveCollision) {
+		int x, y;
+		SDL_GetMouseState(&x, &y);
+		xpos = x-Game::deltaX;
+		ypos = y-Game::deltaY;
+	}
+
 
 	destRect.x = xpos;
 	destRect.y = ypos;
 
 	cardTopRect.x = xpos;
 	cardTopRect.y = ypos;
-
-	if (xpos == 300) {
-		flip();
-	}
-	if (xpos == 500) {
-		flip();
-	}
 }
 
 void Card::Render() {
@@ -104,18 +107,30 @@ void Card::setPos(int x, int y) {
 }
 
 void Card::toggleDrag() {
-	active = !active;
+	draggable = !draggable;
 }
 
-void Card::Collide(SDL_Point *point, bool topCard){
+bool Card::Collide(SDL_Point *point, bool topCard){
 	if (!topCard) {
 		if (SDL_PointInRect(point, &cardTopRect)) {
 			std::cout << "collide " << val << std::endl;
+			ActiveCollision = true;
+			Game::deltaX = point->x - cardTopRect.x;
+			Game::deltaY = point->y - cardTopRect.y;
+
+			return(true);
 		}
 	}
 	else {
 		if (SDL_PointInRect(point, &destRect)) {
 			std::cout << "collide "<< val << std::endl;
+			ActiveCollision = true;
+			Game::deltaX = point->x - cardTopRect.x;
+			Game::deltaY = point->y - cardTopRect.y;
+
+			return(true);
 		}
 	}
+
+	return false;
 }

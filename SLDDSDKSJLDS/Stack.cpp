@@ -17,6 +17,9 @@ int Stack::getStackID() {
 }
 
 void Stack::Render() {
+
+	//make render subsection for drag stack that is called always last so cards dont clip
+
 	if (!CardStack.empty()) {
 		for (auto const& i : CardStack) {
 			i->Render();
@@ -27,7 +30,14 @@ void Stack::Render() {
 
 //
 void Stack::update() {
-
+	if (Game::mouseDown) {
+		//add cards to the drag substack make it follow the mouse
+	}
+	else {
+		//check drag subtack if size > 0
+		//return cards to main holding stack
+		//else just update all cards
+	}
 }
 
 void Stack::addToStack(Card* card) {
@@ -79,7 +89,7 @@ void Stack::Collide(SDL_Point* mouse) {
 	if (!CardStack.empty()) {
 		for (auto const& i : CardStack) {
 			if (i == CardStack.back()) {
-				i->Collide(mouse,true);
+				i->Collide(mouse,true); //returns bool, assign to some var card collided
 			}
 			else {
 				i->Collide(mouse, false);
@@ -92,3 +102,9 @@ void Stack::Collide(SDL_Point* mouse) {
 void Stack::dragSubStack() {
 
 }
+
+void Stack::ReleaseMouse() {
+	for (auto const& i : CardStack) {
+		i->ActiveCollision=false;
+	}
+};

@@ -21,7 +21,8 @@ public:
 	SUIT_COLOR getColor();
 
 	//only called in Stack class in the update function
-	void Collide(SDL_Point* point, bool topCard);
+	bool ActiveCollision;
+	bool Collide(SDL_Point* point, bool topCard);
 
 	void Render();
 	void Update();
@@ -40,7 +41,7 @@ private:
 	int val;
 
 	bool faceUp;
-	bool active;
+	bool draggable;
 
 	SUIT Csuit;
 	SUIT_COLOR color;

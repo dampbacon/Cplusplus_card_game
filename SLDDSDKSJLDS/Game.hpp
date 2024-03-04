@@ -19,8 +19,13 @@ public:
 	void clean();
 
 	bool running() { return isRunning; };
-	bool mouseDown;
+
+	//mouse stuff
+	static bool mouseDown;
 	SDL_Point mousePos;
+	//mouseDeltas
+	static int deltaX;
+	static int deltaY;
 
 	static SDL_Renderer* renderer;
 

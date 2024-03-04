@@ -30,8 +30,15 @@ Game::Game()
 Game::~Game()
 {}
 
+bool Game::mouseDown = false;
+
+int Game::deltaX = 0;
+int Game::deltaY = 0;
+
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
+
+
 	int flags = { 0 };
 	if (fullscreen) {
 		flags = SDL_WINDOW_FULLSCREEN;
@@ -100,7 +107,7 @@ void Game::handleEvents()
 	switch (event.type) {
 		case SDL_MOUSEBUTTONDOWN:
 		{
-			
+			Game::mouseDown = true;
 			int x, y;
 			SDL_GetMouseState(&x, &y);
 			mousePos.x = x;
@@ -117,6 +124,11 @@ void Game::handleEvents()
 			std::cout << "pain\n";
 			break;
 		}
+		case SDL_MOUSEBUTTONUP:
+			Game::mouseDown = false;
+			testStack->ReleaseMouse();
+			testStack2->ReleaseMouse();
+			break;
 		case SDL_QUIT:
 			isRunning = false;
 			break;
