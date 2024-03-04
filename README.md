@@ -14,7 +14,7 @@ card stacks and ability to mouse click and drag cards to another stack. cards ca
 
 
 ## Finished features:
-rendering, texture manager, 60fps game loop, partial functionality of card stacks and cards.
+rendering, texture manager, 160fps game loop, partial functionality of card stacks and cards.
 
 
 ## why C++/C ? and not C#, javascript etc.
