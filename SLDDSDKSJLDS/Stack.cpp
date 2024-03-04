@@ -31,7 +31,9 @@ void Stack::update() {
 }
 
 void Stack::addToStack(Card* card) {
-
+	/*if (!CardStack.empty()) {
+		CardStack.back();
+	}*/
 	CardStack.push_back(card);
 	card->setPos((140 * Stack_ID), CardStack.size()*32);
 }
@@ -71,6 +73,19 @@ void Stack::transferStack(Card* card, Stack* destStack) {
 	}
 	std::cout << std::endl;
 	#endif
+}
+
+void Stack::Collide(SDL_Point* mouse) {
+	if (!CardStack.empty()) {
+		for (auto const& i : CardStack) {
+			if (i == CardStack.back()) {
+				i->Collide(mouse,true);
+			}
+			else {
+				i->Collide(mouse, false);
+			}
+		}
+	}
 }
 
 

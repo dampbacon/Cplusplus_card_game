@@ -37,6 +37,7 @@ public:
 	void transferStack(Card* card, Stack* destStack);
 	void Render();
 	void update();
+	void Collide(SDL_Point* mouse);
 
 	//dragStack on release return to original stack, else if on another card that can be searched for in the 7 stacks transfer to that stack
 	void dragSubStack();

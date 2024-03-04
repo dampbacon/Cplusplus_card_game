@@ -19,6 +19,8 @@ public:
 	void clean();
 
 	bool running() { return isRunning; };
+	bool mouseDown;
+	SDL_Point mousePos;
 
 	static SDL_Renderer* renderer;
 

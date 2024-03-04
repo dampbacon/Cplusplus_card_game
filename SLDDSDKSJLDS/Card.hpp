@@ -20,6 +20,8 @@ public:
 	SUIT getSuit();
 	SUIT_COLOR getColor();
 
+	//only called in Stack class in the update function
+	void Collide(SDL_Point* point, bool topCard);
 
 	void Render();
 	void Update();

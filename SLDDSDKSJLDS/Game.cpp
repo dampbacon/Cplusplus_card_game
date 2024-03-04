@@ -19,6 +19,7 @@ Card* card5;
 
 
 
+
 std::vector <Card*> Deck(52);
 
 
@@ -31,7 +32,6 @@ Game::~Game()
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
-
 	int flags = { 0 };
 	if (fullscreen) {
 		flags = SDL_WINDOW_FULLSCREEN;
@@ -55,6 +55,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	else {
 		isRunning = false;
 	}
+
+	mousePos.x = 0;
+	mousePos.y = 0;
 
 	testStack = new Stack(2);
 	testStack2 = new Stack(3);
@@ -93,14 +96,23 @@ void Game::handleEvents()
 	SDL_PollEvent(&event);
 
 
-
+	// make this toggle a flag somehow
 	switch (event.type) {
 		case SDL_MOUSEBUTTONDOWN:
 		{
 			
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-			
+			mousePos.x = x;
+			mousePos.y = y;
+
+			//card0->Collide(&mousePos, false);
+			testStack->Collide(&mousePos);
+			testStack2->Collide(&mousePos);
+
+
+
+
 			std::cout << "x: " << x << "y: " << y;
 			std::cout << "pain\n";
 			break;
