@@ -187,6 +187,11 @@ bool Stack::Collide(SDL_Point* mouse, collisionType type) {
 
 		}
 	}
+	else {
+		collisionDetected=SDL_PointInRect(mouse, stackHitBox);
+	}
+
+
 	return collisionDetected;
 }
 
