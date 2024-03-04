@@ -156,19 +156,23 @@ void Game::handleEvents()
 				
 
 				//temp jury rig
+				std::cout << "_____________________________ " << std::endl;
+
 				bool stupid = testStack->Collide(&mousePos, BasicCollision);
 				std::cout << "ULG STACK 1 COLLIDE: "<<stupid<<std::endl;
 				bool stupid2= testStack2->Collide(&mousePos, BasicCollision);
 				std::cout << "ULG STACK 2 COLLIDE: " << stupid2 << std::endl;
+				std::cout << "_____________________________ " << std::endl;
+
 
 
 				if (stupid) {
-					collideStack = testStack;
-					collideStack->transferStack(collideStack->mouseCardStack, testStack2);
-				}
-				else if (stupid2) {
 					collideStack = testStack2;
 					collideStack->transferStack(collideStack->mouseCardStack, testStack);
+				}
+				else if (stupid2) {
+					collideStack = testStack;
+					collideStack->transferStack(collideStack->mouseCardStack, testStack2);
 				}
 
 				collideStack = nullptr;

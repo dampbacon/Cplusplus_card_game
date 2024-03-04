@@ -130,6 +130,9 @@ void Card::toggleDrag() {
 }
 
 bool Card::Collide(SDL_Point *point, bool topCard, bool simpleCollide){
+	if (ActiveCollision) {
+		return false;
+	}
 	if (!topCard) {
 		if (SDL_PointInRect(point, &cardTopRect)) {
 			std::cout << "collide " << val << std::endl;
