@@ -30,6 +30,9 @@ public:
 	std::vector <Card*> CardStack;
 	std::vector <Card*> mouseCardStack;
 
+	//ADD STACK HITBOX, STACK TEXTURE AND STACK COLLIDE
+	//THIS IS NEEDED TO ITERACT WITH EMPTY STACKS
+
 
 	int getStackID();
 	

@@ -108,27 +108,29 @@ void Game::handleEvents()
 	switch (event.type) {
 		case SDL_MOUSEBUTTONDOWN:
 		{
-			Game::mouseDown = true;
-			int x, y;
-			SDL_GetMouseState(&x, &y);
-			mousePos.x = x;
-			mousePos.y = y;
+			if (event.button.button == SDL_BUTTON_LEFT) {
+				Game::mouseDown = true;
+				int x, y;
+				SDL_GetMouseState(&x, &y);
+				mousePos.x = x;
+				mousePos.y = y;
 
-			//card0->Collide(&mousePos, false);
-			testStack->Collide(&mousePos);
-			testStack2->Collide(&mousePos);
+				//card0->Collide(&mousePos, false);
+				testStack->Collide(&mousePos);
+				testStack2->Collide(&mousePos);
 
 
-
-
-			std::cout << "x: " << x << "y: " << y;
-			std::cout << "pain\n";
+				std::cout << "x: " << x << "y: " << y;
+				std::cout << "pain\n";
+			}
 			break;
 		}
 		case SDL_MOUSEBUTTONUP:
-			Game::mouseDown = false;
-			testStack->ReleaseMouse();
-			testStack2->ReleaseMouse();
+			if (event.button.button == SDL_BUTTON_LEFT) {
+				Game::mouseDown = false;
+				testStack->ReleaseMouse();
+				testStack2->ReleaseMouse();
+			}
 			break;
 		case SDL_QUIT:
 			isRunning = false;
