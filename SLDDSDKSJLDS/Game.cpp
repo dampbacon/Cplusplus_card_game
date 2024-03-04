@@ -10,6 +10,10 @@
 Stack* testStack = nullptr;
 Stack* testStack2 = nullptr;
 
+
+Stack* collideStack = nullptr;
+
+
 Card* card0 = nullptr;
 Card* card1 = nullptr;
 Card* card2 = nullptr;
@@ -120,8 +124,19 @@ void Game::handleEvents()
 				mousePos.y = y;
 
 				//card0->Collide(&mousePos, false);
-				testStack->Collide(&mousePos, MouseStackEnable);
-				testStack2->Collide(&mousePos, MouseStackEnable);
+
+
+				//temp jury rig
+				bool stupid = testStack->Collide(&mousePos, MouseStackEnable);
+				bool stupid2 = testStack2->Collide(&mousePos, MouseStackEnable);
+				
+				if (stupid) {
+					collideStack = testStack;
+				}else if(stupid2) {
+					collideStack = testStack2;
+				}
+
+
 
 
 				std::cout << "x: " << x << "y: " << y;
@@ -138,12 +153,27 @@ void Game::handleEvents()
 				mousePos.x = x;
 				mousePos.y = y;
 
+				
+
+				//temp jury rig
+				bool stupid = testStack->Collide(&mousePos, BasicCollision);
+				std::cout << "ULG STACK 1 COLLIDE: "<<stupid<<std::endl;
+				bool stupid2= testStack2->Collide(&mousePos, BasicCollision);
+				std::cout << "ULG STACK 2 COLLIDE: " << stupid2 << std::endl;
+
+
+				if (stupid) {
+					collideStack = testStack;
+					collideStack->transferStack(collideStack->mouseCardStack, testStack2);
+				}
+				else if (stupid2) {
+					collideStack = testStack2;
+					collideStack->transferStack(collideStack->mouseCardStack, testStack);
+				}
+
+				collideStack = nullptr;
 				testStack->ReleaseMouse();
 				testStack2->ReleaseMouse();
-
-				testStack->Collide(&mousePos, BasicCollision);
-				testStack2->Collide(&mousePos, BasicCollision);
-
 				//make check collision with stack top cards
 			
 
