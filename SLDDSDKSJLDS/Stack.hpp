@@ -36,6 +36,7 @@ public:
 	void addToStack(Card* card);
 	void transferStack(Card* card, Stack* destStack);
 	void Render();
+	void RenderMouseStack();
 	void update();
 
 	void Collide(SDL_Point* mouse);

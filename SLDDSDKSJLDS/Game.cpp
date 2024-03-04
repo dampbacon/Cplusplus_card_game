@@ -165,6 +165,10 @@ void Game::render(){
 
 	testStack->Render();
 	testStack2->Render();
+
+	testStack->RenderMouseStack();
+	testStack2->RenderMouseStack();
+
 	
 	SDL_RenderPresent(renderer);
 }

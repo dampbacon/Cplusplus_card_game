@@ -22,6 +22,22 @@ void Stack::Render() {
 
 	if (!CardStack.empty()) {
 		for (auto const& i : CardStack) {
+			if (mouseCardStack.empty()) {
+				i->Render();
+			}
+			else if (i == mouseCardStack.front()) {
+				break;
+			}
+			else {
+				i->Render();
+			}
+		}
+	}
+}
+
+void Stack::RenderMouseStack() {
+	if (!mouseCardStack.empty()) {
+		for (auto const& i : mouseCardStack) {
 			i->Render();
 		}
 	}
