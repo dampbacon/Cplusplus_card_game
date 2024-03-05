@@ -13,8 +13,8 @@ only a reset button will be added to reset/redeal the game.
 properly setting up the game board (a specific class will handle this), followed by a draw pile, game setup and logic
 
 ## Finished features:
-rendering, texture manager, 160fps game loop, partial functionality of card stacks and cards.
-ability to move cards between stacks using your mouse.
+rendering, texture manager, 160fps game loop, functionality of card stacks and cards.
+ability to move groups of cards between stacks using your mouse.
 
 
 ## why C++/C ? and not C#, javascript etc.
