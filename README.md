@@ -20,5 +20,5 @@ ability to move groups of cards between stacks using your mouse.
 ## why C++/C ? and not C#, javascript etc.
 C++ challenges me a bit more, i'm trying not to stay in my comfort zone too much.
 
-##issues
+## issues
 some code is a bit inelegant, needs to be refactored at a later date, currently prioritising MVP
