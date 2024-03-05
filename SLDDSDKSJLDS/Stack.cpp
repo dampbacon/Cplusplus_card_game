@@ -196,9 +196,6 @@ bool Stack::Collide(SDL_Point* mouse, collisionType type) {
 }
 
 
-void Stack::dragSubStack() {
-
-}
 
 void Stack::ReleaseMouse() {
 	for (auto const& i : CardStack) {

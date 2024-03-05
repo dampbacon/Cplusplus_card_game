@@ -8,10 +8,10 @@ Card::Card(SUIT suit, int value, const char* texture, int x,int y, bool InPlay) 
 	color = {};
 	Csuit = {};
 	if (suit == DIAMONDS || suit == HEARTS) {
-		color == RED;
+		color = RED;
 	}
 	else {
-		color == BLACK;
+		color = BLACK;
 	}
 	Csuit = suit;
 	faceUp = true;
