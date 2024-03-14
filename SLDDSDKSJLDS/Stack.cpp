@@ -10,7 +10,7 @@ Stack::Stack(int ID)
 
 	stackHitBox = new SDL_Rect();
 
-	stackHitBox->x = 140 * Stack_ID;
+	stackHitBox->x = 140 * Stack_ID+10;
 	stackHitBox->y = 32;
 	stackHitBox->h = 192;
 	stackHitBox->w = 128;
@@ -31,15 +31,6 @@ void Stack::Render() {
 	SDL_RenderFillRect(Game::renderer, stackHitBox);
 
 	SDL_SetRenderDrawColor(Game::renderer, 21, 88, 67, 255);// green color
-
-
-	// Clear the renderer
-	//SDL_RenderClear(Game::renderer);
-
-
-
-	//make render subsection for drag stack that is called always last so cards dont clip
-
 	if (!CardStack.empty()) {
 		for (auto const& i : CardStack) {
 			if (mouseCardStack.empty()) {
@@ -71,16 +62,11 @@ void Stack::update() {
 			i->Update();
 		}
 	}
-
-
-
 	if (!mouseCardStack.empty()) {
 		for (size_t i = 1; i < mouseCardStack.size(); ++i) {
 			mouseCardStack[i]->setPos(mouseCardStack.front()->getXpos(), mouseCardStack.front()->getYpos()+(i * 32), false);
 		}
 	}
-
-
 }
 
 void Stack::addToStack(Card* card) {
@@ -88,13 +74,13 @@ void Stack::addToStack(Card* card) {
 		CardStack.back();
 	}*/
 	CardStack.push_back(card);
-	card->setPos((140 * Stack_ID), CardStack.size()*32,true);
+	card->setPos((140 * Stack_ID+10), CardStack.size()*32,true);
 }
 
 void Stack::addToStack(const std::vector<Card*>& cards) {
 	for (Card* card : cards) {
 		CardStack.push_back(card);
-		card->setPos((140 * Stack_ID), CardStack.size() * 32, true);
+		card->setPos((140 * Stack_ID + 10), CardStack.size() * 32, true);
 	}
 }
 

@@ -21,34 +21,42 @@ namespace gameObjects {
 		Cards[12] = new Card(HEARTS, 13, "PixelCard_Assets/Cards/Hearts/Card_KingHeart.png", 0, 0, true);
 
 
-		
-
+		s0 = new Stack(0);
+		s1 = new Stack(1);
+		s2 = new Stack(2);
 
 		s3 = new Stack(3);
 		s4 = new Stack(4);
 		s5 = new Stack(5);
 
+		s6 = new Stack(6);
 
+		CardStacks.push_back(s0);
 
+		CardStacks.push_back(s1);
+
+		CardStacks.push_back(s2);
 
 		CardStacks.push_back(s3);
 		CardStacks.push_back(s4);
 		CardStacks.push_back(s5);
+		CardStacks.push_back(s6);
 
 
-		CardStacks[0]->addToStack(Cards[0]);
-		CardStacks[0]->addToStack(Cards[1]);
-		CardStacks[0]->addToStack(Cards[2]);
-		CardStacks[0]->addToStack(Cards[3]);
-		CardStacks[0]->addToStack(Cards[4]);
-		CardStacks[0]->addToStack(Cards[5]);
-		CardStacks[0]->addToStack(Cards[6]);
-		CardStacks[0]->addToStack(Cards[7]);
-		CardStacks[0]->addToStack(Cards[8]);
-		CardStacks[0]->addToStack(Cards[9]);
-		CardStacks[0]->addToStack(Cards[10]);
-		CardStacks[0]->addToStack(Cards[11]);
-		CardStacks[0]->addToStack(Cards[12]);
+
+		CardStacks[6]->addToStack(Cards[0]);
+		CardStacks[6]->addToStack(Cards[1]);
+		CardStacks[6]->addToStack(Cards[2]);
+		CardStacks[6]->addToStack(Cards[3]);
+		CardStacks[6]->addToStack(Cards[4]);
+		CardStacks[6]->addToStack(Cards[5]);
+		CardStacks[6]->addToStack(Cards[6]);
+		CardStacks[6]->addToStack(Cards[7]);
+		CardStacks[6]->addToStack(Cards[8]);
+		CardStacks[6]->addToStack(Cards[9]);
+		CardStacks[6]->addToStack(Cards[10]);
+		CardStacks[6]->addToStack(Cards[11]);
+		CardStacks[6]->addToStack(Cards[12]);
 
 
 

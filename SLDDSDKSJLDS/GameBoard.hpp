@@ -22,8 +22,12 @@ namespace gameObjects {
 		std::vector <Stack*> CardStacks = {};
 		std::vector <Card*> Cards;
 		Stack* pointerCollideStack;
+		Stack* s0;
+		Stack* s1;
+		Stack* s2;
 		Stack* s3;
 		Stack* s4;
 		Stack* s5;
+		Stack* s6;
 	};
 }
