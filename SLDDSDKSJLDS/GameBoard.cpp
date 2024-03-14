@@ -20,6 +20,37 @@ namespace gameObjects {
 		Cards[11] = new Card(HEARTS, 12, "PixelCard_Assets/Cards/Hearts/Card_QueenHeart.png", 0, 0, true);
 		Cards[12] = new Card(HEARTS, 13, "PixelCard_Assets/Cards/Hearts/Card_KingHeart.png", 0, 0, true);
 
+		Cards[13] = new Card(SPADES, 1, "PixelCard_Assets/Cards/Spades/Card_AceSpade_Big.png", 0, 0, true);
+		Cards[14] = new Card(SPADES, 2, "PixelCard_Assets/Cards/Spades/Card_2Spades.png", 0, 0, true);
+		Cards[15] = new Card(SPADES, 3, "PixelCard_Assets/Cards/Spades/Card_3Spades.png", 0, 0, true);
+		Cards[16] = new Card(SPADES, 4, "PixelCard_Assets/Cards/Spades/Card_4Spades.png", 0, 0, true);
+		Cards[17] = new Card(SPADES, 5, "PixelCard_Assets/Cards/Spades/Card_5Spades.png", 0, 0, true);
+		Cards[18] = new Card(SPADES, 6, "PixelCard_Assets/Cards/Spades/Card_6Spades.png", 0, 0, true);
+		Cards[19] = new Card(SPADES, 7, "PixelCard_Assets/Cards/Spades/Card_7Spades.png", 0, 0, true);
+		Cards[20] = new Card(SPADES, 8, "PixelCard_Assets/Cards/Spades/Card_8Spades.png", 0, 0, true);
+		Cards[21] = new Card(SPADES, 9, "PixelCard_Assets/Cards/Spades/Card_9Spades.png", 0, 0, true);
+		Cards[22] = new Card(SPADES, 10, "PixelCard_Assets/Cards/Spades/Card_10Spades.png", 0, 0, true);
+		Cards[23] = new Card(SPADES, 11, "PixelCard_Assets/Cards/Spades/Card_JackSpade.png", 0, 0, true);
+		Cards[24] = new Card(SPADES, 12, "PixelCard_Assets/Cards/Spades/Card_QueenSpade.png", 0, 0, true);
+		Cards[25] = new Card(SPADES, 13, "PixelCard_Assets/Cards/Spades/Card_KingSpade.png", 0, 0, true);
+
+		Cards[26] = new Card(CLUBS, 1, "PixelCard_Assets/Cards/Clubs/Card_AceClubs_Big.png", 0, 0, true);
+		Cards[27] = new Card(CLUBS, 2, "PixelCard_Assets/Cards/Clubs/Card_2Clubs.png", 0, 0, true);
+		Cards[28] = new Card(CLUBS, 3, "PixelCard_Assets/Cards/Clubs/Card_3Clubs.png", 0, 0, true);
+		Cards[29] = new Card(CLUBS, 4, "PixelCard_Assets/Cards/Clubs/Card_4Clubs.png", 0, 0, true);
+		Cards[30] = new Card(CLUBS, 5, "PixelCard_Assets/Cards/Clubs/Card_5Clubs.png", 0, 0, true);
+		Cards[31] = new Card(CLUBS, 6, "PixelCard_Assets/Cards/Clubs/Card_6Clubs.png", 0, 0, true);
+		Cards[32] = new Card(CLUBS, 7, "PixelCard_Assets/Cards/Clubs/Card_7Clubs.png", 0, 0, true);
+		Cards[33] = new Card(CLUBS, 8, "PixelCard_Assets/Cards/Clubs/Card_8Clubs.png", 0, 0, true);
+		Cards[34] = new Card(CLUBS, 9, "PixelCard_Assets/Cards/Clubs/Card_9Clubs.png", 0, 0, true);
+		Cards[35] = new Card(CLUBS, 10, "PixelCard_Assets/Cards/Clubs/Card_10Clubs.png", 0, 0, true);
+		Cards[36] = new Card(CLUBS, 11, "PixelCard_Assets/Cards/Clubs/Card_Jack.png", 0, 0, true);
+		Cards[37] = new Card(CLUBS, 12, "PixelCard_Assets/Cards/Clubs/Card_Queen.png", 0, 0, true);
+		Cards[38] = new Card(CLUBS, 13, "PixelCard_Assets/Cards/Clubs/Card_King.png", 0, 0, true);
+
+
+
+
 
 		s0 = new Stack(0);
 		s1 = new Stack(1);
@@ -43,7 +74,7 @@ namespace gameObjects {
 		CardStacks.push_back(s6);
 
 
-
+		//hearts
 		CardStacks[6]->addToStack(Cards[0]);
 		CardStacks[6]->addToStack(Cards[1]);
 		CardStacks[6]->addToStack(Cards[2]);
@@ -57,6 +88,46 @@ namespace gameObjects {
 		CardStacks[6]->addToStack(Cards[10]);
 		CardStacks[6]->addToStack(Cards[11]);
 		CardStacks[6]->addToStack(Cards[12]);
+
+		//spades
+		CardStacks[5]->addToStack(Cards[13]);
+		CardStacks[5]->addToStack(Cards[14]);
+		CardStacks[5]->addToStack(Cards[15]);
+		CardStacks[5]->addToStack(Cards[16]);
+		CardStacks[5]->addToStack(Cards[17]);
+		CardStacks[5]->addToStack(Cards[18]);
+		CardStacks[5]->addToStack(Cards[19]);
+		CardStacks[5]->addToStack(Cards[20]);
+		CardStacks[5]->addToStack(Cards[21]);
+		CardStacks[5]->addToStack(Cards[22]);
+		CardStacks[5]->addToStack(Cards[23]);
+		CardStacks[5]->addToStack(Cards[24]);
+		CardStacks[5]->addToStack(Cards[25]);
+		//clubs
+		CardStacks[4]->addToStack(Cards[26]);
+		CardStacks[4]->addToStack(Cards[27]);
+		CardStacks[4]->addToStack(Cards[28]);
+		CardStacks[4]->addToStack(Cards[29]);
+		CardStacks[4]->addToStack(Cards[30]);
+		CardStacks[4]->addToStack(Cards[31]);
+		CardStacks[4]->addToStack(Cards[32]);
+		CardStacks[4]->addToStack(Cards[33]);
+		CardStacks[4]->addToStack(Cards[34]);
+		CardStacks[4]->addToStack(Cards[35]);
+		CardStacks[4]->addToStack(Cards[36]);
+		CardStacks[4]->addToStack(Cards[37]);
+		CardStacks[4]->addToStack(Cards[38]);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
