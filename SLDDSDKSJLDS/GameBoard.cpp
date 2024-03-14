@@ -48,6 +48,20 @@ namespace gameObjects {
 		Cards[37] = new Card(CLUBS, 12, "PixelCard_Assets/Cards/Clubs/Card_Queen.png", 0, 0, true);
 		Cards[38] = new Card(CLUBS, 13, "PixelCard_Assets/Cards/Clubs/Card_King.png", 0, 0, true);
 
+		Cards[39] = new Card(DIAMONDS, 1, "PixelCard_Assets/Cards/Diamonds/Card_ClubOfDiamond_Big.png", 0, 0, true);
+		Cards[40] = new Card(DIAMONDS, 2, "PixelCard_Assets/Cards/Diamonds/Card_2Diamonds.png", 0, 0, true);
+		Cards[41] = new Card(DIAMONDS, 3, "PixelCard_Assets/Cards/Diamonds/Card_3Diamonds.png", 0, 0, true);
+		Cards[42] = new Card(DIAMONDS, 4, "PixelCard_Assets/Cards/Diamonds/Card_4Diamonds.png", 0, 0, true);
+		Cards[43] = new Card(DIAMONDS, 5, "PixelCard_Assets/Cards/Diamonds/Card_5Diamonds.png", 0, 0, true);
+		Cards[44] = new Card(DIAMONDS, 6, "PixelCard_Assets/Cards/Diamonds/Card_6Diamonds.png", 0, 0, true);
+		Cards[45] = new Card(DIAMONDS, 7, "PixelCard_Assets/Cards/Diamonds/Card_7Diamonds.png", 0, 0, true);
+		Cards[46] = new Card(DIAMONDS, 8, "PixelCard_Assets/Cards/Diamonds/Card_8Diamonds.png", 0, 0, true);
+		Cards[47] = new Card(DIAMONDS, 9, "PixelCard_Assets/Cards/Diamonds/Card_9Diamonds.png", 0, 0, true);
+		Cards[48] = new Card(DIAMONDS, 10, "PixelCard_Assets/Cards/Diamonds/Card_10Diamonds.png", 0, 0, true);
+		Cards[49] = new Card(DIAMONDS, 11, "PixelCard_Assets/Cards/Diamonds/Card_JackDiamond.png", 0, 0, true);
+		Cards[50] = new Card(DIAMONDS, 12, "PixelCard_Assets/Cards/Diamonds/Card_QueenDiamond.png", 0, 0, true);
+		Cards[51] = new Card(DIAMONDS, 13, "PixelCard_Assets/Cards/Diamonds/Card_KingDiamond.png", 0, 0, true);
+
 
 
 
@@ -117,6 +131,20 @@ namespace gameObjects {
 		CardStacks[4]->addToStack(Cards[36]);
 		CardStacks[4]->addToStack(Cards[37]);
 		CardStacks[4]->addToStack(Cards[38]);
+		//diamonds
+		CardStacks[3]->addToStack(Cards[39]);
+		CardStacks[3]->addToStack(Cards[40]);
+		CardStacks[3]->addToStack(Cards[41]);
+		CardStacks[3]->addToStack(Cards[42]);
+		CardStacks[3]->addToStack(Cards[43]);
+		CardStacks[3]->addToStack(Cards[44]);
+		CardStacks[3]->addToStack(Cards[45]);
+		CardStacks[3]->addToStack(Cards[46]);
+		CardStacks[3]->addToStack(Cards[47]);
+		CardStacks[3]->addToStack(Cards[48]);
+		CardStacks[3]->addToStack(Cards[49]);
+		CardStacks[3]->addToStack(Cards[50]);
+		CardStacks[3]->addToStack(Cards[51]);
 
 
 
