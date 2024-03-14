@@ -22,7 +22,7 @@ public:
 
 	//mouse stuff
 	static bool mouseDown;
-	SDL_Point mousePos;
+	static SDL_Point mousePos;
 	//mouseDeltas
 	static int deltaX;
 	static int deltaY;

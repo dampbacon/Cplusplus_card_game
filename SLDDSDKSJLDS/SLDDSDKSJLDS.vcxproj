@@ -140,6 +140,7 @@
     <ClCompile Include="DrawPile.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameBoard.cpp" />
+    <ClCompile Include="logicMixIn.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="TextureManager.cpp" />

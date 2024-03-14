@@ -5,7 +5,9 @@
 #include "Stack.hpp"
 #include <vector>
 #include <algorithm>
+#include "GameBoard.hpp"
 
+using namespace gameObjects;
 
 Stack* testStack = nullptr;
 Stack* testStack2 = nullptr;
@@ -22,7 +24,7 @@ Card* card4 = nullptr;
 Card* card5 = nullptr;
 
 
-
+GameBoard* gameBoard = nullptr;
 
 std::vector <Card*> Deck(52);
 std::vector <Stack*> CardStacks ={};
@@ -33,6 +35,8 @@ Game::Game()
 {}
 Game::~Game()
 {}
+
+SDL_Point Game::mousePos = SDL_Point(0,0);
 
 bool Game::mouseDown = false;
 
@@ -70,8 +74,10 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	mousePos.x = 0;
 	mousePos.y = 0;
 
-	testStack = new Stack(2);
-	testStack2 = new Stack(3);
+	gameBoard = new GameBoard();
+
+	testStack = new Stack(1);
+	testStack2 = new Stack(2);
 
 	CardStacks.push_back(testStack);
 	CardStacks.push_back(testStack2);
@@ -112,7 +118,9 @@ void Game::handleEvents()
 	SDL_PollEvent(&event);
 
 
-	// chuck in mouse class most of this latter
+	//move all mouse stuff here
+	gameBoard->handleEvents(event);
+
 	switch (event.type) {
 		case SDL_MOUSEBUTTONDOWN:
 		{
@@ -123,10 +131,7 @@ void Game::handleEvents()
 				mousePos.x = x;
 				mousePos.y = y;
 
-				//card0->Collide(&mousePos, false);
-
-
-				//temp jury rig
+				//temp jury rig MAKE THIS A GAME BOARD CALL
 				bool stupid = testStack->Collide(&mousePos, MouseStackEnable);
 				bool stupid2 = testStack2->Collide(&mousePos, MouseStackEnable);
 				
@@ -153,8 +158,6 @@ void Game::handleEvents()
 				mousePos.x = x;
 				mousePos.y = y;
 
-				
-
 				//temp jury rig, latter use the stack array create a bool arraw that mirrors
 				std::cout << "_____________________________ " << std::endl;
 
@@ -163,9 +166,6 @@ void Game::handleEvents()
 				bool stupid2= testStack2->Collide(&mousePos, BasicCollision);
 				std::cout << "ULG STACK 2 COLLIDE: " << stupid2 << std::endl;
 				std::cout << "_____________________________ " << std::endl;
-
-
-
 				if (stupid) {
 					collideStack = testStack2;
 					collideStack->transferStack(collideStack->mouseCardStack, testStack);
@@ -198,7 +198,7 @@ void Game::update(){
 
 	testStack->update();
 	testStack2->update();
-
+	gameBoard->update();
 
 }
 // render order matters this is to be handled by stacks
@@ -209,6 +209,7 @@ void Game::render(){
 
 	testStack->RenderMouseStack();
 	testStack2->RenderMouseStack();
+	gameBoard->render();
 
 	
 	SDL_RenderPresent(renderer);
