@@ -56,7 +56,11 @@ Card::Card(SUIT suit, int value, const char* texture, int x,int y, bool InPlay) 
 	//14
 }
 
-Card::~Card(){}
+Card::~Card(){
+	// Free textures
+	SDL_DestroyTexture(objTexture);
+	SDL_DestroyTexture(cardBackTexture);
+}
 
 int Card::getVal() {
 	return val;
