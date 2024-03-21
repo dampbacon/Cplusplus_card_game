@@ -164,6 +164,12 @@ namespace gameObjects {
 
 	GameBoard::~GameBoard()
 	{
+		for (auto card : Cards) {
+			delete card;
+		}
+		for (auto stack : CardStacks) {
+			delete stack;
+		}
 	}
 
 	void GameBoard::render(){

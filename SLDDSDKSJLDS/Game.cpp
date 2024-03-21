@@ -19,7 +19,9 @@ SDL_Renderer* Game::renderer = nullptr;
 Game::Game()
 {}
 Game::~Game()
-{}
+{
+	delete gameBoard;
+}
 
 SDL_Point Game::mousePos = SDL_Point(0,0);
 
