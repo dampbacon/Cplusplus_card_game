@@ -66,15 +66,15 @@ namespace gameObjects {
 
 
 
-		s0 = new Stack(0);
-		s1 = new Stack(1);
-		s2 = new Stack(2);
+		s0 = new CardStack1(0);
+		s1 = new CardStack1(1);
+		s2 = new CardStack1(2);
 
-		s3 = new Stack(3);
-		s4 = new Stack(4);
-		s5 = new Stack(5);
+		s3 = new CardStack1(3);
+		s4 = new CardStack1(4);
+		s5 = new CardStack1(5);
 
-		s6 = new Stack(6);
+		s6 = new CardStack1(6);
 
 		CardStacks.push_back(s0);
 

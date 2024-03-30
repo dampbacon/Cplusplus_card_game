@@ -8,18 +8,12 @@ enum collisionType {
 	BasicCollision
 };
 
-
-enum StackType {
-	BUILD_STACKS,
-	FINAL_STACKS,
-	DRAW_STACK
-};
-
-
 class Stack
 {
 public:
-	Stack(int ID);
+	//Stack(int ID);
+	Stack(int x, int y);
+	Stack();
 	~Stack();
 
 	std::vector <Card*> CardStack;
@@ -28,25 +22,52 @@ public:
 	//ADD STACK HITBOX, STACK TEXTURE AND STACK COLLIDE
 	//THIS IS NEEDED TO ITERACT WITH EMPTY STACKS
 	SDL_Rect* stackHitBox;
-
-
-	int getStackID();
-	
-	void addToStack(Card* card);
-	void addToStack(const std::vector<Card*>& cards);
-
-	void transferStack(const std::vector<Card*>& cards, Stack* destStack);
-
-	void transferStack(Card* card, Stack* destStack);
 	void Render();
 	void RenderMouseStack();
 	void update();
-
-	bool Collide(SDL_Point* mouse, collisionType type);
-
 	void ReleaseMouse();
 
+	virtual void addToStack(Card* card) =0;
+	virtual void addToStack(const std::vector<Card*>& cards)=0;
+	virtual void transferStack(const std::vector<Card*>& cards, Stack* destStack)=0;
+	virtual void transferStack(Card* card, Stack* destStack)=0;
+	virtual bool Collide(SDL_Point* mouse, collisionType type)=0;
+};
+
+class CardStack1 : public Stack { // Modified this line
+public:
+	CardStack1(int ID);
+	~CardStack1();
+	int getStackID();
+
+
+	void addToStack(Card* card) override;
+	void addToStack(const std::vector<Card*>& cards) override;
+	void transferStack(const std::vector<Card*>& cards, Stack* destStack) override;
+	void transferStack(Card* card, Stack* destStack) override;
+	bool Collide(SDL_Point* mouse, collisionType type) override;
 private:
 	int Stack_ID;
-
 };
+
+
+
+class DrawPile : public Stack { // Modified this line
+public:
+	DrawPile();
+	~DrawPile();
+    void shuffleCards();
+	void takeAllCards();
+	void deal();
+
+
+	void addToStack(Card* card) override;
+	void addToStack(const std::vector<Card*>& cards) override;
+	void transferStack(const std::vector<Card*>& cards, Stack* destStack) override;
+	void transferStack(Card* card, Stack* destStack) override;
+	bool Collide(SDL_Point* mouse, collisionType type) override;
+private:
+	int Stack_ID;
+};
+
+

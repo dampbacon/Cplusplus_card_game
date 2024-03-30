@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CardStack.cpp" />
     <ClCompile Include="DrawPile.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameBoard.cpp" />
@@ -147,7 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.hpp" />
-    <ClInclude Include="DrawPile.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameBoard.hpp" />
     <ClInclude Include="Stack.hpp" />
