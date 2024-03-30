@@ -8,6 +8,12 @@ enum collisionType {
 	BasicCollision
 };
 
+enum CardStackType {
+	SameSuitAsc,
+	AlternatingColorDsc
+};
+
+
 class Stack
 {
 public:
@@ -40,6 +46,11 @@ public:
 	~CardStack1();
 	int getStackID();
 
+	//used to flip top card if mousestack empty and topcard is not flipped
+	void revealTopCard();
+	//game logic
+	void canBeAdded(std::vector<Card*>& cards);
+
 
 	void addToStack(Card* card) override;
 	void addToStack(const std::vector<Card*>& cards) override;
@@ -54,7 +65,7 @@ private:
 
 class DrawPile : public Stack { // Modified this line
 public:
-	DrawPile();
+	DrawPile(int x, int y);
 	~DrawPile();
     void shuffleCards();
 	void takeAllCards();
@@ -67,7 +78,6 @@ public:
 	void transferStack(Card* card, Stack* destStack) override;
 	bool Collide(SDL_Point* mouse, collisionType type) override;
 private:
-	int Stack_ID;
 };
 
 

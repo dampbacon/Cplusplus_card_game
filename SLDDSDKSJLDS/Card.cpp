@@ -132,33 +132,43 @@ int Card::getYpos() {
 void Card::toggleDrag() {
 	draggable = !draggable;
 }
+bool Card::isDraggable() {
+	return draggable;
+}
+void Card::setDraggable(bool canBeDragged) {
+	draggable = canBeDragged;
+}
+
+
 
 bool Card::Collide(SDL_Point *point, bool topCard, bool simpleCollide){
-	if (ActiveCollision) {
-		return false;
-	}
-	if (!topCard) {
-		if (SDL_PointInRect(point, &cardTopRect)) {
-			std::cout << "collide " << val << std::endl;
-			if(!simpleCollide)
-				ActiveCollision = true;
-
-			Game::deltaX = point->x - cardTopRect.x;
-			Game::deltaY = point->y - cardTopRect.y;
-
-			return(true);
+	if (draggable) {
+		if (ActiveCollision) {
+			return false;
 		}
-	}
-	else {
-		if (SDL_PointInRect(point, &destRect)) {
-			std::cout << "collide "<< val << std::endl;
-			if (!simpleCollide)
-				ActiveCollision = true;
+		if (!topCard) {
+			if (SDL_PointInRect(point, &cardTopRect)) {
+				std::cout << "collide " << val << std::endl;
+				if (!simpleCollide)
+					ActiveCollision = true;
 
-			Game::deltaX = point->x - cardTopRect.x;
-			Game::deltaY = point->y - cardTopRect.y;
+				Game::deltaX = point->x - cardTopRect.x;
+				Game::deltaY = point->y - cardTopRect.y;
 
-			return(true);
+				return(true);
+			}
+		}
+		else {
+			if (SDL_PointInRect(point, &destRect)) {
+				std::cout << "collide " << val << std::endl;
+				if (!simpleCollide)
+					ActiveCollision = true;
+
+				Game::deltaX = point->x - cardTopRect.x;
+				Game::deltaY = point->y - cardTopRect.y;
+
+				return(true);
+			}
 		}
 	}
 

@@ -17,9 +17,7 @@ int CardStack1::getStackID() {
 
 
  void CardStack1::addToStack(Card* card) {
-	/*if (!CardStack.empty()) {
-		CardStack.back();
-	}*/
+
 	CardStack.push_back(card);
 	card->setPos((140 * Stack_ID + 10), CardStack.size() * 32, true);
 }
@@ -90,7 +88,6 @@ bool CardStack1::Collide(SDL_Point* mouse, collisionType type) {
 		}
 		default:
 			break;
-
 		}
 	}
 	else {

@@ -21,6 +21,8 @@ namespace gameObjects {
 	private:
 		std::vector <Stack*> CardStacks = {};
 		std::vector <Card*> Cards;
+		DrawPile* drawPile;
+
 		Stack* pointerCollideStack;
 		Stack* s0;
 		Stack* s1;

@@ -33,6 +33,8 @@ public:
 	int getYpos();
 
 	void toggleDrag();
+	bool isDraggable();
+	void setDraggable(bool canBeDragged);
 
 	//location for card to snap back to upon release on an invalid pile
 	int homeXpos;
