@@ -175,11 +175,13 @@ namespace gameObjects {
 		for (auto const& i : CardStacks) {
 			i->RenderMouseStack();
 		}
+		drawPile->renderDealPile();
 	}
 	void GameBoard::update(){
 		for (auto const& i : CardStacks) {
 			i->update();
 		}
+		drawPile->updateDealPile();
 	}
 
 
@@ -235,8 +237,11 @@ namespace gameObjects {
 				}
 				collideStack = nullptr; // Reset collideStack after usage
 
+				drawPile->ReleaseMouse();
 				for (auto const& i : CardStacks) {
-					i->ReleaseMouse();
+					if (dynamic_cast<DrawPile*>(i) == nullptr) {
+						i->ReleaseMouse();
+					}
 				}
 			}
 			break;

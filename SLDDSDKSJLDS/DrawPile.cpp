@@ -4,6 +4,7 @@
 DrawPile::DrawPile(int x, int y) : Stack() {
 	stackHitBox->x = x;
 	stackHitBox->y = y;
+	dealStack = std::vector<Card*>();
 }
 
 DrawPile::~DrawPile() {
@@ -67,35 +68,105 @@ void DrawPile::transferStack(Card* card, Stack* destStack) {
 	}
 }
 
+
+
+
+void DrawPile::renderDealPile() {
+	if (!dealStack.empty()) {
+		for (auto const& i : dealStack) {	
+			i->Render();
+		}
+	}
+}
+
+void DrawPile::updateDealPile() {
+	if (!dealStack.empty()) {
+		for (auto const& i : dealStack) {
+			i->Update();
+		}
+	}
+}
+
+void DrawPile::ReleaseMouse() {
+	
+	for (auto const& i : CardStack) {
+		i->ActiveCollision = false;
+		i->setPos(i->homeXpos, i->homeYpos, false);
+	}
+	for (auto const& i : dealStack) {
+		i->ActiveCollision = false;
+		i->setPos(i->homeXpos, i->homeYpos, false);
+	}
+	std::cout << "WORKING\n";
+
+	mouseCardStack.clear(); // Clear the existing subStack
+}
+
+
+
 bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 	bool collisionDetected = false;
-	bool stupidTemp = false;
-	if (type == BasicCollision) {
-		stupidTemp = true;
-	}
+	bool stupidTemp = true;
+	if (type==MouseStackEnable) {
 
-	if (!CardStack.empty()) {
+		//mainpile
+		if (!CardStack.empty()) {
+			bool mainPileCollide = CardStack.back()->Collide(mouse, true, stupidTemp);
+			if (mainPileCollide) {
+				Card* temp = CardStack.back();
+				CardStack.pop_back();
+				dealStack.push_back(temp);
+				temp->setPos(this->stackHitBox->x + 140, this->stackHitBox->y, true);
+				dealStack.back()->setDraggable(true);
 
-		auto start = std::find_if(CardStack.begin(), CardStack.end(), [&](const auto& card) {
-			bool collided = card->Collide(mouse, card == CardStack.back(), stupidTemp);
-			if (collided)
-				collisionDetected = true;
-			return collided;
-			});
+				if (!CardStack.empty()) {
+					CardStack.back()->setDraggable(true);
+				}
+			}
+		}
+		//dealt pile
+		if (!dealStack.empty()) {
+			bool dealPileCollide = dealStack.back()->Collide(mouse, true, false);
+			if (dealPileCollide)
+			{
+				mouseCardStack.push_back(dealStack.back());
+			}
+		}
+
+				//add to mouscardStack
+
+
+		std::cout << "\n|||||||||||||||||||||||||||||||||||\n";
+		std::cout << "Card Stack:\n";
+		for (auto i : CardStack) {
+			std::cout << i << '\n';
+		}
+		std::cout << "dealt pile:\n";
+		for (auto i : dealStack) {
+			std::cout << i << '\n';
+		}
+		std::cout << "\n|||||||||||||||||||||||||||||||||||\n";
+		
+
+
+		//transfer to deal pile, erase from main pile, return when reseting deal pile
+
+
 
 		switch (type) {
 		case MouseStackEnable:
 		{
-			mouseCardStack.clear(); // Clear the existing subStack
-			if (start != CardStack.end()) {
-				mouseCardStack.assign(start, CardStack.end());
-				// Now subStack contains all cards in CardStack after the collided card, including the collided card itself
-			}
+			//mouseCardStack.clear(); // Clear the existing subStack
+			//if (start != CardStack.end()) {
+			//	//mouseCardStack.assign(start, CardStack.end());
+			//	// Now subStack contains all cards in CardStack after the collided card, including the collided card itself
+			//}
 			break;
 		}
 		case MouseButtonRelease:
 		{
 			//fancy logic for dropping stacks of cards onto other stacks
+
 			break;
 		}
 		default:

@@ -70,6 +70,14 @@ public:
     void shuffleCards();
 	void takeAllCards();
 	void deal();
+	void renderDealPile();
+	void updateDealPile();
+
+	void ReleaseMouse();
+
+	//only render/show top 3 cards
+	std::vector <Card*> dealStack;
+
 
 
 	void addToStack(Card* card) override;
