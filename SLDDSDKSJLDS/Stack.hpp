@@ -13,6 +13,12 @@ enum CardStackType {
 	AlternatingColorDsc
 };
 
+enum StackType {
+	PLAYSTACK,
+	DEALSTACK,
+	BASESTACK
+};
+
 
 class Stack
 {
@@ -24,7 +30,7 @@ public:
 
 	std::vector <Card*> CardStack;
 	std::vector <Card*> mouseCardStack;
-
+	
 	//ADD STACK HITBOX, STACK TEXTURE AND STACK COLLIDE
 	//THIS IS NEEDED TO ITERACT WITH EMPTY STACKS
 	SDL_Rect* stackHitBox;
@@ -38,6 +44,8 @@ public:
 	virtual void transferStack(const std::vector<Card*>& cards, Stack* destStack)=0;
 	virtual void transferStack(Card* card, Stack* destStack)=0;
 	virtual bool Collide(SDL_Point* mouse, collisionType type)=0;
+
+	virtual StackType getType() = 0;
 };
 
 class CardStack1 : public Stack { // Modified this line
@@ -57,7 +65,13 @@ public:
 	void transferStack(const std::vector<Card*>& cards, Stack* destStack) override;
 	void transferStack(Card* card, Stack* destStack) override;
 	bool Collide(SDL_Point* mouse, collisionType type) override;
+
+	StackType getType() override;
+
+
+	
 private:
+	StackType type;
 	int Stack_ID;
 };
 
@@ -79,13 +93,15 @@ public:
 	std::vector <Card*> dealStack;
 
 
-
+	
+	StackType getType() override;
 	void addToStack(Card* card) override;
 	void addToStack(const std::vector<Card*>& cards) override;
 	void transferStack(const std::vector<Card*>& cards, Stack* destStack) override;
 	void transferStack(Card* card, Stack* destStack) override;
 	bool Collide(SDL_Point* mouse, collisionType type) override;
 private:
+	StackType type;
 };
 
 

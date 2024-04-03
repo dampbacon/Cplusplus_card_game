@@ -172,10 +172,10 @@ namespace gameObjects {
 		for (auto const& i : CardStacks) {
 			i->Render();
 		}
+		drawPile->renderDealPile();
 		for (auto const& i : CardStacks) {
 			i->RenderMouseStack();
 		}
-		drawPile->renderDealPile();
 	}
 	void GameBoard::update(){
 		for (auto const& i : CardStacks) {
@@ -225,21 +225,29 @@ namespace gameObjects {
 					bool collision = stack->Collide(&Game::mousePos, BasicCollision);
 					if (collision && collideStack != nullptr) {
 
-						//if (dynamic_cast<DrawPile*>(stack) == nullptr)
-							//use void canBeAdded function when implemented
-						{
+						//fix later 
+						//if (collideStack->getType() == PLAYSTACK)
+						//{
+							//std::cout << "AAAAAAAaaaaaaaaaAAAAAAAAA\n";
 							collideStack->transferStack(collideStack->mouseCardStack, stack);
-						}
+						//}
+						//else if(collideStack->getType() == DEALSTACK) {
+						//	std::cout << "AAAAAAAAAAAAAAAA\n";
+						//	dynamic_cast<DrawPile*>(collideStack)->transferStack(collideStack->mouseCardStack, stack);
+						//}
 
 
 						break;
+					}
+					else {
+						std::cout << "shit\n";
 					}
 				}
 				collideStack = nullptr; // Reset collideStack after usage
 
 				drawPile->ReleaseMouse();
 				for (auto const& i : CardStacks) {
-					if (dynamic_cast<DrawPile*>(i) == nullptr) {
+					if (i->getType()==PLAYSTACK) {
 						i->ReleaseMouse();
 					}
 				}

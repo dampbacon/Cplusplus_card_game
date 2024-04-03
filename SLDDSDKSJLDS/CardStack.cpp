@@ -5,6 +5,7 @@ CardStack1::CardStack1(int ID) : Stack() {
 	Stack_ID = ID;
 	stackHitBox->x = 140 * Stack_ID + 10;
 	stackHitBox->y = 32;
+	type = PLAYSTACK;
 }
 
 CardStack1::~CardStack1() {
@@ -12,6 +13,10 @@ CardStack1::~CardStack1() {
 
 int CardStack1::getStackID() {
 	return Stack_ID;
+}
+
+StackType CardStack1::getType() {
+	return type;
 }
 
 

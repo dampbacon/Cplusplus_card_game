@@ -5,6 +5,7 @@ DrawPile::DrawPile(int x, int y) : Stack() {
 	stackHitBox->x = x;
 	stackHitBox->y = y;
 	dealStack = std::vector<Card*>();
+	type = DEALSTACK;
 }
 
 DrawPile::~DrawPile() {
@@ -12,7 +13,9 @@ DrawPile::~DrawPile() {
 
 
 
-
+StackType DrawPile::getType() {
+	return type;
+}
 
 
 //TBD
@@ -39,34 +42,31 @@ void DrawPile::addToStack(const std::vector<Card*>& cards) {
 }
 
 
+
 void DrawPile::transferStack(const std::vector<Card*>& cards, Stack* destStack) {
 	if (destStack != this) {
 		destStack->addToStack(cards);
+		std::cout << "~~~~~~~~~~~~~~~~~~~~AAAAAAAAAAAAAA~~~~~~~~~~~~~~~\n";
+		// Remove transferred cards from current stack
 		for (const auto& card : cards) {
-			auto it = std::find(CardStack.begin(), CardStack.end(), card);
-			if (it != CardStack.end()) {
-				CardStack.erase(it);
+			auto it = std::find(dealStack.begin(), dealStack.end(), card);
+			if (it != dealStack.end()) {
+				dealStack.erase(it);
 			}
 		}
-
-		if (!this->CardStack.empty()) {
-			CardStack.back()->toggleDrag();
-		}
 	}
 }
-
 void DrawPile::transferStack(Card* card, Stack* destStack) {
 	if (destStack != this) {
-		auto it = std::find(CardStack.begin(), CardStack.end(), card);
-		if (it != CardStack.end()) {
-			CardStack.erase(it);
+		auto it = std::find(dealStack.begin(), dealStack.end(), card);
+		if (it != dealStack.end()) {
+			dealStack.erase(it);
 		}
 		destStack->addToStack(card);
-		if (!this->CardStack.empty()) {
-			CardStack.back()->toggleDrag();
-		}
+
 	}
 }
+
 
 
 
@@ -130,6 +130,7 @@ bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 			if (dealPileCollide)
 			{
 				mouseCardStack.push_back(dealStack.back());
+				return true;
 			}
 		}
 
@@ -146,21 +147,10 @@ bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 			std::cout << i << '\n';
 		}
 		std::cout << "\n|||||||||||||||||||||||||||||||||||\n";
-		
-
-
-		//transfer to deal pile, erase from main pile, return when reseting deal pile
-
-
 
 		switch (type) {
 		case MouseStackEnable:
 		{
-			//mouseCardStack.clear(); // Clear the existing subStack
-			//if (start != CardStack.end()) {
-			//	//mouseCardStack.assign(start, CardStack.end());
-			//	// Now subStack contains all cards in CardStack after the collided card, including the collided card itself
-			//}
 			break;
 		}
 		case MouseButtonRelease:
