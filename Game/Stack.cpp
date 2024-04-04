@@ -25,8 +25,7 @@ Stack::Stack(int x, int y)
 }
 
 
-Stack::~Stack()
-{
+Stack::~Stack() {
 }
 
 void Stack::Render() {

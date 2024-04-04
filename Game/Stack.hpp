@@ -26,7 +26,7 @@ public:
 	//Stack(int ID);
 	Stack(int x, int y);
 	Stack();
-	~Stack();
+	virtual ~Stack() = 0;
 
 	std::vector <Card*> CardStack;
 	std::vector <Card*> mouseCardStack;
@@ -51,7 +51,7 @@ public:
 class CardStack1 : public Stack { // Modified this line
 public:
 	CardStack1(int ID);
-	~CardStack1();
+	~CardStack1() override;
 	int getStackID();
 
 	//used to flip top card if mousestack empty and topcard is not flipped
@@ -80,7 +80,7 @@ private:
 class DrawPile : public Stack { // Modified this line
 public:
 	DrawPile(int x, int y);
-	~DrawPile();
+	~DrawPile() override;
     void shuffleCards();
 	void takeAllCards();
 	void deal();
