@@ -198,6 +198,15 @@ namespace gameObjects {
 	void GameBoard::handleEvents(SDL_Event event) {
 		static Stack* collideStack = nullptr; // Initialize outside the switch statement
 
+		/*
+		NOTE TO SELF
+		
+		MAKE SURE TO USE ANIMATION LOCK ON ALLLLLLLLLLLLLLLLL OF THIS
+		
+		
+		*/
+
+
 		switch (event.type) {
 		case SDL_MOUSEBUTTONDOWN: {
 			if (event.button.button == SDL_BUTTON_LEFT) {

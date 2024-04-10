@@ -164,6 +164,9 @@ bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 			if (!dealStack.empty()) {
 				dealStack.back()->setDraggable(false);
 				this->returnDealpile();
+				if (CardStack.size() == 1) {
+					CardStack.back()->setDraggable(true);
+				}
 			}
 		}
 	}
