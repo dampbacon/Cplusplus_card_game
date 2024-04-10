@@ -10,11 +10,24 @@ the aim right now is to get a minimum functional game with litle concern to anim
 only a reset button will be added to reset/redeal the game.
 
 ## Currently in development / next development milestone:
-properly setting up the game board (a specific class will handle this), followed by a draw pile, game setup and logic
+finishing up the game board, create method to reset all cards to draw pile, game setup and logic.
+
+## post mvp goals:
+Make my own textures
+Create a Linear interpolation pathing system so card being dealt are animated, instead of teleporting.
+Main menu, Widget based ui system.
+music.
+scoring.
+compile to webassembly.
+Polish, allot of polish.
+make a cmakelists and setup up a cmake buildscript to compile to other platforms.
+May experiment with github actions for ci/cd if i take wasm route.
+
 
 ## Finished features:
-rendering, texture manager, 160fps game loop, functionality of card stacks and cards.
-ability to move groups of cards between stacks using your mouse.
+rendering, texture manager, 160fps game loop, functionality of card stacks and cards. Base functionality in most components done.
+Ability to move groups of cards between stacks using your mouse.
+
 
 
 ## why C++/C ? and not C#, javascript etc.
