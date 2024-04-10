@@ -4,6 +4,15 @@ namespace gameObjects {
 
 	GameBoard::GameBoard()
 	{
+
+
+
+		//this is going to be our fake mutex
+		//LOCK ALL INPUT WHILE ANIMATIONS HAPPEN EVEN IF VERY VERY FAST
+		ANIMATION_LOCK = false;
+
+
+
 		Cards = std::vector <Card*>(52);
 
 		Cards[0]= new Card(HEARTS, 1, "PixelCard_Assets/Cards/Hearts/Card_AceHearts_Big.png", 0, 0, true);

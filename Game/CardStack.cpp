@@ -104,6 +104,7 @@ bool CardStack1::Collide(SDL_Point* mouse, collisionType type) {
 }
 
 void CardStack1::ReleaseMouse() {
+	//potential area for a "Lock" when animating
 	for (auto const& i : CardStack) {
 		i->ActiveCollision = false;
 		i->setPos(i->homeXpos, i->homeYpos, false);

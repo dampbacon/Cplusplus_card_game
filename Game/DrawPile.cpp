@@ -102,14 +102,31 @@ void DrawPile::ReleaseMouse() {
 	mouseCardStack.clear(); // Clear the existing subStack
 }
 
+void DrawPile::takeAllCards(std::vector<Stack*> input) {
+	for (auto i : input) {
+		if (i->getType() == PLAYSTACK) { ; }
+	}
+	
+}
+
+
 
 
 bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 	bool collisionDetected = false;
 	bool stupidTemp = true;
 	bool stupidflag = false;
-
+	/* 
+	stupidflag
 	
+	This is needed so that cards dont immediatly get cycled back into the pile when dealing the last card to the drawpile
+	because the code for cycling checks that the deal stack is empty is after the code for putting cards in the drawpile
+	what would happen is that upon drawing the last card it would immediatly undo and cycle all the cards
+
+	i can probably move the code block up and remove the stupid flag but really dont want to touch it now
+	it works bleh
+	*/
+
 	if (type==MouseStackEnable) {
 		//mainpile
 		if (!CardStack.empty()) {
@@ -139,23 +156,21 @@ bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 				return true;
 			}
 		}
+		//probably redundant
 		if (!(CardStack.empty() && SDL_PointInRect(mouse, stackHitBox))) {
 			return collisionDetected;
+		}
+		if (CardStack.empty() && SDL_PointInRect(mouse, stackHitBox) && !stupidflag) {
+			if (!dealStack.empty()) {
+				dealStack.back()->setDraggable(false);
+				this->returnDealpile();
+			}
 		}
 	}
 	else {
 		collisionDetected = SDL_PointInRect(mouse, stackHitBox);
 	}
-	//debug code
-
-
-	if (type == MouseStackEnable && CardStack.empty() && SDL_PointInRect(mouse, stackHitBox) && !stupidflag) {
-		if (!dealStack.empty()) {
-			dealStack.back()->setDraggable(false);
-			this->returnDealpile();
-		}
-	}
-
+	
 	return collisionDetected;
 }
 

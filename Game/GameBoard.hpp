@@ -12,13 +12,15 @@ namespace gameObjects {
 	public:
 		GameBoard();
 		~GameBoard();
-		void collideMouseDown();
-		void collideMouseUp();
 		void handleEvents(SDL_Event event);
 		void update();
 		void render();
 
+		//gamefunctions
+
 	private:
+		bool ANIMATION_LOCK;
+		
 		std::vector <Stack*> CardStacks = {};
 		std::vector <Card*> Cards;
 		DrawPile* drawPile;

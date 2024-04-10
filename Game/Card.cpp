@@ -142,6 +142,7 @@ void Card::setDraggable(bool canBeDragged) {
 
 
 bool Card::Collide(SDL_Point *point, bool topCard, bool simpleCollide){
+	//Lockcheck
 	if (draggable) {
 		if (ActiveCollision) {
 			return false;

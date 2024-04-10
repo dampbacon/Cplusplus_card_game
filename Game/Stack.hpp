@@ -82,7 +82,7 @@ public:
 	DrawPile(int x, int y);
 	~DrawPile() override;
     void shuffleCards();
-	void takeAllCards();
+	void takeAllCards(std::vector<Stack*> stacks);
 	void deal();
 	void returnDealpile();
 	void renderDealPile();
