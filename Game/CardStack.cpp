@@ -102,3 +102,11 @@ bool CardStack1::Collide(SDL_Point* mouse, collisionType type) {
 
 	return collisionDetected;
 }
+
+void CardStack1::ReleaseMouse() {
+	for (auto const& i : CardStack) {
+		i->ActiveCollision = false;
+		i->setPos(i->homeXpos, i->homeYpos, false);
+	}
+	mouseCardStack.clear(); // Clear the existing subStack
+};

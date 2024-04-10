@@ -37,8 +37,8 @@ public:
 	void Render();
 	void RenderMouseStack();
 	void update();
-	void ReleaseMouse();
 
+	virtual void ReleaseMouse()=0;
 	virtual void addToStack(Card* card) =0;
 	virtual void addToStack(const std::vector<Card*>& cards)=0;
 	virtual void transferStack(const std::vector<Card*>& cards, Stack* destStack)=0;
@@ -59,7 +59,7 @@ public:
 	//game logic
 	void canBeAdded(std::vector<Card*>& cards);
 
-
+	void ReleaseMouse() override;
 	void addToStack(Card* card) override;
 	void addToStack(const std::vector<Card*>& cards) override;
 	void transferStack(const std::vector<Card*>& cards, Stack* destStack) override;
@@ -84,10 +84,11 @@ public:
     void shuffleCards();
 	void takeAllCards();
 	void deal();
+	void returnDealpile();
 	void renderDealPile();
 	void updateDealPile();
 
-	void ReleaseMouse();
+	void ReleaseMouse() override;
 
 	//only render/show top 3 cards
 	std::vector <Card*> dealStack;

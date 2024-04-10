@@ -1,4 +1,4 @@
-
+﻿
 #include "Stack.hpp"
 
 DrawPile::DrawPile(int x, int y) : Stack() {
@@ -22,7 +22,7 @@ StackType DrawPile::getType() {
 void DrawPile::addToStack(Card* card) {
 
 	CardStack.push_back(card);
-	card->setPos(stackHitBox->x, stackHitBox->y + (CardStack.size()-1) * 6, true);
+	card->setPos(stackHitBox->x, stackHitBox->y, true);
 }
 
 void DrawPile::addToStack(const std::vector<Card*>& cards) {
@@ -36,7 +36,7 @@ void DrawPile::addToStack(const std::vector<Card*>& cards) {
 	for (Card* card : cards) {
 		card->setDraggable(false);
 		CardStack.push_back(card);
-		card->setPos(stackHitBox->x, stackHitBox->y + (CardStack.size() - 1) * 6, true);
+		card->setPos(stackHitBox->x, stackHitBox->y, true);
 	}
 	CardStack.back()->setDraggable(true);
 }
@@ -107,8 +107,10 @@ void DrawPile::ReleaseMouse() {
 bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 	bool collisionDetected = false;
 	bool stupidTemp = true;
-	if (type==MouseStackEnable) {
+	bool stupidflag = false;
 
+	
+	if (type==MouseStackEnable) {
 		//mainpile
 		if (!CardStack.empty()) {
 			bool mainPileCollide = CardStack.back()->Collide(mouse, true, stupidTemp);
@@ -122,7 +124,11 @@ bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 				if (!CardStack.empty()) {
 					CardStack.back()->setDraggable(true);
 				}
+				else {
+					stupidflag = true;
+				}
 			}
+			
 		}
 		//dealt pile
 		if (!dealStack.empty()) {
@@ -133,40 +139,47 @@ bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 				return true;
 			}
 		}
-
-				//add to mouscardStack
-
-
-		std::cout << "\n|||||||||||||||||||||||||||||||||||\n";
-		std::cout << "Card Stack:\n";
-		for (auto i : CardStack) {
-			std::cout << i << '\n';
-		}
-		std::cout << "dealt pile:\n";
-		for (auto i : dealStack) {
-			std::cout << i << '\n';
-		}
-		std::cout << "\n|||||||||||||||||||||||||||||||||||\n";
-
-		switch (type) {
-		case MouseStackEnable:
-		{
-			break;
-		}
-		case MouseButtonRelease:
-		{
-			//fancy logic for dropping stacks of cards onto other stacks
-
-			break;
-		}
-		default:
-			break;
+		if (!(CardStack.empty() && SDL_PointInRect(mouse, stackHitBox))) {
+			return collisionDetected;
 		}
 	}
 	else {
 		collisionDetected = SDL_PointInRect(mouse, stackHitBox);
 	}
+	//debug code
 
+
+	if (type == MouseStackEnable && CardStack.empty() && SDL_PointInRect(mouse, stackHitBox) && !stupidflag) {
+		if (!dealStack.empty()) {
+			dealStack.back()->setDraggable(false);
+			this->returnDealpile();
+		}
+	}
 
 	return collisionDetected;
 }
+
+void DrawPile::returnDealpile() {
+	while (!dealStack.empty()) {
+		Card* temp = dealStack.back();
+		dealStack.pop_back();
+		CardStack.push_back(temp);
+		temp->setPos(this->stackHitBox->x, this->stackHitBox->y, true);
+	}
+}
+//useful debug collision codeblock
+/*
+	std::cout << "type :";
+	std::string k = "";
+	switch (type)
+	{
+	case MouseButtonRelease: k = "MouseButtonRelease";
+		break;
+	case MouseStackEnable:   k = "MouseStackEnable";
+		break;
+	case BasicCollision: k = "BasicCollision";
+		break;
+	}
+	std::cout << k << "\n";
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << "\n";
+*/

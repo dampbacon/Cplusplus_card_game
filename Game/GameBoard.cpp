@@ -224,32 +224,17 @@ namespace gameObjects {
 				for (Stack* stack : CardStacks) {
 					bool collision = stack->Collide(&Game::mousePos, BasicCollision);
 					if (collision && collideStack != nullptr) {
-
-						//fix later 
-						//if (collideStack->getType() == PLAYSTACK)
-						//{
-							//std::cout << "AAAAAAAaaaaaaaaaAAAAAAAAA\n";
-							collideStack->transferStack(collideStack->mouseCardStack, stack);
-						//}
-						//else if(collideStack->getType() == DEALSTACK) {
-						//	std::cout << "AAAAAAAAAAAAAAAA\n";
-						//	dynamic_cast<DrawPile*>(collideStack)->transferStack(collideStack->mouseCardStack, stack);
-						//}
-
-
+						collideStack->transferStack(collideStack->mouseCardStack, stack);
 						break;
 					}
 					else {
-						std::cout << "shit\n";
+						//std::cout << "shit\n";
 					}
 				}
 				collideStack = nullptr; // Reset collideStack after usage
 
-				drawPile->ReleaseMouse();
 				for (auto const& i : CardStacks) {
-					if (i->getType()==PLAYSTACK) {
-						i->ReleaseMouse();
-					}
+					i->ReleaseMouse();
 				}
 			}
 			break;
