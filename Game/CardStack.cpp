@@ -1,42 +1,42 @@
 #include "Stack.hpp"
 #define DEBUG
 
-CardStack1::CardStack1(int ID) : Stack() {
+PlayStack::PlayStack(int ID) : Stack() {
 	Stack_ID = ID;
 	stackHitBox->x = 140 * Stack_ID + 10;
-	stackHitBox->y = 32;
+	stackHitBox->y = 288;
 	type = PLAYSTACK;
 }
 
-CardStack1::~CardStack1() {
+PlayStack::~PlayStack() {
 }
 
-int CardStack1::getStackID() {
+int PlayStack::getStackID() {
 	return Stack_ID;
 }
 
-StackType CardStack1::getType() {
+StackType PlayStack::getType() {
 	return type;
 }
 
 
 
- void CardStack1::addToStack(Card* card) {
+ void PlayStack::addToStack(Card* card) {
 
 	CardStack.push_back(card);
-	card->setPos((140 * Stack_ID + 10), CardStack.size() * 32, true);
+	card->setPos((140 * Stack_ID + 10), stackHitBox->y+(CardStack.size()-1) * 32, true);
 }
 
-void CardStack1::addToStack(const std::vector<Card*>& cards) {
+void PlayStack::addToStack(const std::vector<Card*>& cards) {
 	for (Card* card : cards) {
 		CardStack.push_back(card);
-		card->setPos((140 * Stack_ID + 10), CardStack.size() * 32, true);
+		card->setPos((140 * Stack_ID + 10), stackHitBox->y+(CardStack.size() - 1) * 32, true);
 	}
 }
 
 
 
-void CardStack1::transferStack(const std::vector<Card*>& cards, Stack* destStack) {
+void PlayStack::transferStack(const std::vector<Card*>& cards, Stack* destStack) {
 	if (destStack != this) {
 		destStack->addToStack(cards);
 
@@ -49,7 +49,7 @@ void CardStack1::transferStack(const std::vector<Card*>& cards, Stack* destStack
 		}
 	}
 }
-void CardStack1::transferStack(Card* card, Stack* destStack) {
+void PlayStack::transferStack(Card* card, Stack* destStack) {
 	if (destStack != this) {
 		auto it = std::find(CardStack.begin(), CardStack.end(), card);
 		if (it != CardStack.end()) {
@@ -60,7 +60,7 @@ void CardStack1::transferStack(Card* card, Stack* destStack) {
 	}
 }
 
-bool CardStack1::Collide(SDL_Point* mouse, collisionType type) {
+bool PlayStack::Collide(SDL_Point* mouse, collisionType type) {
 	bool collisionDetected = false;
 	bool stupidTemp = false;
 	if (type == BasicCollision) {
@@ -103,7 +103,7 @@ bool CardStack1::Collide(SDL_Point* mouse, collisionType type) {
 	return collisionDetected;
 }
 
-void CardStack1::ReleaseMouse() {
+void PlayStack::ReleaseMouse() {
 	//potential area for a "Lock" when animating
 	for (auto const& i : CardStack) {
 		i->ActiveCollision = false;

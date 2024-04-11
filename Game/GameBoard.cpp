@@ -72,17 +72,16 @@ namespace gameObjects {
 		Cards[51] = new Card(DIAMONDS, 13, "PixelCard_Assets/Cards/Diamonds/Card_KingDiamond.png", 0, 0, true);
 
 
-		drawPile = new DrawPile(600, 600);
+		drawPile = new DrawPile(10, 10);
 
-		CardStacks.push_back(drawPile);
 
-		s0 = new CardStack1(0);
-		s1 = new CardStack1(1);
-		s2 = new CardStack1(2);
-		s3 = new CardStack1(3);
-		s4 = new CardStack1(4);
-		s5 = new CardStack1(5);
-		s6 = new CardStack1(6);
+		s0 = new PlayStack(0);
+		s1 = new PlayStack(1);
+		s2 = new PlayStack(2);
+		s3 = new PlayStack(3);
+		s4 = new PlayStack(4);
+		s5 = new PlayStack(5);
+		s6 = new PlayStack(6);
 
 		CardStacks.push_back(s0);
 		CardStacks.push_back(s1);
@@ -91,6 +90,7 @@ namespace gameObjects {
 		CardStacks.push_back(s4);
 		CardStacks.push_back(s5);
 		CardStacks.push_back(s6);
+		CardStacks.push_back(drawPile);
 
 
 		//hearts
@@ -181,6 +181,7 @@ namespace gameObjects {
 		for (auto const& i : CardStacks) {
 			i->Render();
 		}
+		//drawPile->Render();
 		drawPile->renderDealPile();
 		for (auto const& i : CardStacks) {
 			i->RenderMouseStack();

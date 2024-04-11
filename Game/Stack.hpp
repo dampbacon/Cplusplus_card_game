@@ -46,12 +46,14 @@ public:
 	virtual bool Collide(SDL_Point* mouse, collisionType type)=0;
 
 	virtual StackType getType() = 0;
+
+private:
 };
 
-class CardStack1 : public Stack { // Modified this line
+class PlayStack : public Stack { // Modified this line
 public:
-	CardStack1(int ID);
-	~CardStack1() override;
+	PlayStack(int ID);
+	~PlayStack() override;
 	int getStackID();
 
 	//used to flip top card if mousestack empty and topcard is not flipped
