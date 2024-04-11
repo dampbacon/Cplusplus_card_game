@@ -71,6 +71,7 @@ public:
 
 	
 private:
+	CardStackType CARDSTACK_TYPE_RULES;
 	StackType type;
 	int Stack_ID;
 };
