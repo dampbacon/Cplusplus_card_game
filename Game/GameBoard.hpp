@@ -5,7 +5,7 @@
 #include "Game.hpp"
 #include <SDL.h>
 // GameBoard will handle all the game card Stack
-
+using namespace cardStacks;
 namespace gameObjects {
 	class GameBoard
 	{

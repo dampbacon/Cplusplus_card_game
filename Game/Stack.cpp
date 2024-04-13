@@ -1,6 +1,7 @@
 #include "Stack.hpp"
 #define DEBUG
 
+using namespace cardStacks;
 
 Stack::Stack()
 {

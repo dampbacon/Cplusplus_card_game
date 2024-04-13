@@ -1,6 +1,6 @@
 ﻿
 #include "Stack.hpp"
-
+using namespace cardStacks;
 DrawPile::DrawPile(int x, int y) : Stack() {
 	stackHitBox->x = x;
 	stackHitBox->y = y;

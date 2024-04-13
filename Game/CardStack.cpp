@@ -1,6 +1,6 @@
 #include "Stack.hpp"
 #define DEBUG
-
+using namespace cardStacks;
 PlayStack::PlayStack(int ID) : Stack() {
 	Stack_ID = ID;
 	stackHitBox->x = 140 * Stack_ID + 10;

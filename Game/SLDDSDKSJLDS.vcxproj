@@ -144,6 +144,7 @@
     <ClCompile Include="logicMixIn.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="StackUtils.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>

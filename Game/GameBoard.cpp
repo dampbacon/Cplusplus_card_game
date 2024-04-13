@@ -1,5 +1,6 @@
 #include "GameBoard.hpp"
 #include "Game.hpp"
+using namespace cardStacks;
 namespace gameObjects {
 
 	GameBoard::GameBoard()
@@ -72,16 +73,16 @@ namespace gameObjects {
 		Cards[51] = new Card(DIAMONDS, 13, "PixelCard_Assets/Cards/Diamonds/Card_KingDiamond.png", 0, 0, true);
 
 
-		drawPile = new DrawPile(10, 10);
+		drawPile = new cardStacks::DrawPile(10, 10);
 
 
-		s0 = new PlayStack(0);
-		s1 = new PlayStack(1);
-		s2 = new PlayStack(2);
-		s3 = new PlayStack(3);
-		s4 = new PlayStack(4);
-		s5 = new PlayStack(5);
-		s6 = new PlayStack(6);
+		s0 = new cardStacks::PlayStack(0);
+		s1 = new cardStacks::PlayStack(1);
+		s2 = new cardStacks::PlayStack(2);
+		s3 = new cardStacks::PlayStack(3);
+		s4 = new cardStacks::PlayStack(4);
+		s5 = new cardStacks::PlayStack(5);
+		s6 = new cardStacks::PlayStack(6);
 
 		CardStacks.push_back(s0);
 		CardStacks.push_back(s1);
