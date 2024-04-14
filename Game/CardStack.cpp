@@ -1,11 +1,18 @@
 #include "Stack.hpp"
 #define DEBUG
 using namespace cardStacks;
-PlayStack::PlayStack(int ID) : Stack() {
+using namespace cardStacks::stackRules;
+PlayStack::PlayStack(int ID, FunctionPtr ptr) : Stack() {
 	Stack_ID = ID;
 	stackHitBox->x = 140 * Stack_ID + 10;
 	stackHitBox->y = 288;
 	type = PLAYSTACK;
+	if (ptr != nullptr) {
+		stackRules = ptr;
+	}
+	else {
+		stackRules = defaultFunction;
+	}
 }
 
 PlayStack::~PlayStack() {
@@ -37,7 +44,8 @@ void PlayStack::addToStack(const std::vector<Card*>& cards) {
 
 
 void PlayStack::transferStack(const std::vector<Card*>& cards, Stack* destStack) {
-	if (destStack != this) {
+	if ((destStack != this && (destStack->getType()==PLAYSTACK or destStack->getType() == BASESTACK)) && dynamic_cast<PlayStack*>(destStack)->stackRules(cards)) {
+		std::cout << stackRules(cards) << "]]]]]]]]]]]]]]]]]]]]\n";
 		destStack->addToStack(cards);
 
 		// Remove transferred cards from current stack

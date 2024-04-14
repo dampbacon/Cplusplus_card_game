@@ -2,7 +2,18 @@
 #include <vector>
 #include "Card.hpp"
 #include "Game.hpp"
+#include "StackUtils.hpp"
+
+
 namespace cardStacks {
+	namespace stackRules {
+		typedef bool (*FunctionPtr)(const std::vector<Card*>&);
+
+		bool Foundation(const std::vector<Card*>& cards);
+		bool Tableau(const std::vector<Card*>& cards);
+		bool defaultFunction(const std::vector<Card*>& cards);
+	}
+
 
 	enum collisionType {
 		MouseStackEnable,
@@ -54,14 +65,14 @@ namespace cardStacks {
 
 	class PlayStack : public Stack { // Modified this line
 	public:
-		PlayStack(int ID);
+		PlayStack(int ID, stackRules::FunctionPtr ptr = stackRules::defaultFunction);
 		~PlayStack() override;
 		int getStackID();
 
 		//used to flip top card if mousestack empty and topcard is not flipped
 		void revealTopCard();
 		//game logic
-		void canBeAdded(std::vector<Card*>& cards);
+		//void canBeAdded(std::vector<Card*>& cards);
 
 		void ReleaseMouse() override;
 		void addToStack(Card* card) override;
@@ -74,8 +85,9 @@ namespace cardStacks {
 
 
 
+	
+		stackRules::FunctionPtr stackRules;
 	private:
-		CardStackType CARDSTACK_TYPE_RULES;
 		StackType type;
 		int Stack_ID;
 	};

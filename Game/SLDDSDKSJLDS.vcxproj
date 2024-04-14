@@ -152,6 +152,7 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameBoard.hpp" />
     <ClInclude Include="Stack.hpp" />
+    <ClInclude Include="StackUtils.hpp" />
     <ClInclude Include="TextureManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
