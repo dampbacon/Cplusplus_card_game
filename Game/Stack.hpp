@@ -2,17 +2,18 @@
 #include <vector>
 #include "Card.hpp"
 #include "Game.hpp"
-#include "StackUtils.hpp"
-
 
 namespace cardStacks {
-	namespace stackRules {
-		typedef bool (*FunctionPtr)(const std::vector<Card*>&);
+	class Stack;
+}
 
-		bool Foundation(const std::vector<Card*>& cards);
-		bool Tableau(const std::vector<Card*>& cards);
-		bool defaultFunction(const std::vector<Card*>& cards);
-	}
+namespace cardStacks {
+
+	typedef bool (*FunctionPtr)(const std::vector<Card*>&, Stack*);
+
+	bool Foundation(const std::vector<Card*>& cards, Stack* target);
+	bool Tableau(const std::vector<Card*>& cards, Stack* target);
+	bool defaultFunction(const std::vector<Card*>& cards, Stack* target);
 
 
 	enum collisionType {
@@ -59,13 +60,16 @@ namespace cardStacks {
 		virtual bool Collide(SDL_Point* mouse, collisionType type) = 0;
 
 		virtual StackType getType() = 0;
+		FunctionPtr stackRules = defaultFunction;
+
+	protected:
 
 	private:
 	};
 
 	class PlayStack : public Stack { // Modified this line
 	public:
-		PlayStack(int ID, stackRules::FunctionPtr ptr = stackRules::defaultFunction);
+		PlayStack(int ID, FunctionPtr ptr = defaultFunction);
 		~PlayStack() override;
 		int getStackID();
 
@@ -86,7 +90,6 @@ namespace cardStacks {
 
 
 	
-		stackRules::FunctionPtr stackRules;
 	private:
 		StackType type;
 		int Stack_ID;
@@ -96,7 +99,7 @@ namespace cardStacks {
 
 	class DrawPile : public Stack { // Modified this line
 	public:
-		DrawPile(int x, int y);
+		DrawPile(int x, int y, FunctionPtr ptr = defaultFunction);
 		~DrawPile() override;
 		void shuffleCards();
 		void takeAllCards(std::vector<Stack*> stacks);
@@ -121,4 +124,7 @@ namespace cardStacks {
 	private:
 		StackType type;
 	};
+
+
+	
 }

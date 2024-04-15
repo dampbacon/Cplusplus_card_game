@@ -1,7 +1,7 @@
 ﻿
 #include "Stack.hpp"
 using namespace cardStacks;
-DrawPile::DrawPile(int x, int y) : Stack() {
+DrawPile::DrawPile(int x, int y, FunctionPtr ptr) : Stack() {
 	stackHitBox->x = x;
 	stackHitBox->y = y;
 	dealStack = std::vector<Card*>();
