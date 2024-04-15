@@ -43,7 +43,7 @@ void PlayStack::addToStack(const std::vector<Card*>& cards) {
 
 
 void PlayStack::transferStack(const std::vector<Card*>& cards, Stack* destStack) {
-	if ((destStack != this && (destStack->getType()==PLAYSTACK or destStack->getType() == BASESTACK)) && (destStack)->stackRules(cards,destStack)) {
+	if ((destStack != this && (destStack)->stackRules(cards,destStack))) {
 		std::cout << stackRules(cards, destStack) << "]]]]]]]]]]]]]]]]]]]]\n";
 		destStack->addToStack(cards);
 
