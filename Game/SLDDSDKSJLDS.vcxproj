@@ -144,6 +144,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackUtils.cpp" />
+    <ClCompile Include="tempButton.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="GameBoard.hpp" />
     <ClInclude Include="Stack.hpp" />
     <ClInclude Include="StackUtils.hpp" />
+    <ClInclude Include="tempButton.hpp" />
     <ClInclude Include="TextureManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

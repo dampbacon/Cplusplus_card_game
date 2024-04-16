@@ -102,10 +102,40 @@ void DrawPile::ReleaseMouse() {
 	mouseCardStack.clear(); // Clear the existing subStack
 }
 
-void DrawPile::takeAllCards(std::vector<Stack*> input) {
-	for (auto i : input) {
-		if (i->getType() == PLAYSTACK) { ; }
+void DrawPile::takeAllCards(std::vector<Stack*>& input) {
+	//
+	// 
+	// WEIRD DELETION ERROR
+	// 
+	// 	
+	for (auto& i : input) {
+		for (auto& j : i->CardStack) {
+			std::cout << "TEST_" << j << "\n";
+			j->setDraggable(false);
+		}
+		if (i->getType() == PLAYSTACK && !(i->CardStack.empty())) {
+			//i->transferStack(i->CardStack, this);
+			//issue with function somewhere ill deal with it later
+			
+			for (const auto& card : i->CardStack) {
+				auto it = std::find(i->CardStack.begin(), i->CardStack.end(), card);
+				if (it != i->CardStack.end()) {
+					i->CardStack.erase(it);
+				}
+			}
+			this->addToStack(i->CardStack);
+
+
+
+			i->CardStack.clear();
+
+			for (auto& j : i->CardStack) {
+				std::cout << "SHOULD_BE_EMPTY_" << j << "\n";
+				j->setDraggable(false);
+			}
+		}
 	}
+	CardStack.back()->setDraggable(true);
 	
 }
 

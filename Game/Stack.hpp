@@ -102,7 +102,7 @@ namespace cardStacks {
 		DrawPile(int x, int y, FunctionPtr ptr = defaultFunction);
 		~DrawPile() override;
 		void shuffleCards();
-		void takeAllCards(std::vector<Stack*> stacks);
+		void takeAllCards(std::vector<Stack*>& stacks);
 		void deal();
 		void returnDealpile();
 		void renderDealPile();

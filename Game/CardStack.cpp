@@ -45,7 +45,6 @@ void PlayStack::addToStack(const std::vector<Card*>& cards) {
 void PlayStack::transferStack(const std::vector<Card*>& cards, Stack* destStack) {
 	if ((destStack != this && (destStack)->stackRules(cards,destStack))) {
 		std::cout << stackRules(cards, destStack) << "]]]]]]]]]]]]]]]]]]]]\n";
-		destStack->addToStack(cards);
 
 		// Remove transferred cards from current stack
 		for (const auto& card : cards) {
@@ -54,6 +53,8 @@ void PlayStack::transferStack(const std::vector<Card*>& cards, Stack* destStack)
 				CardStack.erase(it);
 			}
 		}
+		destStack->addToStack(cards);
+
 	}
 }
 void PlayStack::transferStack(Card* card, Stack* destStack) {

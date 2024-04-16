@@ -75,6 +75,8 @@ namespace gameObjects {
 
 		drawPile = new cardStacks::DrawPile(10, 10);
 
+		button = tempButton(800,200);
+
 
 		s0 = new cardStacks::PlayStack(0);
 		s1 = new cardStacks::PlayStack(1);
@@ -109,48 +111,48 @@ namespace gameObjects {
 		CardStacks[6]->addToStack(Cards[11]);
 		CardStacks[6]->addToStack(Cards[12]);
 
-		//spades
-		CardStacks[5]->addToStack(Cards[13]);
-		CardStacks[5]->addToStack(Cards[14]);
-		CardStacks[5]->addToStack(Cards[15]);
-		CardStacks[5]->addToStack(Cards[16]);
-		CardStacks[5]->addToStack(Cards[17]);
-		CardStacks[5]->addToStack(Cards[18]);
-		CardStacks[5]->addToStack(Cards[19]);
-		CardStacks[5]->addToStack(Cards[20]);
-		CardStacks[5]->addToStack(Cards[21]);
-		CardStacks[5]->addToStack(Cards[22]);
-		CardStacks[5]->addToStack(Cards[23]);
-		CardStacks[5]->addToStack(Cards[24]);
-		CardStacks[5]->addToStack(Cards[25]);
-		//clubs
-		CardStacks[4]->addToStack(Cards[26]);
-		CardStacks[4]->addToStack(Cards[27]);
-		CardStacks[4]->addToStack(Cards[28]);
-		CardStacks[4]->addToStack(Cards[29]);
-		CardStacks[4]->addToStack(Cards[30]);
-		CardStacks[4]->addToStack(Cards[31]);
-		CardStacks[4]->addToStack(Cards[32]);
-		CardStacks[4]->addToStack(Cards[33]);
-		CardStacks[4]->addToStack(Cards[34]);
-		CardStacks[4]->addToStack(Cards[35]);
-		CardStacks[4]->addToStack(Cards[36]);
-		CardStacks[4]->addToStack(Cards[37]);
-		CardStacks[4]->addToStack(Cards[38]);
-		//diamonds
-		CardStacks[3]->addToStack(Cards[39]);
-		CardStacks[3]->addToStack(Cards[40]);
-		CardStacks[3]->addToStack(Cards[41]);
-		CardStacks[3]->addToStack(Cards[42]);
-		CardStacks[3]->addToStack(Cards[43]);
-		CardStacks[3]->addToStack(Cards[44]);
-		CardStacks[3]->addToStack(Cards[45]);
-		CardStacks[3]->addToStack(Cards[46]);
-		CardStacks[3]->addToStack(Cards[47]);
-		CardStacks[3]->addToStack(Cards[48]);
-		CardStacks[3]->addToStack(Cards[49]);
-		CardStacks[3]->addToStack(Cards[50]);
-		CardStacks[3]->addToStack(Cards[51]);
+		//////spades
+		//CardStacks[5]->addToStack(Cards[13]);
+		//CardStacks[5]->addToStack(Cards[14]);
+		//CardStacks[5]->addToStack(Cards[15]);
+		//CardStacks[5]->addToStack(Cards[16]);
+		//CardStacks[5]->addToStack(Cards[17]);
+		//CardStacks[5]->addToStack(Cards[18]);
+		//CardStacks[5]->addToStack(Cards[19]);
+		//CardStacks[5]->addToStack(Cards[20]);
+		//CardStacks[5]->addToStack(Cards[21]);
+		//CardStacks[5]->addToStack(Cards[22]);
+		//CardStacks[5]->addToStack(Cards[23]);
+		//CardStacks[5]->addToStack(Cards[24]);
+		//CardStacks[5]->addToStack(Cards[25]);
+		//////clubs
+		//CardStacks[4]->addToStack(Cards[26]);
+		//CardStacks[4]->addToStack(Cards[27]);
+		//CardStacks[4]->addToStack(Cards[28]);
+		//CardStacks[4]->addToStack(Cards[29]);
+		//CardStacks[4]->addToStack(Cards[30]);
+		//CardStacks[4]->addToStack(Cards[31]);
+		//CardStacks[4]->addToStack(Cards[32]);
+		//CardStacks[4]->addToStack(Cards[33]);
+		//CardStacks[4]->addToStack(Cards[34]);
+		//CardStacks[4]->addToStack(Cards[35]);
+		//CardStacks[4]->addToStack(Cards[36]);
+		//CardStacks[4]->addToStack(Cards[37]);
+		//CardStacks[4]->addToStack(Cards[38]);
+		////diamonds
+		//CardStacks[3]->addToStack(Cards[39]);
+		//CardStacks[3]->addToStack(Cards[40]);
+		//CardStacks[3]->addToStack(Cards[41]);
+		//CardStacks[3]->addToStack(Cards[42]);
+		//CardStacks[3]->addToStack(Cards[43]);
+		//CardStacks[3]->addToStack(Cards[44]);
+		//CardStacks[3]->addToStack(Cards[45]);
+		//CardStacks[3]->addToStack(Cards[46]);
+		//CardStacks[3]->addToStack(Cards[47]);
+		//CardStacks[3]->addToStack(Cards[48]);
+		//CardStacks[3]->addToStack(Cards[49]);
+		//CardStacks[3]->addToStack(Cards[50]);
+		//CardStacks[3]->addToStack(Cards[51]);
 
 
 
@@ -187,6 +189,8 @@ namespace gameObjects {
 		for (auto const& i : CardStacks) {
 			i->RenderMouseStack();
 		}
+
+		button.render();
 	}
 	void GameBoard::update(){
 		for (auto const& i : CardStacks) {
@@ -229,6 +233,13 @@ namespace gameObjects {
 				std::cout << "x: " << x << "y: " << y;
 				std::cout << "pain\n";
 			}
+
+			if (button.collide(&Game::mousePos)) {
+				drawPile->takeAllCards(CardStacks);
+			}
+
+
+
 			break;
 		}
 		case SDL_MOUSEBUTTONUP: {

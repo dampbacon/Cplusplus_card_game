@@ -3,11 +3,11 @@
 #include <vector>
 
 bool cardStacks::Foundation(const std::vector<Card*>& cards, cardStacks::Stack* target) {
-    return (2 % 2 == 0);
+    return true;
 }
 
 bool cardStacks::Tableau(const std::vector<Card*>& cards, cardStacks::Stack* target) {
-   return (1 > 0);
+   return true;
 }
 
 bool cardStacks::defaultFunction(const std::vector<Card*>& cards, cardStacks::Stack* target) {

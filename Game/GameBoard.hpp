@@ -3,6 +3,8 @@
 #include "Card.hpp"
 #include "Stack.hpp"
 #include "Game.hpp"
+#include "tempButton.hpp"
+
 #include <SDL.h>
 // GameBoard will handle all the game card Stack
 using namespace cardStacks;
@@ -33,5 +35,7 @@ namespace gameObjects {
 		Stack* s4;
 		Stack* s5;
 		Stack* s6;
+
+		tempButton button;
 	};
 }
