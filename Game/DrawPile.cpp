@@ -103,40 +103,29 @@ void DrawPile::ReleaseMouse() {
 }
 
 void DrawPile::takeAllCards(std::vector<Stack*>& input) {
-	//
-	// 
-	// WEIRD DELETION ERROR
-	// 
-	// 	
+	this->returnDealpile();
 	for (auto& i : input) {
 		for (auto& j : i->CardStack) {
 			std::cout << "TEST_" << j << "\n";
 			j->setDraggable(false);
 		}
 		if (i->getType() == PLAYSTACK && !(i->CardStack.empty())) {
-			//i->transferStack(i->CardStack, this);
-			//issue with function somewhere ill deal with it later
-			
+			std::vector<Card*> cardsToTransfer;
+			cardsToTransfer.reserve(i->CardStack.size());
 			for (const auto& card : i->CardStack) {
-				auto it = std::find(i->CardStack.begin(), i->CardStack.end(), card);
-				if (it != i->CardStack.end()) {
-					i->CardStack.erase(it);
-				}
+				cardsToTransfer.push_back(card);
 			}
-			this->addToStack(i->CardStack);
 
-
-
+			this->addToStack(cardsToTransfer);
 			i->CardStack.clear();
+		}
 
-			for (auto& j : i->CardStack) {
-				std::cout << "SHOULD_BE_EMPTY_" << j << "\n";
-				j->setDraggable(false);
-			}
+		for (auto& j : i->CardStack) {
+			std::cout << "SHOULD_BE_EMPTY_" << j << "\n";
+			j->setDraggable(false);
 		}
 	}
 	CardStack.back()->setDraggable(true);
-	
 }
 
 
@@ -212,7 +201,7 @@ void DrawPile::returnDealpile() {
 		Card* temp = dealStack.back();
 		dealStack.pop_back();
 		CardStack.push_back(temp);
-		temp->setPos(this->stackHitBox->x, this->stackHitBox->y+(CardStack.size() - 1) * 4, true);
+		temp->setPos(this->stackHitBox->x, this->stackHitBox->y+(CardStack.size() - 1) * 3, true);
 	}
 }
 //useful debug collision codeblock
