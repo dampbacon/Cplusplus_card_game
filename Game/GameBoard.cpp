@@ -78,13 +78,13 @@ namespace gameObjects {
 		button = tempButton(800,200);
 
 
-		s0 = new cardStacks::PlayStack(0);
-		s1 = new cardStacks::PlayStack(1);
-		s2 = new cardStacks::PlayStack(2);
-		s3 = new cardStacks::PlayStack(3);
-		s4 = new cardStacks::PlayStack(4);
-		s5 = new cardStacks::PlayStack(5);
-		s6 = new cardStacks::PlayStack(6);
+		s0 = new cardStacks::PlayStack(0, cardStacks::Tableau);
+		s1 = new cardStacks::PlayStack(1, cardStacks::Tableau);
+		s2 = new cardStacks::PlayStack(2, cardStacks::Tableau);
+		s3 = new cardStacks::PlayStack(3, cardStacks::Tableau);
+		s4 = new cardStacks::PlayStack(4, cardStacks::Tableau);
+		s5 = new cardStacks::PlayStack(5, cardStacks::Tableau);
+		s6 = new cardStacks::PlayStack(6, cardStacks::Tableau);
 
 		CardStacks.push_back(s0);
 		CardStacks.push_back(s1);
@@ -111,20 +111,20 @@ namespace gameObjects {
 		CardStacks[6]->addToStack(Cards[11]);
 		CardStacks[6]->addToStack(Cards[12]);
 
-		//////spades
-		//CardStacks[5]->addToStack(Cards[13]);
-		//CardStacks[5]->addToStack(Cards[14]);
-		//CardStacks[5]->addToStack(Cards[15]);
-		//CardStacks[5]->addToStack(Cards[16]);
-		//CardStacks[5]->addToStack(Cards[17]);
-		//CardStacks[5]->addToStack(Cards[18]);
-		//CardStacks[5]->addToStack(Cards[19]);
-		//CardStacks[5]->addToStack(Cards[20]);
-		//CardStacks[5]->addToStack(Cards[21]);
-		//CardStacks[5]->addToStack(Cards[22]);
-		//CardStacks[5]->addToStack(Cards[23]);
-		//CardStacks[5]->addToStack(Cards[24]);
-		//CardStacks[5]->addToStack(Cards[25]);
+		//spades
+		CardStacks[5]->addToStack(Cards[13]);
+		CardStacks[5]->addToStack(Cards[14]);
+		CardStacks[5]->addToStack(Cards[15]);
+		CardStacks[5]->addToStack(Cards[16]);
+		CardStacks[5]->addToStack(Cards[17]);
+		CardStacks[5]->addToStack(Cards[18]);
+		CardStacks[5]->addToStack(Cards[19]);
+		CardStacks[5]->addToStack(Cards[20]);
+		CardStacks[5]->addToStack(Cards[21]);
+		CardStacks[5]->addToStack(Cards[22]);
+		CardStacks[5]->addToStack(Cards[23]);
+		CardStacks[5]->addToStack(Cards[24]);
+		CardStacks[5]->addToStack(Cards[25]);
 		//////clubs
 		//CardStacks[4]->addToStack(Cards[26]);
 		//CardStacks[4]->addToStack(Cards[27]);

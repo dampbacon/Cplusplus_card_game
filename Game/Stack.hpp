@@ -55,7 +55,7 @@ namespace cardStacks {
 		virtual void ReleaseMouse() = 0;
 		virtual void addToStack(Card* card) = 0;
 		virtual void addToStack(const std::vector<Card*>& cards) = 0;
-		virtual void transferStack(const std::vector<Card*>& cards, Stack* destStack) = 0;
+		virtual void transferStack(const std::vector<Card*>& cards, Stack* destStack, bool FORCE = false) = 0;
 		virtual void transferStack(Card* card, Stack* destStack) = 0;
 		virtual bool Collide(SDL_Point* mouse, collisionType type) = 0;
 
@@ -81,7 +81,7 @@ namespace cardStacks {
 		void ReleaseMouse() override;
 		void addToStack(Card* card) override;
 		void addToStack(const std::vector<Card*>& cards) override;
-		void transferStack(const std::vector<Card*>& cards, Stack* destStack) override;
+		void transferStack(const std::vector<Card*>& cards, Stack* destStack, bool FORCE=false) override;
 		void transferStack(Card* card, Stack* destStack) override;
 		bool Collide(SDL_Point* mouse, collisionType type) override;
 
@@ -118,7 +118,7 @@ namespace cardStacks {
 		StackType getType() override;
 		void addToStack(Card* card) override;
 		void addToStack(const std::vector<Card*>& cards) override;
-		void transferStack(const std::vector<Card*>& cards, Stack* destStack) override;
+		void transferStack(const std::vector<Card*>& cards, Stack* destStack, bool FORCE=false) override;
 		void transferStack(Card* card, Stack* destStack) override;
 		bool Collide(SDL_Point* mouse, collisionType type) override;
 	private:

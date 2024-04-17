@@ -43,17 +43,21 @@ void DrawPile::addToStack(const std::vector<Card*>& cards) {
 
 
 
-void DrawPile::transferStack(const std::vector<Card*>& cards, Stack* destStack) {
-	if (destStack != this) {
+void DrawPile::transferStack(const std::vector<Card*>& cards, Stack* destStack, bool FORCE) {
+	if (FORCE || destStack != this && (destStack)->stackRules(cards, destStack)) {
 		destStack->addToStack(cards);
 		std::cout << "~~~~~~~~~~~~~~~~~~~~AAAAAAAAAAAAAA~~~~~~~~~~~~~~~\n";
-		// Remove transferred cards from current stack
-		for (const auto& card : cards) {
+
+		dealStack.erase(std::remove_if(dealStack.begin(), dealStack.end(),
+			[&cards](const Card* card) {
+				return std::find(cards.begin(), cards.end(), card) != cards.end();
+			}), dealStack.end());
+		/*for (const auto& card : cards) {
 			auto it = std::find(dealStack.begin(), dealStack.end(), card);
 			if (it != dealStack.end()) {
 				dealStack.erase(it);
 			}
-		}
+		}*/
 	}
 }
 void DrawPile::transferStack(Card* card, Stack* destStack) {
@@ -119,10 +123,13 @@ void DrawPile::takeAllCards(std::vector<Stack*>& input) {
 			this->addToStack(cardsToTransfer);
 			i->CardStack.clear();
 		}
+		
 
-		for (auto& j : i->CardStack) {
-			std::cout << "SHOULD_BE_EMPTY_" << j << "\n";
-			j->setDraggable(false);
+		if (i->getType() == PLAYSTACK) {
+			for (auto& j : i->CardStack) {
+
+				std::cout << "SHOULD_BE_EMPTY_" << j << "  " << "\n";
+			}
 		}
 	}
 	CardStack.back()->setDraggable(true);
