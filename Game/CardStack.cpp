@@ -1,10 +1,10 @@
 #include "Stack.hpp"
 #define DEBUG
 using namespace cardStacks;
-PlayStack::PlayStack(int ID, FunctionPtr ptr) : Stack() {
-	Stack_ID = ID;
-	stackHitBox->x = 140 * Stack_ID + 10;
-	stackHitBox->y = 288;
+PlayStack::PlayStack(int ID, FunctionPtr ptr, int y) : Stack() {
+	xGridAllignment = ID;
+	stackHitBox->x = 140 * xGridAllignment + 10;
+	stackHitBox->y = y;
 	type = PLAYSTACK;
 	if (ptr != nullptr) {
 		stackRules = ptr;
@@ -18,7 +18,7 @@ PlayStack::~PlayStack() {
 }
 
 int PlayStack::getStackID() {
-	return Stack_ID;
+	return xGridAllignment;
 }
 
 StackType PlayStack::getType() {
@@ -30,13 +30,13 @@ StackType PlayStack::getType() {
  void PlayStack::addToStack(Card* card) {
 
 	CardStack.push_back(card);
-	card->setPos((140 * Stack_ID + 10), stackHitBox->y+(CardStack.size()-1) * 32, true);
+	card->setPos((140 * xGridAllignment + 10), stackHitBox->y+(CardStack.size()-1) * 32, true);
 }
 
 void PlayStack::addToStack(const std::vector<Card*>& cards) {
 	for (Card* card : cards) {
 		CardStack.push_back(card);
-		card->setPos((140 * Stack_ID + 10), stackHitBox->y+(CardStack.size() - 1) * 32, true);
+		card->setPos((140 * xGridAllignment + 10), stackHitBox->y+(CardStack.size() - 1) * 32, true);
 	}
 }
 

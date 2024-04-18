@@ -69,7 +69,7 @@ namespace cardStacks {
 
 	class PlayStack : public Stack { // Modified this line
 	public:
-		PlayStack(int ID, FunctionPtr ptr = defaultFunction);
+		PlayStack(int ID, FunctionPtr ptr = defaultFunction, int y=288);
 		~PlayStack() override;
 		int getStackID();
 
@@ -92,7 +92,7 @@ namespace cardStacks {
 	
 	private:
 		StackType type;
-		int Stack_ID;
+		int xGridAllignment;
 	};
 
 
@@ -103,7 +103,7 @@ namespace cardStacks {
 		~DrawPile() override;
 		void shuffleCards();
 		void takeAllCards(std::vector<Stack*>& stacks);
-		void deal();
+		void deal(std::vector<Stack*>& stacks, StackType targetType);
 		void returnDealpile();
 		void renderDealPile();
 		void updateDealPile();

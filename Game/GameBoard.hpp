@@ -36,6 +36,7 @@ namespace gameObjects {
 		Stack* s5;
 		Stack* s6;
 
-		tempButton button;
+		tempButton button1;
+		tempButton button2;
 	};
 }

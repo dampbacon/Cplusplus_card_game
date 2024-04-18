@@ -75,7 +75,8 @@ namespace gameObjects {
 
 		drawPile = new cardStacks::DrawPile(10, 10);
 
-		button = tempButton(800,200);
+		button1 = tempButton(800,200);
+		button2 = tempButton(800, 400);
 
 
 		s0 = new cardStacks::PlayStack(0, cardStacks::Tableau);
@@ -126,33 +127,33 @@ namespace gameObjects {
 		CardStacks[5]->addToStack(Cards[24]);
 		CardStacks[5]->addToStack(Cards[25]);
 		//////clubs
-		//CardStacks[4]->addToStack(Cards[26]);
-		//CardStacks[4]->addToStack(Cards[27]);
-		//CardStacks[4]->addToStack(Cards[28]);
-		//CardStacks[4]->addToStack(Cards[29]);
-		//CardStacks[4]->addToStack(Cards[30]);
-		//CardStacks[4]->addToStack(Cards[31]);
-		//CardStacks[4]->addToStack(Cards[32]);
-		//CardStacks[4]->addToStack(Cards[33]);
-		//CardStacks[4]->addToStack(Cards[34]);
-		//CardStacks[4]->addToStack(Cards[35]);
-		//CardStacks[4]->addToStack(Cards[36]);
-		//CardStacks[4]->addToStack(Cards[37]);
-		//CardStacks[4]->addToStack(Cards[38]);
+		CardStacks[4]->addToStack(Cards[26]);
+		CardStacks[4]->addToStack(Cards[27]);
+		CardStacks[4]->addToStack(Cards[28]);
+		CardStacks[4]->addToStack(Cards[29]);
+		CardStacks[4]->addToStack(Cards[30]);
+		CardStacks[4]->addToStack(Cards[31]);
+		CardStacks[4]->addToStack(Cards[32]);
+		CardStacks[4]->addToStack(Cards[33]);
+		CardStacks[4]->addToStack(Cards[34]);
+		CardStacks[4]->addToStack(Cards[35]);
+		CardStacks[4]->addToStack(Cards[36]);
+		CardStacks[4]->addToStack(Cards[37]);
+		CardStacks[4]->addToStack(Cards[38]);
 		////diamonds
-		//CardStacks[3]->addToStack(Cards[39]);
-		//CardStacks[3]->addToStack(Cards[40]);
-		//CardStacks[3]->addToStack(Cards[41]);
-		//CardStacks[3]->addToStack(Cards[42]);
-		//CardStacks[3]->addToStack(Cards[43]);
-		//CardStacks[3]->addToStack(Cards[44]);
-		//CardStacks[3]->addToStack(Cards[45]);
-		//CardStacks[3]->addToStack(Cards[46]);
-		//CardStacks[3]->addToStack(Cards[47]);
-		//CardStacks[3]->addToStack(Cards[48]);
-		//CardStacks[3]->addToStack(Cards[49]);
-		//CardStacks[3]->addToStack(Cards[50]);
-		//CardStacks[3]->addToStack(Cards[51]);
+		CardStacks[3]->addToStack(Cards[39]);
+		CardStacks[3]->addToStack(Cards[40]);
+		CardStacks[3]->addToStack(Cards[41]);
+		CardStacks[3]->addToStack(Cards[42]);
+		CardStacks[3]->addToStack(Cards[43]);
+		CardStacks[3]->addToStack(Cards[44]);
+		CardStacks[3]->addToStack(Cards[45]);
+		CardStacks[3]->addToStack(Cards[46]);
+		CardStacks[3]->addToStack(Cards[47]);
+		CardStacks[3]->addToStack(Cards[48]);
+		CardStacks[3]->addToStack(Cards[49]);
+		CardStacks[3]->addToStack(Cards[50]);
+		CardStacks[3]->addToStack(Cards[51]);
 
 
 
@@ -190,7 +191,8 @@ namespace gameObjects {
 			i->RenderMouseStack();
 		}
 
-		button.render();
+		button1.render();
+		button2.render();
 	}
 	void GameBoard::update(){
 		for (auto const& i : CardStacks) {
@@ -234,7 +236,7 @@ namespace gameObjects {
 				std::cout << "pain\n";
 			}
 
-			if (button.collide(&Game::mousePos)) {
+			if (button1.collide(&Game::mousePos)) {
 				drawPile->takeAllCards(CardStacks);
 			}
 
