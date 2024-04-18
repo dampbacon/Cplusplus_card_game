@@ -129,6 +129,14 @@ int Card::getYpos() {
 	return ypos;
 }
 
+int Card::getCardTopRectHeight() {
+	return this->cardTopRect.h;
+}
+
+void Card::setCardTopRectHeight(int h) {
+	this->cardTopRect.h==h;
+}
+
 void Card::toggleDrag() {
 	draggable = !draggable;
 }

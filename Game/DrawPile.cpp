@@ -1,11 +1,12 @@
 ﻿
 #include "Stack.hpp"
 using namespace cardStacks;
-DrawPile::DrawPile(int x, int y, FunctionPtr ptr) : Stack() {
+DrawPile::DrawPile(int x, int y, FunctionPtr ptr, int yoffsetRen) : Stack() {
 	stackHitBox->x = x;
 	stackHitBox->y = y;
 	dealStack = std::vector<Card*>();
 	type = DEALSTACK;
+	yRenderOffset = yoffsetRen;
 }
 
 DrawPile::~DrawPile() {
@@ -22,7 +23,7 @@ StackType DrawPile::getType() {
 void DrawPile::addToStack(Card* card) {
 
 	CardStack.push_back(card);
-	card->setPos(stackHitBox->x, stackHitBox->y + (CardStack.size() - 1) * 3, true);
+	card->setPos(stackHitBox->x, stackHitBox->y + (CardStack.size() - 1) * yRenderOffset, true);
 }
 
 void DrawPile::addToStack(const std::vector<Card*>& cards) {
@@ -36,7 +37,7 @@ void DrawPile::addToStack(const std::vector<Card*>& cards) {
 	for (Card* card : cards) {
 		card->setDraggable(false);
 		CardStack.push_back(card);
-		card->setPos(stackHitBox->x, stackHitBox->y + (CardStack.size() - 1) * 3, true);
+		card->setPos(stackHitBox->x, stackHitBox->y + (CardStack.size() - 1) * yRenderOffset, true);
 	}
 	CardStack.back()->setDraggable(true);
 }
@@ -208,7 +209,7 @@ void DrawPile::returnDealpile() {
 		Card* temp = dealStack.back();
 		dealStack.pop_back();
 		CardStack.push_back(temp);
-		temp->setPos(this->stackHitBox->x, this->stackHitBox->y+(CardStack.size() - 1) * 3, true);
+		temp->setPos(this->stackHitBox->x, this->stackHitBox->y+(CardStack.size() - 1) * yRenderOffset, true);
 	}
 }
 //useful debug collision codeblock

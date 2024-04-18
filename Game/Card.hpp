@@ -40,6 +40,9 @@ public:
 	int homeXpos;
 	int homeYpos;
 
+	int getCardTopRectHeight();
+	void setCardTopRectHeight(int newH);
+
 private:
 	int xpos;
 	int ypos;

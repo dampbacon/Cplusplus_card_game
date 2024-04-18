@@ -1,10 +1,11 @@
 #include "Stack.hpp"
 #define DEBUG
 using namespace cardStacks;
-PlayStack::PlayStack(int ID, FunctionPtr ptr, int y) : Stack() {
+PlayStack::PlayStack(int ID, FunctionPtr ptr, int y, int yRenOffSet) : Stack() {
 	xGridAllignment = ID;
 	stackHitBox->x = 140 * xGridAllignment + 10;
 	stackHitBox->y = y;
+	yRenderOffset = yRenOffSet;
 	type = PLAYSTACK;
 	if (ptr != nullptr) {
 		stackRules = ptr;
@@ -30,13 +31,16 @@ StackType PlayStack::getType() {
  void PlayStack::addToStack(Card* card) {
 
 	CardStack.push_back(card);
-	card->setPos((140 * xGridAllignment + 10), stackHitBox->y+(CardStack.size()-1) * 32, true);
+	card->setPos((140 * xGridAllignment + 10), stackHitBox->y+(CardStack.size()-1) * yRenderOffset, true);
 }
 
 void PlayStack::addToStack(const std::vector<Card*>& cards) {
 	for (Card* card : cards) {
 		CardStack.push_back(card);
-		card->setPos((140 * xGridAllignment + 10), stackHitBox->y+(CardStack.size() - 1) * 32, true);
+		if (card->getCardTopRectHeight() != this->yRenderOffset) {
+			card->setCardTopRectHeight(this->yRenderOffset);
+		}
+		card->setPos((140 * xGridAllignment + 10), stackHitBox->y+(CardStack.size() - 1) * yRenderOffset, true);
 	}
 }
 

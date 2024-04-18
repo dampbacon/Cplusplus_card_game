@@ -63,13 +63,14 @@ namespace cardStacks {
 		FunctionPtr stackRules = defaultFunction;
 
 	protected:
+		int yRenderOffset;
 
 	private:
 	};
 
 	class PlayStack : public Stack { // Modified this line
 	public:
-		PlayStack(int ID, FunctionPtr ptr = defaultFunction, int y=288);
+		PlayStack(int ID, FunctionPtr ptr = defaultFunction, int y=288, int yRenOffset = 32);
 		~PlayStack() override;
 		int getStackID();
 
@@ -99,7 +100,7 @@ namespace cardStacks {
 
 	class DrawPile : public Stack { // Modified this line
 	public:
-		DrawPile(int x, int y, FunctionPtr ptr = defaultFunction);
+		DrawPile(int x, int y, FunctionPtr ptr = defaultFunction, int yRenOffset = 3);
 		~DrawPile() override;
 		void shuffleCards();
 		void takeAllCards(std::vector<Stack*>& stacks);
