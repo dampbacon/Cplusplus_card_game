@@ -36,6 +36,11 @@ namespace gameObjects {
 		Stack* s5;
 		Stack* s6;
 
+		Stack* d0;
+		Stack* d1;
+		Stack* d2;
+		Stack* d3;
+
 		tempButton button1;
 		tempButton button2;
 	};

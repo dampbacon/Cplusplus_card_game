@@ -87,6 +87,11 @@ namespace gameObjects {
 		s5 = new cardStacks::PlayStack(5, cardStacks::Tableau);
 		s6 = new cardStacks::PlayStack(6, cardStacks::Tableau);
 
+		d0 = new cardStacks::PlayStack(3, cardStacks::Foundation,10);
+		d1 = new cardStacks::PlayStack(4, cardStacks::Foundation,10);
+		d2 = new cardStacks::PlayStack(5, cardStacks::Foundation,10);
+		d3 = new cardStacks::PlayStack(6, cardStacks::Foundation,10);
+		//tableau
 		CardStacks.push_back(s0);
 		CardStacks.push_back(s1);
 		CardStacks.push_back(s2);
@@ -94,6 +99,12 @@ namespace gameObjects {
 		CardStacks.push_back(s4);
 		CardStacks.push_back(s5);
 		CardStacks.push_back(s6);
+		//foundations
+		CardStacks.push_back(d0);
+		CardStacks.push_back(d1);
+		CardStacks.push_back(d2);
+		CardStacks.push_back(d3);
+		//deck
 		CardStacks.push_back(drawPile);
 
 
