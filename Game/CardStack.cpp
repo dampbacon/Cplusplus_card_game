@@ -37,7 +37,10 @@ StackType PlayStack::getType() {
 void PlayStack::addToStack(const std::vector<Card*>& cards) {
 	for (Card* card : cards) {
 		CardStack.push_back(card);
+
+
 		if (card->getCardTopRectHeight() != this->yRenderOffset) {
+			std::cout << "pain\n";
 			card->setCardTopRectHeight(this->yRenderOffset);
 		}
 		card->setPos((140 * xGridAllignment + 10), stackHitBox->y+(CardStack.size() - 1) * yRenderOffset, true);

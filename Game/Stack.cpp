@@ -5,6 +5,7 @@ using namespace cardStacks;
 
 Stack::Stack()
 {
+	yRenderOffset = 32;
 	CardStack = {};
 	mouseCardStack = {};
 	stackHitBox = new SDL_Rect();
@@ -16,6 +17,7 @@ Stack::Stack()
 
 Stack::Stack(int x, int y)
 {
+	yRenderOffset = 32;
 	CardStack = {};
 	mouseCardStack = {};
 	stackHitBox = new SDL_Rect();

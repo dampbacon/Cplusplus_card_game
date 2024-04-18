@@ -134,7 +134,7 @@ int Card::getCardTopRectHeight() {
 }
 
 void Card::setCardTopRectHeight(int h) {
-	this->cardTopRect.h==h;
+	this->cardTopRect.h=h;
 }
 
 void Card::toggleDrag() {
