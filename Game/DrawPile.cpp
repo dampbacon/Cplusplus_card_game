@@ -73,13 +73,43 @@ void DrawPile::shuffleCards() {
 }
 ;
 
-void DrawPile::deal(std::vector<Stack*>& playstacks) {
+void DrawPile::deal(std::vector<Stack*>& playstacks, std::vector<Stack*>& finalPiles) {
 	//do
 	takeAllCards(playstacks);
-	
+	takeAllCards(finalPiles);
+
+	shuffleCards();
+
 	Stack* destStack = playstacks[1]; 
 	Card* card = CardStack.back();
 	
+	std::vector<int> StartingPileDealAmmounts = { 1, 2, 3, 4, 5, 6, 7 };
+	Stack* dealingStack;
+
+	for (int& i : StartingPileDealAmmounts) {
+		dealingStack = playstacks[i - 1];
+
+		for (int j = 0; j < i; j++) {
+			if (!CardStack.empty()) {
+				std::vector<Card*> tempLazyWorkAround = {};
+
+				Card* cardToMove = CardStack.back();  
+				cardToMove->setDraggable(true);
+				tempLazyWorkAround.push_back(cardToMove);
+
+				dealingStack->addToStack(tempLazyWorkAround);
+
+				auto it = std::find(CardStack.begin(), CardStack.end(), cardToMove);
+				if (it != CardStack.end()) {
+					CardStack.erase(it);  
+				}
+			}
+		}
+	}
+	
+	CardStack.back()->setDraggable(true);
+
+/*
 	for(auto const& i : CardStack) {
 		if (destStack != this) {
 			auto it = std::find(CardStack.begin(), CardStack.end(), card);
@@ -92,6 +122,7 @@ void DrawPile::deal(std::vector<Stack*>& playstacks) {
 			card = CardStack.back();
 		}
 	}
+	*/
 }
 
 

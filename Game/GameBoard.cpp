@@ -91,6 +91,12 @@ namespace gameObjects {
 		d1 = new cardStacks::PlayStack(4, cardStacks::Foundation,10,0);
 		d2 = new cardStacks::PlayStack(5, cardStacks::Foundation,10,0);
 		d3 = new cardStacks::PlayStack(6, cardStacks::Foundation,10,0);
+
+		finalStacks.push_back(d0);
+		finalStacks.push_back(d1);
+		finalStacks.push_back(d2);
+		finalStacks.push_back(d3);
+
 		//tableau
 		cardStacks.push_back(s0);
 		cardStacks.push_back(s1);
@@ -176,20 +182,6 @@ namespace gameObjects {
 		cardStacks[3]->addToStack(Cards[50]);
 		cardStacks[3]->addToStack(Cards[51]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 
 	GameBoard::~GameBoard()
@@ -270,11 +262,13 @@ namespace gameObjects {
 					
 				}*/
 
-				//std::cout << "TESTING DEALING FUNC\n";
-				//drawPile->deal(playStacks);
+				std::cout << "TESTING DEALING FUNC\n";
+				drawPile->deal(playStacks,finalStacks);
 
+				/*
 				std::cout << "TESTING Shuffle FUNC\n";
 				drawPile->shuffleCards();
+				*/
 
 			}
 

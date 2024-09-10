@@ -27,6 +27,8 @@ namespace gameObjects {
 
 
 		std::vector <Stack*> playStacks = {};
+		std::vector <Stack*> finalStacks = {};
+
 		std::vector <Card*> Cards;
 		DrawPile* drawPile;
 
