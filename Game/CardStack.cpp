@@ -9,6 +9,7 @@ PlayStack::PlayStack(int ID, FunctionPtr ptr, int y, int yRenOffSet) : Stack() {
 	type = PLAYSTACK;
 	if (ptr != nullptr) {
 		stackRules = ptr;
+		std::cout << "Assigned Rule to Stack\n";
 	}
 	else {
 		stackRules = defaultFunction;
@@ -51,6 +52,8 @@ void PlayStack::addToStack(const std::vector<Card*>& cards) {
 
 void PlayStack::transferStack(const std::vector<Card*>& cards, Stack* destStack, bool FORCE) {
 	if (FORCE||(destStack != this && (destStack)->stackRules(cards,destStack))) {
+
+
 		std::cout << "]]]]]]]]]]]]]]]]]]]]\n";
 
 		// Remove transferred cards from current stack
@@ -64,6 +67,7 @@ void PlayStack::transferStack(const std::vector<Card*>& cards, Stack* destStack,
 
 	}
 }
+
 void PlayStack::transferStack(Card* card, Stack* destStack) {
 	if (destStack != this) {
 		auto it = std::find(CardStack.begin(), CardStack.end(), card);

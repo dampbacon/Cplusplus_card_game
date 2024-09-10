@@ -23,7 +23,10 @@ namespace gameObjects {
 	private:
 		bool ANIMATION_LOCK;
 		
-		std::vector <Stack*> CardStacks = {};
+		std::vector <Stack*> cardStacks = {};
+
+
+		std::vector <PlayStack*> playStacks = {};
 		std::vector <Card*> Cards;
 		DrawPile* drawPile;
 

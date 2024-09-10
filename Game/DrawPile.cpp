@@ -138,7 +138,9 @@ void DrawPile::takeAllCards(std::vector<Stack*>& input) {
 
 
 
-
+void DrawPile::deal(std::vector<Stack*>& playstacks) {
+	//do
+}
 bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 	bool collisionDetected = false;
 	bool stupidTemp = true;

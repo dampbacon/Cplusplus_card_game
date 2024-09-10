@@ -104,7 +104,7 @@ namespace cardStacks {
 		~DrawPile() override;
 		void shuffleCards();
 		void takeAllCards(std::vector<Stack*>& stacks);
-		void deal(std::vector<Stack*>& stacks, StackType targetType);
+		void deal(std::vector<Stack*>& stacks);
 		void returnDealpile();
 		void renderDealPile();
 		void updateDealPile();
