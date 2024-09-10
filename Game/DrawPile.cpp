@@ -78,6 +78,10 @@ void DrawPile::deal(std::vector<Stack*>& playstacks, std::vector<Stack*>& finalP
 	takeAllCards(playstacks);
 	takeAllCards(finalPiles);
 
+	for (auto i: CardStack) {
+		i->setFaceDown();
+	}
+
 	shuffleCards();
 
 	Stack* destStack = playstacks[1]; 
@@ -94,7 +98,7 @@ void DrawPile::deal(std::vector<Stack*>& playstacks, std::vector<Stack*>& finalP
 				std::vector<Card*> tempLazyWorkAround = {};
 
 				Card* cardToMove = CardStack.back();  
-				cardToMove->setDraggable(true);
+				//cardToMove->setDraggable(true);
 				tempLazyWorkAround.push_back(cardToMove);
 
 				dealingStack->addToStack(tempLazyWorkAround);
@@ -105,9 +109,13 @@ void DrawPile::deal(std::vector<Stack*>& playstacks, std::vector<Stack*>& finalP
 				}
 			}
 		}
+
+		dealingStack->CardStack.back()->setFaceUp();
+		dealingStack->CardStack.back()->setDraggable(true);
 	}
 	
 	CardStack.back()->setDraggable(true);
+
 
 /*
 	for(auto const& i : CardStack) {
@@ -241,6 +249,7 @@ bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 			bool mainPileCollide = CardStack.back()->Collide(mouse, true, stupidTemp);
 			if (mainPileCollide) {
 				Card* temp = CardStack.back();
+				temp->setFaceUp();
 				CardStack.pop_back();
 				dealStack.push_back(temp);
 				temp->setPos(this->stackHitBox->x + 140, this->stackHitBox->y, true);
@@ -271,9 +280,14 @@ bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 		if (CardStack.empty() && SDL_PointInRect(mouse, stackHitBox) && !stupidflag) {
 			if (!dealStack.empty()) {
 				dealStack.back()->setDraggable(false);
+
 				this->returnDealpile();
 				if (CardStack.size() == 1) {
 					CardStack.back()->setDraggable(true);
+				}
+
+				for (auto& j : CardStack) {
+					j->setFaceDown();
 				}
 			}
 		}

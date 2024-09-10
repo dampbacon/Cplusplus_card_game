@@ -16,6 +16,9 @@ public:
 	Card(SUIT suit, int value, const char* texture,  int x, int y, bool InPlay);
 	~Card();
 	void flip();
+	void setFaceDown();
+	void setFaceUp();
+
 	int getVal();
 	SUIT getSuit();
 	SUIT_COLOR getColor();
@@ -42,6 +45,8 @@ public:
 
 	int getCardTopRectHeight();
 	void setCardTopRectHeight(int newH);
+	bool faceUp;
+
 
 private:
 	int xpos;
@@ -56,7 +61,6 @@ private:
 
 	int val;
 
-	bool faceUp;
 	bool draggable;
 
 	SUIT Csuit;

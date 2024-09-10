@@ -10,7 +10,7 @@ bool cardStacks::Foundation(const std::vector<Card*>& cards, cardStacks::Stack* 
 
     if (!cards.empty() && !target->CardStack.empty()
         && cards.front()->getVal() == (target->CardStack.back()->getVal() + 1)
-        && target->CardStack.back()->getColor() == cards.front()->getColor()
+        && target->CardStack.back()->getSuit() == cards.front()->getSuit()
         ) {
         std::cout << "HOME PILE TEST AESCENDING BUILD ORDER\n";
         success = true;

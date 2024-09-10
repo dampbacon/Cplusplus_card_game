@@ -70,6 +70,16 @@ void Card::flip() {
 	faceUp = !faceUp;
 }
 
+void Card::setFaceDown() {
+	faceUp = false;
+}
+
+void Card::setFaceUp() {
+	faceUp = true;
+}
+
+
+
 SUIT Card::getSuit() {
 	return Csuit;
 }

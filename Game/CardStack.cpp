@@ -65,6 +65,11 @@ void PlayStack::transferStack(const std::vector<Card*>& cards, Stack* destStack,
 		}
 		destStack->addToStack(cards);
 
+		if (!CardStack.empty()&&!CardStack.back()->faceUp) {
+			CardStack.back()->setFaceUp();
+			CardStack.back()->setDraggable(true);
+		};
+
 	}
 }
 
