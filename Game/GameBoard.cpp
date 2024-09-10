@@ -100,13 +100,13 @@ namespace gameObjects {
 		cardStacks.push_back(s5);
 		cardStacks.push_back(s6);
 		//temp
-		playStacks.push_back(dynamic_cast<PlayStack*>(s0));
-		playStacks.push_back(dynamic_cast<PlayStack*>(s1));
-		playStacks.push_back(dynamic_cast<PlayStack*>(s2));
-		playStacks.push_back(dynamic_cast<PlayStack*>(s3));
-		playStacks.push_back(dynamic_cast<PlayStack*>(s4));
-		playStacks.push_back(dynamic_cast<PlayStack*>(s5));
-		playStacks.push_back(dynamic_cast<PlayStack*>(s6));
+		playStacks.push_back(s0);
+		playStacks.push_back(s1);
+		playStacks.push_back(s2);
+		playStacks.push_back(s3);
+		playStacks.push_back(s4);
+		playStacks.push_back(s5);
+		playStacks.push_back(s6);
 
 
 		//foundations
@@ -262,13 +262,20 @@ namespace gameObjects {
 			}
 
 			if (button2.collide(&Game::mousePos)) {
-				for (auto i : playStacks) {
+				/*for (auto i : playStacks) {
 					i->stackRules = defaultFunction;
 					std::cout << "++++++++++++\n";
 					std::cout << "RULE CHANGED\n";
 					std::cout << "++++++++++++\n";
 					
-				}
+				}*/
+
+				//std::cout << "TESTING DEALING FUNC\n";
+				//drawPile->deal(playStacks);
+
+				std::cout << "TESTING Shuffle FUNC\n";
+				drawPile->shuffleCards();
+
 			}
 
 

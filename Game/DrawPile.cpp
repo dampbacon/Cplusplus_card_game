@@ -1,5 +1,7 @@
 ﻿
 #include "Stack.hpp"
+#include <algorithm>
+#include <random>
 using namespace cardStacks;
 DrawPile::DrawPile(int x, int y, FunctionPtr ptr, int yoffsetRen) : Stack() {
 	stackHitBox->x = x;
@@ -34,14 +36,63 @@ void DrawPile::addToStack(const std::vector<Card*>& cards) {
 		}
 	}
 
+	int offset = 0;
+
 	for (Card* card : cards) {
 		card->setDraggable(false);
 		CardStack.push_back(card);
+		//card index
 		card->setPos(stackHitBox->x, stackHitBox->y + (CardStack.size() - 1) * yRenderOffset, true);
 	}
 	CardStack.back()->setDraggable(true);
 }
 
+void DrawPile::shuffleCards() {
+	
+	auto rd = std::random_device{};
+	auto rng = std::default_random_engine{ rd() };
+	std::shuffle(std::begin(CardStack), std::end(CardStack), rng);
+
+	// fix positioning of shuffled cards
+
+	if (!this->CardStack.empty()) {
+		for (auto i : CardStack) {
+			i->setDraggable(false);
+		}
+		int increasingYOffset = 0;
+
+		for (Card* card : CardStack) {
+			card->setDraggable(false);
+			card->setPos(stackHitBox->x, stackHitBox->y + increasingYOffset, true);
+			increasingYOffset += yRenderOffset;
+		}
+		CardStack.back()->setDraggable(true);
+	}
+
+
+}
+;
+
+void DrawPile::deal(std::vector<Stack*>& playstacks) {
+	//do
+	takeAllCards(playstacks);
+	
+	Stack* destStack = playstacks[1]; 
+	Card* card = CardStack.back();
+	
+	for(auto const& i : CardStack) {
+		if (destStack != this) {
+			auto it = std::find(CardStack.begin(), CardStack.end(), card);
+			if (it != CardStack.end()) {
+				CardStack.erase(it);
+			}
+			destStack->addToStack(card);
+		}
+		if (!CardStack.empty()) {
+			card = CardStack.back();
+		}
+	}
+}
 
 
 void DrawPile::transferStack(const std::vector<Card*>& cards, Stack* destStack, bool FORCE) {
@@ -138,9 +189,6 @@ void DrawPile::takeAllCards(std::vector<Stack*>& input) {
 
 
 
-void DrawPile::deal(std::vector<Stack*>& playstacks) {
-	//do
-}
 bool DrawPile::Collide(SDL_Point* mouse, collisionType type) {
 	bool collisionDetected = false;
 	bool stupidTemp = true;
