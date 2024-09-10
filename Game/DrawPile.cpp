@@ -115,22 +115,6 @@ void DrawPile::deal(std::vector<Stack*>& playstacks, std::vector<Stack*>& finalP
 	}
 	
 	CardStack.back()->setDraggable(true);
-
-
-/*
-	for(auto const& i : CardStack) {
-		if (destStack != this) {
-			auto it = std::find(CardStack.begin(), CardStack.end(), card);
-			if (it != CardStack.end()) {
-				CardStack.erase(it);
-			}
-			destStack->addToStack(card);
-		}
-		if (!CardStack.empty()) {
-			card = CardStack.back();
-		}
-	}
-	*/
 }
 
 
@@ -223,7 +207,9 @@ void DrawPile::takeAllCards(std::vector<Stack*>& input) {
 			}
 		}
 	}
-	CardStack.back()->setDraggable(true);
+	if (!CardStack.empty()) {
+		CardStack.back()->setDraggable(true);
+	}
 }
 
 
