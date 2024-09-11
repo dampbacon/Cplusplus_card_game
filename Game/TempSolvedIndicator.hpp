@@ -1,6 +1,6 @@
+#pragma once
 #include "Game.hpp"
 #include "TextureManager.hpp"
-#pragma once
 class TempSolvedIndicator
 {
 public:

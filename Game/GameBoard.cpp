@@ -76,8 +76,8 @@ namespace gameObjects {
 
 		drawPile = new cardStacks::DrawPile(10, 10);
 
-		button1 = tempButton(800,200);
-		button2 = tempButton(800, 400);
+		button1 = tempButton(780, 400,"Debug.png");
+		button2 = tempButton(780, 50, "Deal.png");
 
 
 		s0 = new cardStacks::PlayStack(0, cardStacks::Tableau);
@@ -196,6 +196,9 @@ namespace gameObjects {
 	}
 
 	void GameBoard::render(){
+		button1.render();
+		button2.render();
+
 		for (auto const& i : cardStacks) {
 			i->Render();
 		}
@@ -205,8 +208,7 @@ namespace gameObjects {
 			i->RenderMouseStack();
 		}
 
-		button1.render();
-		button2.render();
+		
 		indicator.Render();
 	}
 	bool GameBoard::checkWinState()
@@ -338,7 +340,7 @@ namespace gameObjects {
 					// Iterate through the CardStacks array to check collision with each stack
 					for (Stack* stack : cardStacks) {
 						bool collision = stack->Collide(&Game::mousePos, BasicCollision);
-						if (collision && collideStack != nullptr) {
+						if (collision && collideStack != nullptr && stack->getType()!=DEALSTACK) {
 							collideStack->transferStack(collideStack->mouseCardStack, stack);
 							checkWinState();
 							break;
