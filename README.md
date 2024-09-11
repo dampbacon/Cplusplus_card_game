@@ -1,5 +1,5 @@
 # Making solatiare (windows xp version) from scratch using C++ and SDL2
-### mvp/initial game release:
+### Initial game release:
 
 https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v1
 
