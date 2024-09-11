@@ -13,15 +13,15 @@ https://60jars.itch.io/card-game-assets
 Classic solitaire winscreen
 
 ## post mvp goals:
-- classic solitaire winscreen
+- Classic solitaire winscreen
 - Make my own textures
 - Create a Linear interpolation pathing system so card being dealt are animated, instead of teleporting.
 - Main menu, Widget based ui system.
-- music.
-- scoring.
-- compile to webassembly.
+- Music.
+- Scoring.
+- Compile to webassembly.
 - Polish, allot of polish.
-- make a cmakelists and setup up a cmake buildscript to compile to other platforms.
+- Make a cmakelists and setup up a cmake buildscript to compile to other platforms.
 - May experiment with github actions for ci/cd if i take wasm route.
 
 
