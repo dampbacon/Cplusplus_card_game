@@ -1,20 +1,19 @@
-### Making solatiare (windows xp version) from scratch using C++ and SDL2
-### MVP FINISHED 
+# Making solatiare (windows xp version) from scratch using C++ and SDL2
+### mvp release:
 
 https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v1
 
-temp placeholder assets from https://60jars.itch.io/card-game-assets
-
-planning to compile to web assembly when the game is playable and host on a website to showcase interactive projects.
+### temp placeholder assets from:
+https://60jars.itch.io/card-game-assets
 
 ## Game screenshot in current state:
 ![Sample Image](https://i.imgur.com/8JLAKm1.png)
 
-
 ## Currently in development / next development milestone:
-add winstate check
+
 
 ## post mvp goals:
+classic solitaire winscreen
 Make my own textures
 Create a Linear interpolation pathing system so card being dealt are animated, instead of teleporting.
 Main menu, Widget based ui system.
@@ -29,7 +28,7 @@ May experiment with github actions for ci/cd if i take wasm route.
 ## Finished features:
 rendering, texture manager, 160fps game loop, functionality of card stacks and cards. Base functionality in most components done.
 Ability to move groups of cards between stacks using your mouse.
-All game logic implemented besides winstate check.
+All game logic implemented.
 
 
 
