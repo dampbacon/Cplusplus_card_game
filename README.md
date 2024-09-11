@@ -1,5 +1,7 @@
 ### Making solatiare (windows xp version) from scratch using C++ and SDL2
-### MVP ALMOST FINISHED JUST NEED TO ADD A WINSTATE CHECK
+### MVP FINISHED 
+
+https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v1
 
 temp placeholder assets from https://60jars.itch.io/card-game-assets
 
