@@ -1,4 +1,11 @@
 # Making solatiare (windows xp version) from scratch using C++ and SDL2
+
+## Description:
+I've always liked oldschool solitaire from the windows xp days however these days microsoft solitaire exists in a sad state and i've decided to make a minimalistic recreation.
+I'm using c plus plus, I wanted to do a proper project using the language as it's commonly used still to this day in many software development areas and I saw value adding it to my repertoire.
+
+
+
 ### Initial game release:
 
 https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v1
@@ -34,5 +41,6 @@ All game logic implemented.
 C++ challenges me a bit more, I'm trying not to stay in my comfort zone too much.
 
 ## issues
-some code is a bit inelegant, needs to be refactored at a later date, was prioritising MVP.
-For animations and more advanced graphics i'll need to spin off sprites and textures from the game objects (cards) 
+- Some code is a bit inelegant, needs to be refactored at a later date, was prioritising MVP.
+- Some code doesn't follow convention and some has inconsistencies with (low priority, nothing serious)
+- For animations and more advanced graphics i'll need to spin off sprites and textures from the game objects (cards) 
