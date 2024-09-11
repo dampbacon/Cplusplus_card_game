@@ -10,24 +10,22 @@ https://60jars.itch.io/card-game-assets
 ![Sample Image](https://i.imgur.com/8JLAKm1.png)
 
 ## Currently in development / next development milestone:
-
+Classic solitaire winscreen
 
 ## post mvp goals:
-classic solitaire winscreen
-Make my own textures
-Create a Linear interpolation pathing system so card being dealt are animated, instead of teleporting.
-Main menu, Widget based ui system.
-music.
-scoring.
-compile to webassembly.
-Polish, allot of polish.
-make a cmakelists and setup up a cmake buildscript to compile to other platforms.
-May experiment with github actions for ci/cd if i take wasm route.
+- classic solitaire winscreen
+- Make my own textures
+- Create a Linear interpolation pathing system so card being dealt are animated, instead of teleporting.
+- Main menu, Widget based ui system.
+- music.
+- scoring.
+- compile to webassembly.
+- Polish, allot of polish.
+- make a cmakelists and setup up a cmake buildscript to compile to other platforms.
+- May experiment with github actions for ci/cd if i take wasm route.
 
 
 ## Finished features:
-rendering, texture manager, 160fps game loop, functionality of card stacks and cards. Base functionality in most components done.
-Ability to move groups of cards between stacks using your mouse.
 All game logic implemented.
 
 
