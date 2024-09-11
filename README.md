@@ -7,8 +7,8 @@ temp placeholder assets from https://60jars.itch.io/card-game-assets
 
 planning to compile to web assembly when the game is playable and host on a website to showcase interactive projects.
 
-## DEV screenshot:
-![Sample Image](https://i.imgur.com/AjgCxys.png)
+## Game screenshot in current state:
+![Sample Image](https://i.imgur.com/8JLAKm1.png)
 
 
 ## Currently in development / next development milestone:
