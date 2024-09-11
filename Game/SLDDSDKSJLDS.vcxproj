@@ -145,6 +145,7 @@
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackUtils.cpp" />
     <ClCompile Include="tempButton.cpp" />
+    <ClCompile Include="TempSolvedIndicator.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +155,7 @@
     <ClInclude Include="Stack.hpp" />
     <ClInclude Include="StackUtils.hpp" />
     <ClInclude Include="tempButton.hpp" />
+    <ClInclude Include="TempSolvedIndicator.hpp" />
     <ClInclude Include="TextureManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

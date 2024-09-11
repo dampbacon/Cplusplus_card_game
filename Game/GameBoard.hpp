@@ -4,6 +4,7 @@
 #include "Stack.hpp"
 #include "Game.hpp"
 #include "tempButton.hpp"
+#include "TempSolvedIndicator.hpp"
 
 #include <SDL.h>
 // GameBoard will handle all the game card Stack
@@ -50,5 +51,7 @@ namespace gameObjects {
 
 		tempButton button1;
 		tempButton button2;
+
+		TempSolvedIndicator indicator;
 	};
 }

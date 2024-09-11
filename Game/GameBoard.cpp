@@ -7,10 +7,11 @@ namespace gameObjects {
 	{
 
 
-
 		//this is going to be our fake mutex
 		//LOCK ALL INPUT WHILE ANIMATIONS HAPPEN EVEN IF VERY VERY FAST
 		ANIMATION_LOCK = false;
+
+		indicator = TempSolvedIndicator("solved.png", 200, 500, false);
 
 
 
@@ -206,6 +207,7 @@ namespace gameObjects {
 
 		button1.render();
 		button2.render();
+		indicator.Render();
 	}
 	bool GameBoard::checkWinState()
 	{
@@ -254,7 +256,7 @@ namespace gameObjects {
 			for (auto i : finalStacks) {
 				i->CardStack.back()->setDraggable(true);
 			}
-
+			indicator.Show();
 			std::cout << drawPile->CardStack.size();
 		}
 
@@ -310,6 +312,7 @@ namespace gameObjects {
 					}*/
 					
 					std::cout << "TESTING DEALING FUNC\n";
+					indicator.Hide();
 					drawPile->deal(playStacks,finalStacks);
 
 					/*
