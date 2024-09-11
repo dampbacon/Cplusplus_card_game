@@ -73,10 +73,11 @@ void DrawPile::shuffleCards() {
 }
 ;
 
-void DrawPile::deal(std::vector<Stack*>& playstacks, std::vector<Stack*>& finalPiles) {
+void DrawPile::deal(std::vector<Stack*>& playstacks, std::vector<Stack*>& finalPiles, std::vector<int> StartingPileDealAmmounts) {
 	//do
 	takeAllCards(playstacks);
 	takeAllCards(finalPiles);
+
 
 	for (auto i: CardStack) {
 		i->setFaceDown();
@@ -84,15 +85,13 @@ void DrawPile::deal(std::vector<Stack*>& playstacks, std::vector<Stack*>& finalP
 
 	shuffleCards();
 
-	Stack* destStack = playstacks[1]; 
+
 	Card* card = CardStack.back();
 	
-	std::vector<int> StartingPileDealAmmounts = { 1, 2, 3, 4, 5, 6, 7 };
 	Stack* dealingStack;
 
 	for (int& i : StartingPileDealAmmounts) {
 		dealingStack = playstacks[i - 1];
-
 		for (int j = 0; j < i; j++) {
 			if (!CardStack.empty()) {
 				std::vector<Card*> tempLazyWorkAround = {};
@@ -113,7 +112,6 @@ void DrawPile::deal(std::vector<Stack*>& playstacks, std::vector<Stack*>& finalP
 		dealingStack->CardStack.back()->setFaceUp();
 		dealingStack->CardStack.back()->setDraggable(true);
 	}
-	
 	CardStack.back()->setDraggable(true);
 }
 
@@ -164,6 +162,46 @@ void DrawPile::updateDealPile() {
 			i->Update();
 		}
 	}
+}
+
+void DrawPile::sortCardsBySuitAndValue()
+{
+	int n = CardStack.size();
+
+	for (int i = 0; i < n - 1; ++i) {
+		int minIndex = i;
+
+		for (int j = i + 1; j < n; ++j) {
+			if (CardStack[j]->getSuit() < CardStack[minIndex]->getSuit()) {
+				minIndex = j;
+			}
+			else if (CardStack[j]->getSuit() == CardStack[minIndex]->getSuit() &&
+				CardStack[j]->getVal() < CardStack[minIndex]->getVal()) {
+				minIndex = j;
+			}
+		}
+
+		if (minIndex != i) {
+			std::swap(CardStack[i], CardStack[minIndex]);
+		}
+	}
+
+
+	//later should be spun into a function as this is being reused
+	if (!this->CardStack.empty()) {
+		for (auto i : CardStack) {
+			i->setDraggable(false);
+		}
+		int increasingYOffset = 0;
+
+		for (Card* card : CardStack) {
+			card->setDraggable(false);
+			card->setPos(stackHitBox->x, stackHitBox->y + increasingYOffset, true);
+			increasingYOffset += yRenderOffset;
+		}
+		CardStack.back()->setDraggable(true);
+	}
+
 }
 
 void DrawPile::ReleaseMouse() {

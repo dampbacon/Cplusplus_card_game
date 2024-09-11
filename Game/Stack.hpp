@@ -104,10 +104,13 @@ namespace cardStacks {
 		~DrawPile() override;
 		void shuffleCards();
 		void takeAllCards(std::vector<Stack*>& stacks);
-		void deal(std::vector<Stack*>& stacks, std::vector<Stack*>& finalPiles);
+		void deal(std::vector<Stack*>& stacks, std::vector<Stack*>& finalPiles, std::vector<int> startingPileAmounts= { 1, 2, 3, 4, 5, 6, 7 });
 		void returnDealpile();
 		void renderDealPile();
 		void updateDealPile();
+		void sortCardsBySuitAndValue();
+			
+
 
 		void ReleaseMouse() override;
 

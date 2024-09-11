@@ -207,11 +207,58 @@ namespace gameObjects {
 		button1.render();
 		button2.render();
 	}
+	bool GameBoard::checkWinState()
+	{
+		for (Stack* i : playStacks) {
+			for (Card* j : i->CardStack) {
+				if (!j->faceUp) {
+					std::cout << "########\nNOT SOLVED\n########\n";
+					solved = false;
+					return false;
+				}
+			}
+		}
+		std::cout << "########\nsolved\n########\n";
+		solved = true;
+		return true;
+	}
+
+
 	void GameBoard::update(){
 		for (auto const& i : cardStacks) {
 			i->update();
 		}
 		drawPile->updateDealPile();
+
+		if (solved) {
+			solved = false;
+			drawPile->takeAllCards(cardStacks);
+			drawPile->sortCardsBySuitAndValue();
+			for (auto i : drawPile->CardStack) {
+				i->setFaceUp();
+				i->setDraggable(false);
+			}
+			
+			int counter = 0;
+			int currentStack = 0;
+			for (auto i : drawPile->CardStack) {
+				finalStacks[currentStack]->addToStack(i);
+				counter += 1;
+				if (counter>0 && counter % 13 == 0 && currentStack<3) {
+					currentStack += 1;
+				}
+				
+			}
+			drawPile->CardStack.clear();
+
+			for (auto i : finalStacks) {
+				i->CardStack.back()->setDraggable(true);
+			}
+
+			std::cout << drawPile->CardStack.size();
+		}
+
+		
 	}
 
 
@@ -229,83 +276,86 @@ namespace gameObjects {
 
 
 		switch (event.type) {
-		case SDL_MOUSEBUTTONDOWN: {
-			if (event.button.button == SDL_BUTTON_LEFT) {
-				Game::mouseDown = true;
-				int x, y;
-				SDL_GetMouseState(&x, &y);
-				Game::mousePos.x = x;
-				Game::mousePos.y = y;
+			case SDL_MOUSEBUTTONDOWN: {
+				if (event.button.button == SDL_BUTTON_LEFT) {
+					Game::mouseDown = true;
+					int x, y;
+					SDL_GetMouseState(&x, &y);
+					Game::mousePos.x = x;
+					Game::mousePos.y = y;
 
-				for (Stack* stack : cardStacks) {
-					bool collision = stack->Collide(&Game::mousePos, MouseStackEnable);
-					if (collision) {
-						collideStack = stack;
-						break;
+					for (Stack* stack : cardStacks) {
+						bool collision = stack->Collide(&Game::mousePos, MouseStackEnable);
+						if (collision) {
+							collideStack = stack;
+							break;
+						}
 					}
+
+					std::cout << "x: " << x << "y: " << y;
+					std::cout << "pain\n";
 				}
 
-				std::cout << "x: " << x << "y: " << y;
-				std::cout << "pain\n";
-			}
+				if (button1.collide(&Game::mousePos)) {
+					drawPile->takeAllCards(cardStacks);
+				}
 
-			if (button1.collide(&Game::mousePos)) {
-				drawPile->takeAllCards(cardStacks);
-			}
-
-			if (button2.collide(&Game::mousePos)) {
-				/*for (auto i : playStacks) {
-					i->stackRules = defaultFunction;
-					std::cout << "++++++++++++\n";
-					std::cout << "RULE CHANGED\n";
-					std::cout << "++++++++++++\n";
+				if (button2.collide(&Game::mousePos)) {
+					/*for (auto i : playStacks) {
+						i->stackRules = defaultFunction;
+						std::cout << "++++++++++++\n";
+						std::cout << "RULE CHANGED\n";
+						std::cout << "++++++++++++\n";
 					
-				}*/
+					}*/
+					
+					std::cout << "TESTING DEALING FUNC\n";
+					drawPile->deal(playStacks,finalStacks);
 
-				std::cout << "TESTING DEALING FUNC\n";
-				drawPile->deal(playStacks,finalStacks);
+					/*
+					std::cout << "TESTING Shuffle FUNC\n";
+					drawPile->shuffleCards();
+					*/
 
-				/*
-				std::cout << "TESTING Shuffle FUNC\n";
-				drawPile->shuffleCards();
-				*/
-
-			}
-
-
-
-			break;
-		}
-		case SDL_MOUSEBUTTONUP: {
-			if (event.button.button == SDL_BUTTON_LEFT) {
-				Game::mouseDown = false;
-
-				int x, y;
-				SDL_GetMouseState(&x, &y);
-				Game::mousePos.x = x;
-				Game::mousePos.y = y;
-
-				// Iterate through the CardStacks array to check collision with each stack
-				for (Stack* stack : cardStacks) {
-					bool collision = stack->Collide(&Game::mousePos, BasicCollision);
-					if (collision && collideStack != nullptr) {
-						collideStack->transferStack(collideStack->mouseCardStack, stack);
-						break;
-					}
-					else {
-						//std::cout << "shit\n";
-					}
 				}
-				collideStack = nullptr; // Reset collideStack after usage
 
-				for (auto const& i : cardStacks) {
-					i->ReleaseMouse();
-				}
+
+
+				break;
 			}
-			break;
-		}
+			case SDL_MOUSEBUTTONUP: {
+				if (event.button.button == SDL_BUTTON_LEFT) {
+					Game::mouseDown = false;
+
+					int x, y;
+					SDL_GetMouseState(&x, &y);
+					Game::mousePos.x = x;
+					Game::mousePos.y = y;
+
+					// Iterate through the CardStacks array to check collision with each stack
+					for (Stack* stack : cardStacks) {
+						bool collision = stack->Collide(&Game::mousePos, BasicCollision);
+						if (collision && collideStack != nullptr) {
+							collideStack->transferStack(collideStack->mouseCardStack, stack);
+							checkWinState();
+							break;
+						}
+						else {
+							//std::cout << "shit\n";
+						}
+					}
+					collideStack = nullptr; // Reset collideStack after usage
+
+					for (auto const& i : cardStacks) {
+						i->ReleaseMouse();
+					}
+
+				}
+				break;
+			}
 		}
 
+		
 	}
 
 }

@@ -17,11 +17,13 @@ namespace gameObjects {
 		void handleEvents(SDL_Event event);
 		void update();
 		void render();
+		bool checkWinState();
 
 		//gamefunctions
 
 	private:
 		bool ANIMATION_LOCK;
+		bool solved = false;
 		
 		std::vector <Stack*> cardStacks = {};
 
