@@ -1,5 +1,5 @@
 # Making solatiare (windows xp version) from scratch using C++ and SDL2
-### mvp release:
+### mvp/initial game release:
 
 https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v1
 
@@ -33,8 +33,8 @@ All game logic implemented.
 
 
 ## why C++/C ? and not C#, javascript etc.
-C++ challenges me a bit more, i'm trying not to stay in my comfort zone too much.
+C++ challenges me a bit more, I'm trying not to stay in my comfort zone too much.
 
 ## issues
-some code is a bit inelegant, needs to be refactored at a later date, currently prioritising MVP.
-For animations and more advanced graphics ill need to spin off sprites and textures from the game objects (cards) 
+some code is a bit inelegant, needs to be refactored at a later date, was prioritising MVP.
+For animations and more advanced graphics i'll need to spin off sprites and textures from the game objects (cards) 
