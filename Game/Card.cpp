@@ -153,12 +153,12 @@ void Card::setCardTopRectHeight(int h) {
 void Card::winScreenPathing()
 {
 	std::mt19937 rng(std::time(0));
-	std::uniform_real_distribution<int> distX(-6, 6);
-	std::uniform_real_distribution<int> distY(-16, 0);
+	std::uniform_real_distribution<float> distX(-6, 6);
+	std::uniform_real_distribution<float> distY(-16, 0);
 
 
-	int randomDeltaX = distX(rng); //random number [-6,6]
-	int randomDeltaY = distY(rng); //random number [-16,0]
+	float randomDeltaX = distX(rng); //random number [-6,6]
+	float randomDeltaY = distY(rng); //random number [-16,0]
 
 
 }
