@@ -1,39 +1,46 @@
-### Making solatiare (windows xp version) from scratch using C++ and SDL2
-### MVP ALMOST FINISHED JUST NEED TO ADD A WINSTATE CHECK
+# Making solatiare (windows xp version) from scratch using C++ and SDL2
 
-temp placeholder assets from https://60jars.itch.io/card-game-assets
+## Description:
+I've always liked oldschool solitaire from the windows xp days however these days microsoft solitaire exists in a sad state and i've decided to make a minimalistic recreation.
+I'm using c plus plus, I wanted to do a proper project using the language as it's commonly used still to this day in many software development areas and I saw value adding it to my repertoire.
 
-planning to compile to web assembly when the game is playable and host on a website to showcase interactive projects.
 
-## DEV screenshot:
-![Sample Image](https://i.imgur.com/AjgCxys.png)
 
+### Initial game release:
+
+https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v1
+
+### temp placeholder assets from:
+https://60jars.itch.io/card-game-assets
+
+## Game screenshot in current state:
+![Sample Image](https://i.imgur.com/8JLAKm1.png)
 
 ## Currently in development / next development milestone:
-add winstate check
+Classic solitaire winscreen
 
 ## post mvp goals:
-Make my own textures
-Create a Linear interpolation pathing system so card being dealt are animated, instead of teleporting.
-Main menu, Widget based ui system.
-music.
-scoring.
-compile to webassembly.
-Polish, allot of polish.
-make a cmakelists and setup up a cmake buildscript to compile to other platforms.
-May experiment with github actions for ci/cd if i take wasm route.
+- Classic solitaire winscreen
+- Make my own textures
+- Create a Linear interpolation pathing system so card being dealt are animated, instead of teleporting.
+- Main menu, Widget based ui system.
+- Music.
+- Scoring.
+- Compile to webassembly.
+- Polish, allot of polish.
+- Make a cmakelists and setup up a cmake buildscript to compile to other platforms.
+- May experiment with github actions for ci/cd if i take wasm route.
 
 
 ## Finished features:
-rendering, texture manager, 160fps game loop, functionality of card stacks and cards. Base functionality in most components done.
-Ability to move groups of cards between stacks using your mouse.
-All game logic implemented besides winstate check.
+All game logic implemented.
 
 
 
 ## why C++/C ? and not C#, javascript etc.
-C++ challenges me a bit more, i'm trying not to stay in my comfort zone too much.
+C++ challenges me a bit more, I'm trying not to stay in my comfort zone too much.
 
 ## issues
-some code is a bit inelegant, needs to be refactored at a later date, currently prioritising MVP.
-For animations and more advanced graphics ill need to spin off sprites and textures from the game objects (cards) 
+- Some code is a bit inelegant, needs to be refactored at a later date, was prioritising MVP.
+- Some code doesn't follow convention and some has inconsistencies with (low priority, nothing serious)
+- For animations and more advanced graphics i'll need to spin off sprites and textures from the game objects (cards) 
