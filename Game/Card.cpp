@@ -1,4 +1,7 @@
 #include "Card.hpp"
+#include <random>
+#include <ctime>
+
 
 
 const char* Card::cardBack = "PixelCard_Assets/Cards/Card_Back_Blue_New.png";
@@ -145,6 +148,19 @@ int Card::getCardTopRectHeight() {
 
 void Card::setCardTopRectHeight(int h) {
 	this->cardTopRect.h=h;
+}
+
+void Card::winScreenPathing()
+{
+	std::mt19937 rng(std::time(0));
+	std::uniform_real_distribution<int> distX(-6, 6);
+	std::uniform_real_distribution<int> distY(-16, 0);
+
+
+	int randomDeltaX = distX(rng); //random number [-6,6]
+	int randomDeltaY = distY(rng); //random number [-16,0]
+
+
 }
 
 void Card::toggleDrag() {

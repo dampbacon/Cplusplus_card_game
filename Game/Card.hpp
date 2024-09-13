@@ -47,6 +47,7 @@ public:
 	void setCardTopRectHeight(int newH);
 	bool faceUp;
 
+	void winScreenPathing();
 
 private:
 	int xpos;

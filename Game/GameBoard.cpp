@@ -76,8 +76,8 @@ namespace gameObjects {
 
 		drawPile = new cardStacks::DrawPile(10, 10);
 
-		button1 = tempButton(780, 400,"Debug.png");
-		button2 = tempButton(780, 50, "Deal.png");
+		button1 = tempButton(860, 130,"Debug.png");
+		button2 = tempButton(860, 20, "Deal.png");
 
 
 		s0 = new cardStacks::PlayStack(0, cardStacks::Tableau);

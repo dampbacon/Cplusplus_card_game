@@ -4,15 +4,17 @@ tempButton::tempButton()
 {	
 	objTexture = TextureManager::LoadTexture("solved.png");
 	buttonHitBox = new SDL_Rect();
-	buttonHitBox->w = 311;
-	buttonHitBox->h = 100;
-	buttonHitBox->x = 400;
-	buttonHitBox->y = 400;
+	
 
 	srcRect.x = 0;
 	srcRect.y = 0;
 	srcRect.w = 311;
 	srcRect.h = 100;
+
+	buttonHitBox->w = srcRect.w/2;
+	buttonHitBox->h = srcRect.h/2;
+	buttonHitBox->x = 400;
+	buttonHitBox->y = 400;
 }
 
 tempButton::tempButton(int x, int y, const char* texture)
@@ -20,15 +22,16 @@ tempButton::tempButton(int x, int y, const char* texture)
 	objTexture = TextureManager::LoadTexture(texture);
 	//buttonHitBox;
 	buttonHitBox = new SDL_Rect();
-	buttonHitBox->w = 311;
-	buttonHitBox->h = 100;
-	buttonHitBox->x = y;
-	buttonHitBox->y = x;
+
 
 	srcRect.x = 0;
 	srcRect.y = 0;
 	srcRect.w = 311;
 	srcRect.h = 100;
+	buttonHitBox->w = srcRect.w / 3;
+	buttonHitBox->h = srcRect.h / 3;
+	buttonHitBox->x = y;
+	buttonHitBox->y = x;
 
 }
 
