@@ -196,20 +196,28 @@ namespace gameObjects {
 	}
 
 	void GameBoard::render(){
-		button1.render();
-		button2.render();
+		
 
 		for (auto const& i : cardStacks) {
 			i->Render();
 		}
-		//drawPile->Render();
-		drawPile->renderDealPile();
-		for (auto const& i : cardStacks) {
-			i->RenderMouseStack();
+
+		//do not rerender while win animation playing
+		if (!PAINTMODE) {
+			indicator.Render();
+
+			
+			//drawPile->Render();
+			drawPile->renderDealPile();
+			for (auto const& i : cardStacks) {
+				i->RenderMouseStack();
+			}
 		}
 
+		button1.render();
+		button2.render();
+
 		
-		indicator.Render();
 	}
 	bool GameBoard::checkWinState()
 	{
@@ -256,13 +264,59 @@ namespace gameObjects {
 			drawPile->CardStack.clear();
 
 			for (auto i : finalStacks) {
-				i->CardStack.back()->setDraggable(true);
+				i->CardStack.back()->setDraggable(false);
 			}
 			indicator.Show();
 			std::cout << drawPile->CardStack.size();
+
+			solvePassCounter = 1;
 		}
 
-		
+		//solvePassCounter flag needed so we can render everything after initial winstate check code execution above
+		if (solvePassCounter == 2) {
+			for (auto cardstack : cardStacks) {
+				cardstack->defaultRenderMode = false;
+			}
+			if (animationCount == 0) {
+				PAINTMODE = true;
+				finalStacks[0]->CardStack.back()->victoryFlag = true;
+				prevAnimatedCard = finalStacks[0]->CardStack.back();
+				prevAnimatedStack = 0;
+				std::cout << "CARD VALUE ENDING ANIMATION: " << prevAnimatedCard->getVal() << '\n';
+
+				animationCount += 1;
+			}
+		}
+		else if(solvePassCounter==1) {
+			solvePassCounter = 2;
+		}
+
+		if (animationCount != 0 && !prevAnimatedCard->victoryFlag) {
+			if (12 - animationCount >= 0) {
+
+				finalStacks[prevAnimatedStack]->CardStack[12 - animationCount]->generatePathingVars();
+				finalStacks[prevAnimatedStack]->CardStack[12 - animationCount]->victoryFlag = true;
+				prevAnimatedCard = finalStacks[prevAnimatedStack]->CardStack[12 - animationCount];
+
+				std::cout << "CARD VALUE ENDING ANIMATION: " << finalStacks[prevAnimatedStack]->CardStack[12 - animationCount]->getVal() << '\n';
+
+
+				animationCount += 1;
+				
+			}
+			else if (animationCount == 13 && prevAnimatedStack < 3) {
+				prevAnimatedStack += 1;
+				animationCount = 1;
+				
+				prevAnimatedCard = finalStacks[prevAnimatedStack]->CardStack.back();
+				prevAnimatedCard -> generatePathingVars();
+				prevAnimatedCard -> victoryFlag = true;
+				std::cout << "CARD VALUE ENDING ANIMATION: " << prevAnimatedCard->getVal() << '\n';
+
+				//animationCount += 1;
+			}
+
+		}
 	}
 
 
@@ -301,7 +355,15 @@ namespace gameObjects {
 				}
 
 				if (button1.collide(&Game::mousePos)) {
-					drawPile->takeAllCards(cardStacks);
+					//drawPile->takeAllCards(cardStacks);
+					std::cout << "testing win pathing\n";
+					Cards[12]->victoryFlag=true;
+					PAINTMODE = true;
+
+					for (auto cardstack : cardStacks) {
+						cardstack->defaultRenderMode = false;
+					}
+
 				}
 
 				if (button2.collide(&Game::mousePos)) {
@@ -312,7 +374,21 @@ namespace gameObjects {
 						std::cout << "++++++++++++\n";
 					
 					}*/
-					
+					if (prevAnimatedCard&&prevAnimatedCard->victoryFlag) {
+						prevAnimatedCard->victoryFlag = false;
+					}
+
+					for (auto card : Cards) {
+						card->generatePathingVars();
+					}
+					PAINTMODE = false;
+					for (auto cardstack : cardStacks) {
+						cardstack->defaultRenderMode = true;
+					}
+					prevAnimatedCard = nullptr;
+					animationCount = 0;
+					prevAnimatedStack = 0;
+					solvePassCounter = 0;
 					std::cout << "TESTING DEALING FUNC\n";
 					indicator.Hide();
 					drawPile->deal(playStacks,finalStacks);

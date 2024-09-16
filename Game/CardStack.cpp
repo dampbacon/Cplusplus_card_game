@@ -130,8 +130,10 @@ bool PlayStack::Collide(SDL_Point* mouse, collisionType type) {
 void PlayStack::ReleaseMouse() {
 	//potential area for a "Lock" when animating
 	for (auto const& i : CardStack) {
-		i->ActiveCollision = false;
-		i->setPos(i->homeXpos, i->homeYpos, false);
+		if(!i->victoryFlag){
+			i->ActiveCollision = false;
+			i->setPos(i->homeXpos, i->homeYpos, false);
+		}
 	}
 	mouseCardStack.clear(); // Clear the existing subStack
 };

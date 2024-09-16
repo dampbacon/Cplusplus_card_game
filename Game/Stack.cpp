@@ -32,13 +32,23 @@ Stack::~Stack() {
 }
 
 void Stack::Render() {
-	SDL_SetRenderDrawColor(Game::renderer, 255, 0, 0, 255); // Red color
-	SDL_RenderFillRect(Game::renderer, stackHitBox);
-	SDL_SetRenderDrawColor(Game::renderer, 21, 88, 67, 255);// green color
+	if (defaultRenderMode){
+		SDL_SetRenderDrawColor(Game::renderer, 255, 0, 0, 255); // Red color
+		SDL_RenderFillRect(Game::renderer, stackHitBox);
+		SDL_SetRenderDrawColor(Game::renderer, 21, 88, 67, 255);// green color
+	}
+
+
+
 	if (!CardStack.empty()) {
 		for (auto const& i : CardStack) {
 			if (mouseCardStack.empty()) {
-				i->Render();
+				if (defaultRenderMode) {
+					i->Render();
+				}
+				else if (i->victoryFlag) {
+					i->Render();
+				}
 			}
 			else if (i == mouseCardStack.front()) {
 				break;

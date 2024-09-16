@@ -20,6 +20,8 @@ namespace gameObjects {
 		void render();
 		bool checkWinState();
 
+		bool PAINTMODE = false;
+
 		//gamefunctions
 
 	private:
@@ -53,5 +55,11 @@ namespace gameObjects {
 		tempButton button2;
 
 		TempSolvedIndicator indicator;
+
+		int animationCount=0;
+		int solvePassCounter = 0;
+
+		int prevAnimatedStack = 0;
+		Card* prevAnimatedCard = nullptr;
 	};
 }

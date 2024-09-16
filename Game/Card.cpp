@@ -8,6 +8,7 @@ const char* Card::cardBack = "PixelCard_Assets/Cards/Card_Back_Blue_New.png";
 
 
 Card::Card(SUIT suit, int value, const char* texture, int x,int y, bool InPlay) {
+	ActiveCollision = false;
 	color = {};
 	Csuit = {};
 	if (suit == DIAMONDS || suit == HEARTS) {
@@ -34,10 +35,14 @@ Card::Card(SUIT suit, int value, const char* texture, int x,int y, bool InPlay) 
 	xpos = x;
 	ypos = y;
 
+
+	generatePathingVars();
+	//deltaX = 0;
+	//deltaY = 0;
+
 	homeXpos= xpos;
 	homeYpos= ypos;
 
-	bool ActiveCollision = false;
 
 
 	srcRect.h = 96;
@@ -103,11 +108,46 @@ void Card::Update() {
 	}
 
 
+
+	if (victoryFlag) {
+
+		if ((int)std::round(deltaX) == 0) {
+			deltaX = 3;
+		}
+		xpos += (int)std::round(deltaX);
+		//std::cout << xpos<<" = XPOS\n";
+
+		ypos += (int)std::round(deltaY);
+
+
+		//currently hardcoded later add functions to dynamically get height and width
+		int TEMPwindowwidth = 1024;
+		int TEMPwindowheight = 900;
+
+		if (xpos<(-destRect.w / 2) || xpos >(TEMPwindowwidth + destRect.w / 2)) {
+			victoryFlag = false;
+		}
+
+		if (ypos > TEMPwindowheight - destRect.h / 2) {
+			ypos = TEMPwindowheight - destRect.h / 2;
+			deltaY = -deltaY * 0.85;
+		}
+		deltaY += .98;
+
+		// needed so clicking doesnt screw up animation
+		// will need to go back and do something to 
+		//homeXpos = xpos;
+		//homeYpos = ypos;
+
+	}
+
 	destRect.x = xpos;
 	destRect.y = ypos;
 
 	cardTopRect.x = xpos;
 	cardTopRect.y = ypos;
+
+
 }
 
 void Card::Render() {
@@ -150,16 +190,15 @@ void Card::setCardTopRectHeight(int h) {
 	this->cardTopRect.h=h;
 }
 
-void Card::winScreenPathing()
+void Card::generatePathingVars()
 {
 	std::mt19937 rng(std::time(0));
-	std::uniform_real_distribution<float> distX(-6, 6);
+	std::uniform_real_distribution<float> distX(-8, 8);
 	std::uniform_real_distribution<float> distY(-16, 0);
 
 
-	float randomDeltaX = distX(rng); //random number [-6,6]
-	float randomDeltaY = distY(rng); //random number [-16,0]
-
+	deltaX = distX(rng); //random number [-6,6]
+	deltaY = distY(rng); //random number [-16,0]
 
 }
 

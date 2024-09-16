@@ -62,6 +62,8 @@ namespace cardStacks {
 		virtual StackType getType() = 0;
 		FunctionPtr stackRules = defaultFunction;
 
+		bool defaultRenderMode = true;
+
 	protected:
 		int yRenderOffset;
 
@@ -74,8 +76,7 @@ namespace cardStacks {
 		~PlayStack() override;
 		int getStackID();
 
-		//used to flip top card if mousestack empty and topcard is not flipped
-		void revealTopCard();
+		
 		//game logic
 		//void canBeAdded(std::vector<Card*>& cards);
 

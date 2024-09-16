@@ -47,12 +47,16 @@ public:
 	void setCardTopRectHeight(int newH);
 	bool faceUp;
 
-	void winScreenPathing();
+	void generatePathingVars();
+
+	bool victoryFlag = false;
 
 private:
 	int xpos;
 	int ypos;
 
+	float deltaX;
+	float deltaY;
 	
 
 

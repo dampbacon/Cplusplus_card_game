@@ -95,7 +95,10 @@ void Game::update(){
 }
 // render order matters this is to be handled by stacks
 void Game::render(){
-	SDL_RenderClear(renderer);
+
+	if (!gameBoard->PAINTMODE) {
+		SDL_RenderClear(renderer);
+	}
 	
 	gameBoard->render();
 
