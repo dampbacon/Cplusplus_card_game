@@ -183,6 +183,9 @@ namespace gameObjects {
 		cardStacks[3]->addToStack(Cards[50]);
 		cardStacks[3]->addToStack(Cards[51]);
 
+
+		drawPile->deal(playStacks, finalStacks);
+
 	}
 
 	GameBoard::~GameBoard()
@@ -355,7 +358,8 @@ namespace gameObjects {
 				}
 
 				if (button1.collide(&Game::mousePos)) {
-					//drawPile->takeAllCards(cardStacks);
+					drawPile->takeAllCards(cardStacks);
+					/*
 					std::cout << "testing win pathing\n";
 					Cards[12]->victoryFlag=true;
 					PAINTMODE = true;
@@ -363,6 +367,7 @@ namespace gameObjects {
 					for (auto cardstack : cardStacks) {
 						cardstack->defaultRenderMode = false;
 					}
+					*/
 
 				}
 
