@@ -1,26 +1,35 @@
 # Making solatiare (windows xp version) from scratch using C++ and SDL2
 
 ## Description:
-I've always liked oldschool solitaire from the windows xp days however these days microsoft solitaire exists in a sad state and i've decided to make a minimalistic recreation.
-I'm using c plus plus, I wanted to do a proper project using the language as it's commonly used still to this day in many software development areas and I saw value adding it to my repertoire.
+- I've always liked oldschool solitaire from the windows xp days however these days microsoft solitaire exists in a sad state and i've decided to make a minimalistic recreation.
+- I'm using c plus plus, I wanted to do a proper project using the language as it's commonly used still to this day in many software development areas and I saw value adding it to my repertoire.
+- In many ways this is a design challenge, I'm not using any frameworks or game engines, this is mostly written by scratch with only a simple library to handle windowing and basic rendering (SDL2)
 
 
+### current game release:
+https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v2
 
-### Initial game release:
-
-https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v1
-
-### temp placeholder assets from:
+### temp placeholder card assets from:
 https://60jars.itch.io/card-game-assets
 
-## Game screenshot in current state:
-![Sample Image](https://i.imgur.com/8JLAKm1.png)
+### To run:
+- download and extract from the link above
+- navigate to release folder where extracted
+- execute practice.exe
+
+## Game screenshots in current state:
+### Classic win screen:
+![Sample Image](https://i.imgur.com/o2tZxld.png)
+### Initial game state:
+![Sample Image](https://i.imgur.com/qEZTkVo.png)
 
 ## Currently in development / next development milestone:
-Classic solitaire winscreen
+ - polish (lock end stack cards allowed)
+ - some custom assets: not the cards yet, I will first prioritise the red card stack markers
+ - prompt for autosolve (currently executes as soon all cards are revealed)
+
 
 ## post mvp goals:
-- Classic solitaire winscreen
 - Make my own textures
 - Create a Linear interpolation pathing system so card being dealt are animated, instead of teleporting.
 - Main menu, Widget based ui system.
@@ -34,7 +43,7 @@ Classic solitaire winscreen
 
 ## Finished features:
 All game logic implemented.
-
+Classic solitaire winscreen implemented
 
 
 ## why C++/C ? and not C#, javascript etc.
