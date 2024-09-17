@@ -18,6 +18,8 @@ public:
 	void render();
 	void clean();
 
+	static void MouseScale(int &x, int &y);
+
 	bool running() { return isRunning; };
 
 	//mouse stuff

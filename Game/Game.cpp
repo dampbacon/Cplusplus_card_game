@@ -38,6 +38,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	if (fullscreen) {
 		flags = SDL_WINDOW_FULLSCREEN;
 	}
+	else {
+		flags = SDL_WINDOW_RESIZABLE;
+	}
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "subsystems initialised..." << std::endl;
@@ -53,6 +56,13 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 			std::cout << "renderer created" << std::endl;
 		}
 		isRunning = true;
+
+
+		//wip use SDL_RenderWindowToLogical to fix mouse colision
+		SDL_RenderSetLogicalSize(renderer, 1024, 900);
+
+
+
 	}
 	else {
 		isRunning = false;
@@ -111,4 +121,16 @@ void Game::clean(){
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	std::cout << "game cleaned." << std::endl;
+}
+
+void Game::MouseScale(int &x, int &y) {
+	int xTemp = 0;
+	int yTemp = 0;
+	SDL_GetMouseState(&xTemp, &yTemp);
+	float xLog = 0;
+	float yLog = 0;
+	SDL_RenderWindowToLogical(renderer, xTemp, yTemp, &xLog, &yLog);
+
+	x = (int)std::round(xLog);
+	y = (int)std::round(yLog);
 }

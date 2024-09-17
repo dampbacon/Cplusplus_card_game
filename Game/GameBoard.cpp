@@ -341,7 +341,8 @@ namespace gameObjects {
 				if (event.button.button == SDL_BUTTON_LEFT) {
 					Game::mouseDown = true;
 					int x, y;
-					SDL_GetMouseState(&x, &y);
+					Game::MouseScale(x, y);
+					//SDL_GetRelativeMouseState(&x, &y);
 					Game::mousePos.x = x;
 					Game::mousePos.y = y;
 
@@ -414,7 +415,7 @@ namespace gameObjects {
 					Game::mouseDown = false;
 
 					int x, y;
-					SDL_GetMouseState(&x, &y);
+					Game::MouseScale(x, y);
 					Game::mousePos.x = x;
 					Game::mousePos.y = y;
 
