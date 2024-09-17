@@ -7,7 +7,7 @@
 
 
 ### current game release:
-https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v2
+https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v3
 
 ### temp placeholder card assets from:
 https://60jars.itch.io/card-game-assets
