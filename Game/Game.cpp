@@ -60,6 +60,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		//wip use SDL_RenderWindowToLogical to fix mouse colision
 		SDL_RenderSetLogicalSize(renderer, 1024, 900);
+		//SDL_RenderSetIntegerScale(renderer,SDL_TRUE);
 
 
 
