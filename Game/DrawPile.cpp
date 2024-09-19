@@ -2,6 +2,8 @@
 #include "Stack.hpp"
 #include <algorithm>
 #include <random>
+#include <unordered_map>
+
 using namespace cardStacks;
 DrawPile::DrawPile(int x, int y, FunctionPtr ptr, int yoffsetRen) : Stack() {
 	stackHitBox->x = x;
@@ -164,44 +166,30 @@ void DrawPile::updateDealPile() {
 	}
 }
 
-void DrawPile::sortCardsBySuitAndValue()
+
+void DrawPile::sortCardsBySuitAndValue(std::vector<SUIT>& matchingStackList)
 {
-	int n = CardStack.size();
+	//SORT BY SUIT
+	//HASHMAP WHERE SUIT CORRESPONDES TO ARRAY INDEX IN MATCHING STACK LIST SO I CAN SORT BY INT CONVERSION OF ENUM 0,1,2,3
+	std::unordered_map<SUIT, int> stackListMap = {};
 
-	for (int i = 0; i < n - 1; ++i) {
-		int minIndex = i;
-
-		for (int j = i + 1; j < n; ++j) {
-			if (CardStack[j]->getSuit() < CardStack[minIndex]->getSuit()) {
-				minIndex = j;
-			}
-			else if (CardStack[j]->getSuit() == CardStack[minIndex]->getSuit() &&
-				CardStack[j]->getVal() < CardStack[minIndex]->getVal()) {
-				minIndex = j;
-			}
-		}
-
-		if (minIndex != i) {
-			std::swap(CardStack[i], CardStack[minIndex]);
-		}
+	for (int i = 0; i < 4; i++) {
+		stackListMap.emplace(matchingStackList[i],i);
 	}
 
+	//sort cards by suit based on order of matchingStackList using stackListMap
+	std::sort(CardStack.begin(), CardStack.end(), [&stackListMap](Card* a,Card* b) {
+		return stackListMap[a->getSuit()] < stackListMap[b->getSuit()];
+		});
 
-	//later should be spun into a function as this is being reused
-	if (!this->CardStack.empty()) {
-		for (auto i : CardStack) {
-			i->setDraggable(false);
-		}
-		int increasingYOffset = 0;
-
-		for (Card* card : CardStack) {
-			card->setDraggable(false);
-			card->setPos(stackHitBox->x, stackHitBox->y + increasingYOffset, true);
-			increasingYOffset += yRenderOffset;
-		}
-		CardStack.back()->setDraggable(true);
+	//SUBDIVIDE INTO 4 AND SORT THOSE RANGES BY VALUE
+	for (int i = 0; i < 4; ++i) {
+		auto startIt = CardStack.begin() + i * 13;
+		auto endIt = startIt + 13;
+		std::sort(startIt, endIt, [](Card* a, Card* b) {
+			return a->getVal() < b->getVal();
+			});
 	}
-
 }
 
 void DrawPile::ReleaseMouse() {
@@ -223,7 +211,7 @@ void DrawPile::takeAllCards(std::vector<Stack*>& input) {
 	this->returnDealpile();
 	for (auto& i : input) {
 		for (auto& j : i->CardStack) {
-			std::cout << "TEST_" << j << "\n";
+			//std::cout << "TEST_" << j << "\n";
 			j->setDraggable(false);
 		}
 		if (i->getType() == PLAYSTACK && !(i->CardStack.empty())) {

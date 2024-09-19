@@ -109,7 +109,7 @@ namespace cardStacks {
 		void returnDealpile();
 		void renderDealPile();
 		void updateDealPile();
-		void sortCardsBySuitAndValue();
+		void sortCardsBySuitAndValue(std::vector<SUIT>& suitsOrder);
 			
 
 
@@ -128,6 +128,7 @@ namespace cardStacks {
 		bool Collide(SDL_Point* mouse, collisionType type) override;
 	private:
 		StackType type;
+		
 	};
 
 

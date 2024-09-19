@@ -3,7 +3,7 @@
 #pragma once
 
 enum SUIT {
-	HEARTS, DIAMONDS, CLUBS, SPADES
+	HEARTS, DIAMONDS, CLUBS, SPADES, NONE
 };
 
 enum SUIT_COLOR {
@@ -50,6 +50,7 @@ public:
 	void generatePathingVars();
 
 	bool victoryFlag = false;
+	
 
 private:
 	int xpos;
@@ -68,9 +69,9 @@ private:
 
 	bool draggable;
 
-	SUIT Csuit;
+	
 	SUIT_COLOR color;
-
+	SUIT Csuit;
 	SDL_Texture* objTexture;
 	SDL_Rect srcRect, destRect, cardTopRect;
 };

@@ -1,5 +1,7 @@
 #include "GameBoard.hpp"
 #include "Game.hpp"
+#include <set>
+
 using namespace cardStacks;
 namespace gameObjects {
 
@@ -246,16 +248,56 @@ namespace gameObjects {
 		drawPile->updateDealPile();
 
 		if (solved) {
+			// spin later into a function
+
 			solved = false;
+
+			//std::vector<SUIT> suitsNotUsed = {SUIT::CLUBS,SUIT::DIAMONDS,SUIT::HEARTS:};
+			std::vector<SUIT> suitsNotUsed = std::vector<SUIT>{ SUIT::CLUBS,SUIT::DIAMONDS,SUIT::HEARTS,SUIT::SPADES };
+
+			std::vector<SUIT> matchingStackList = std::vector<SUIT>();
+
+			for (auto stack : finalStacks) {
+				if (!stack->CardStack.empty()) {
+					SUIT suit = stack->CardStack.front()->getSuit();
+					matchingStackList.push_back(suit);
+					std::cout << "SUITS IN FOUNDATIONS " << suit << '\n';
+
+					auto it = std::find(suitsNotUsed.begin(), suitsNotUsed.end(), suit);
+					if (it != suitsNotUsed.end()) {
+						suitsNotUsed.erase(it);
+					}
+				}
+				else {
+					matchingStackList.push_back(SUIT::NONE);
+					std::cout << "SUITS IN FOUNDATIONS " << SUIT::NONE << '\n';
+				}
+			}
+			
+			for (int i = 0; i < 4;i++) {
+				if (matchingStackList[i] == SUIT::NONE) {
+					std::cout << "TESTING CONDITION, EMPTY\n";
+					matchingStackList[i] = suitsNotUsed.back();
+					suitsNotUsed.pop_back();
+
+				}
+			}
+			std::cout << "TESTING matchingStackList HAS NO \"4\"" << "\n";
+			for (auto i : matchingStackList) {
+				std::cout << i << "\n";
+			}
+			//
 			drawPile->takeAllCards(cardStacks);
-			drawPile->sortCardsBySuitAndValue();
+			drawPile->sortCardsBySuitAndValue(matchingStackList);
 			for (auto i : drawPile->CardStack) {
 				i->setFaceUp();
 				i->setDraggable(false);
 			}
-			
+			//
+
 			int counter = 0;
 			int currentStack = 0;
+
 			for (auto i : drawPile->CardStack) {
 				finalStacks[currentStack]->addToStack(i);
 				counter += 1;
@@ -275,6 +317,7 @@ namespace gameObjects {
 			solvePassCounter = 1;
 		}
 
+		//spin off into a seperate function later
 		//solvePassCounter flag needed so we can render everything after initial winstate check code execution above
 		if (solvePassCounter == 2) {
 			for (auto cardstack : cardStacks) {
@@ -354,12 +397,13 @@ namespace gameObjects {
 						}
 					}
 
-					std::cout << "x: " << x << "y: " << y;
-					std::cout << "pain\n";
+					std::cout << "x: " << x << "y: " << y<<" \n";
+					//std::cout << "pain\n";
 				}
 
 				if (button1.collide(&Game::mousePos)) {
-					drawPile->takeAllCards(cardStacks);
+					//drawPile->takeAllCards(cardStacks);
+					solved = true;
 					/*
 					std::cout << "testing win pathing\n";
 					Cards[12]->victoryFlag=true;
