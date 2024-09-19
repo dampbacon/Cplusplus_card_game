@@ -51,5 +51,5 @@ C++ challenges me a bit more, I'm trying not to stay in my comfort zone too much
 
 ## issues
 - some functions need to be spun out and a fair bit of refactoring needs to be done to make the code more elegant, this is not a major priority currently but is something that definitely will be done to clean up the overall design.
-- Some code doesn't follow convention and some has inconsistencies with (low priority, nothing serious)
+- Some code doesn't follow convention and some has inconsistencies with the rest of the overall design(low priority, nothing serious)
 - For animations and more advanced graphics to make the code and design overall more elegant i'll need to spin off sprites and textures from the game objects and have the game objects hold that a seperate class. 
