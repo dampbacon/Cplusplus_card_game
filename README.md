@@ -19,9 +19,9 @@ https://60jars.itch.io/card-game-assets
 
 ## Game screenshots in current state:
 ### Classic win screen:
-![Sample Image](https://i.imgur.com/o2tZxld.png)
+![Sample Image](https://i.imgur.com/w0cthrv.png)
 ### Initial game state:
-![Sample Image](https://i.imgur.com/qEZTkVo.png)
+![Sample Image](https://i.imgur.com/ORk3Eaa.png)
 
 ## Currently in development / next development milestone:
  - polish
