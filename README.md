@@ -25,6 +25,7 @@ https://60jars.itch.io/card-game-assets
 
 ## Currently in development / next development milestone:
  - polish
+ - double click to move card to foundations
  - some custom assets: not the cards yet, I will first prioritise some ui and deck indicator assets
  - prompt for autosolve (currently executes as soon all cards are revealed)
 
