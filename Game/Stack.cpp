@@ -33,7 +33,7 @@ Stack::~Stack() {
 
 void Stack::Render() {
 	if (defaultRenderMode){
-		SDL_SetRenderDrawColor(Game::renderer, 255, 0, 0, 255); // Red color
+		SDL_SetRenderDrawColor(Game::renderer, 15, 64, 49, 255); // Red color
 		SDL_RenderFillRect(Game::renderer, stackHitBox);
 		SDL_SetRenderDrawColor(Game::renderer, 21, 88, 67, 255);// green color
 	}

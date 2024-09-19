@@ -59,7 +59,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 
 		//wip use SDL_RenderWindowToLogical to fix mouse colision
-		SDL_RenderSetLogicalSize(renderer, 1024, 900);
+		LogicalHeight = 900;
+		LogicalWidth = 512*2;
+		SDL_RenderSetLogicalSize(renderer, LogicalWidth, LogicalHeight);
 		//SDL_RenderSetIntegerScale(renderer,SDL_TRUE);
 
 
@@ -134,4 +136,14 @@ void Game::MouseScale(int &x, int &y) {
 
 	x = (int)std::round(xLog);
 	y = (int)std::round(yLog);
+}
+
+int Game::getLogicalWidth()
+{
+	return LogicalWidth;
+}
+
+int Game::getLogicalHeight()
+{
+	return LogicalHeight;
 }

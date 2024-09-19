@@ -32,8 +32,14 @@ public:
 
 	static SDL_Renderer* renderer;
 
+	int getLogicalWidth();
+	int getLogicalHeight();
+
 private:
 	bool isRunning = false;
 	SDL_Window  *window;
 	int count = {};
+
+	int LogicalWidth;
+	int LogicalHeight; 
 };

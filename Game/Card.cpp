@@ -121,15 +121,18 @@ void Card::Update() {
 
 
 		//currently hardcoded later add functions to dynamically get height and width
-		int TEMPwindowwidth = 1024;
-		int TEMPwindowheight = 900;
+		int TEMPwindowWidth = 1024;
+		int TEMPwindowHeight = 900;
 
-		if (xpos<(-destRect.w / 2) || xpos >(TEMPwindowwidth + destRect.w / 2)) {
+		SDL_RenderGetLogicalSize(Game::renderer,&TEMPwindowWidth, &TEMPwindowHeight);
+
+
+		if (xpos<(-destRect.w / 2) || xpos >(TEMPwindowWidth + destRect.w / 2)) {
 			victoryFlag = false;
 		}
 
-		if (ypos > TEMPwindowheight - destRect.h / 2) {
-			ypos = TEMPwindowheight - destRect.h / 2;
+		if (ypos > TEMPwindowHeight - destRect.h / 2) {
+			ypos = TEMPwindowHeight - destRect.h / 2;
 			deltaY = -deltaY * 0.85;
 		}
 		deltaY += .98;
