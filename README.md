@@ -50,6 +50,6 @@ Classic solitaire winscreen implemented
 C++ challenges me a bit more, I'm trying not to stay in my comfort zone too much.
 
 ## issues
-- Some code is a bit inelegant, needs to be refactored at a later date, was prioritising MVP.
+- some functions need to be spun out and a fair bit of refactoring needs to be done to make the code more elegant, this is not a major priority currently but is something that definitely will be done to clean up the overall design.
 - Some code doesn't follow convention and some has inconsistencies with (low priority, nothing serious)
-- For animations and more advanced graphics i'll need to spin off sprites and textures from the game objects (cards) 
+- For animations and more advanced graphics to make the code and design overall more elegant i'll need to spin off sprites and textures from the game objects and have the game objects hold that a seperate class. 
