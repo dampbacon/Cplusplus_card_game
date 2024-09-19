@@ -7,7 +7,7 @@
 
 
 ### current game release:
-https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v2
+https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v3
 
 ### temp placeholder card assets from:
 https://60jars.itch.io/card-game-assets
@@ -50,6 +50,7 @@ Classic solitaire winscreen implemented
 C++ challenges me a bit more, I'm trying not to stay in my comfort zone too much.
 
 ## issues
-- Some code is a bit inelegant, needs to be refactored at a later date, was prioritising MVP.
-- Some code doesn't follow convention and some has inconsistencies with (low priority, nothing serious)
-- For animations and more advanced graphics i'll need to spin off sprites and textures from the game objects (cards) 
+- Having a proper tileset will make the game set up much nicer having a loop create all cards rather than having to worry about individual texture names. I'm definitely aware the gameboard set up can be done better but I am holding of till I implement the desired systems and the current state it's in is fine for now, it works.
+- some functions need to be spun out and a fair bit of refactoring needs to be done to make the code more elegant, this is not a major priority currently but is something that definitely will be done to clean up the overall design.
+- Some code doesn't follow convention and some has inconsistencies with the rest of the overall design(low priority, nothing serious)
+- For animations and more advanced graphics to make the code and design overall more elegant i'll need to spin off sprites and textures from the game objects and have the game objects hold that a seperate class. 
