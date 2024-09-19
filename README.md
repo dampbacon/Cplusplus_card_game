@@ -24,7 +24,7 @@ https://60jars.itch.io/card-game-assets
 ![Sample Image](https://i.imgur.com/qEZTkVo.png)
 
 ## Currently in development / next development milestone:
- - polish (lock end stack cards allowed)
+ - polish
  - some custom assets: not the cards yet, I will first prioritise the red card stack markers
  - prompt for autosolve (currently executes as soon all cards are revealed)
 
