@@ -4,7 +4,7 @@
 - I've always liked oldschool solitaire from the windows xp days however these days microsoft solitaire exists in a sad state and i've decided to make a minimalistic recreation.
 - I'm using c plus plus, I wanted to do a proper project using the language as it's commonly used still to this day in many software development areas and I saw value adding it to my repertoire.
 - In many ways this is a design challenge, I'm not using any frameworks or game engines, this is mostly written by scratch with only a simple library to handle windowing and basic rendering (SDL2)
-
+- I am using C pointers and not shared / unique pointers, I'm using a C Library and it's easier to for me to program in a C style navigating documentation, I'm using only aspects of c++ i find useful such as virtual functions, classes, vector etc. 
 
 ### current game release:
 https://github.com/dampbacon/Cplusplus_card_game/releases/tag/v4
