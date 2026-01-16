@@ -1,6 +1,10 @@
 # Making solatiare (windows xp version) from scratch using C++ and SDL2
 
-Showcase: https://youtu.be/U9g25V64mcI?t=198
+# 2025 State of project:
+
+ Rewrite now with my better c++ understanding / memory management and use my custom renderer
+
+# 2023 State of project:
 
 ## Description:
 - I've always liked oldschool solitaire from the windows xp days however these days microsoft solitaire exists in a sad state and i've decided to make a minimalistic recreation.
