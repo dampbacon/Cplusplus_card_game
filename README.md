@@ -30,6 +30,7 @@ https://60jars.itch.io/card-game-assets
  - double click to move card to foundations
  - some custom assets: not the cards yet, I will first prioritise some ui and deck indicator assets
  - prompt for autosolve (currently executes as soon all cards are revealed)
+ - Rewrite now with my better c++ understanding / memory management and use my custom renderer
 
 
 ## post mvp goals:
