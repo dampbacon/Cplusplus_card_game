@@ -1,10 +1,10 @@
 # Making solatiare (windows xp version) from scratch using C++ and SDL2
 
-# 2025 State of project:
+## 2025 State of project:
 
  Rewrite now with my better c++ understanding / memory management and use my custom renderer
 
-# 2023 State of project:
+## 2023 State of project:
 
 ## Description:
 - I've always liked oldschool solitaire from the windows xp days however these days microsoft solitaire exists in a sad state and i've decided to make a minimalistic recreation.
@@ -34,7 +34,6 @@ https://60jars.itch.io/card-game-assets
  - double click to move card to foundations
  - some custom assets: not the cards yet, I will first prioritise some ui and deck indicator assets
  - prompt for autosolve (currently executes as soon all cards are revealed)
- - Rewrite now with my better c++ understanding / memory management and use my custom renderer
 
 
 ## post mvp goals:
